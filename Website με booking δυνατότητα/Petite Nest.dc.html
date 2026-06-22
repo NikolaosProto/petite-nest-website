@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#F4EFE7;color:#232019;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none}
+::selection{background:#2E5A52;color:#fff}
+image-slot{display:block}
+</style>
+</helmet>
+
+<div id="top" style="width:100%;overflow-x:hidden">
+
+<header style="position:sticky;top:0;z-index:60;background:rgba(244,239,231,0.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #E4DCCE">
+  <div style="max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,40px);height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+    <a href="#top" style="font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;letter-spacing:4px;line-height:1">PETITE NEST</a>
+
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:30px;font-size:13.5px;font-weight:500;letter-spacing:0.2px">
+        <a href="#about" style="color:#3C382F" style-hover="{{ linkHover }}">{{ t.nav.residence }}</a>
+        <a href="#gallery" style="color:#3C382F" style-hover="{{ linkHover }}">{{ t.nav.gallery }}</a>
+        <a href="#amenities" style="color:#3C382F" style-hover="{{ linkHover }}">{{ t.nav.amenities }}</a>
+        <a href="#location" style="color:#3C382F" style-hover="{{ linkHover }}">{{ t.nav.location }}</a>
+        <a href="#reviews" style="color:#3C382F" style-hover="{{ linkHover }}">{{ t.nav.reviews }}</a>
+      </nav>
+    </sc-if>
+
+    <div style="display:flex;align-items:center;gap:12px">
+      <button onClick="{{ toggleLang }}" style="background:transparent;border:1px solid #D8CFBE;color:#3C382F;font-family:'Manrope',sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;padding:8px 12px;border-radius:999px;cursor:pointer">{{ langSwitchLabel }}</button>
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <a href="#book" style="background:#2E5A52;color:#fff;font-size:13.5px;font-weight:600;padding:11px 20px;border-radius:999px" style-hover="{{ ctaHover }}">{{ t.nav.book }}</a>
+      </sc-if>
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="background:transparent;border:none;cursor:pointer;padding:8px;display:flex;flex-direction:column;gap:5px">
+          <span style="display:block;width:22px;height:1.5px;background:#232019"></span>
+          <span style="display:block;width:22px;height:1.5px;background:#232019"></span>
+          <span style="display:block;width:22px;height:1.5px;background:#232019"></span>
+        </button>
+      </sc-if>
+    </div>
+  </div>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="border-top:1px solid #E4DCCE;background:#F4EFE7;padding:8px clamp(20px,5vw,40px) 20px;display:flex;flex-direction:column">
+      <a href="#about" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid #E9E1D2;font-size:16px">{{ t.nav.residence }}</a>
+      <a href="#gallery" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid #E9E1D2;font-size:16px">{{ t.nav.gallery }}</a>
+      <a href="#amenities" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid #E9E1D2;font-size:16px">{{ t.nav.amenities }}</a>
+      <a href="#location" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid #E9E1D2;font-size:16px">{{ t.nav.location }}</a>
+      <a href="#reviews" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid #E9E1D2;font-size:16px">{{ t.nav.reviews }}</a>
+      <a href="#book" onClick="{{ closeMenu }}" style="margin-top:16px;background:#2E5A52;color:#fff;text-align:center;font-weight:600;padding:14px;border-radius:999px">{{ t.nav.book }}</a>
+    </div>
+  </sc-if>
+</header>
+
+<!-- HERO -->
+<section style="padding:clamp(40px,6vw,80px) clamp(20px,5vw,40px) 0">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,60px);align-items:center">
+      <div style="flex:1 1 380px;min-width:300px">
+        <div style="font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#2E5A52;font-weight:600">{{ t.hero.place }}</div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,5.6vw,72px);line-height:1.02;letter-spacing:-1px;margin:18px 0 0">{{ t.hero.title }}</h1>
+        <p style="font-size:clamp(16px,2vw,18px);line-height:1.7;color:#5E5A50;max-width:440px;margin:22px 0 0">{{ t.hero.sub }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:28px">
+          <sc-for list="{{ stats }}" as="s" hint-placeholder-count="5">
+            <span style="font-size:13px;font-weight:500;color:#3C382F;background:#fff;border:1px solid #E4DCCE;padding:8px 14px;border-radius:999px">{{ s.t }}</span>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex:1 1 380px;min-width:300px">
+        <image-slot id="hero" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1623102965390266812/original/aeb13811-6d01-458b-9ff2-6e6fa5e4777d.jpeg?im_w=1200" style="width:100%;height:clamp(360px,52vh,560px)" shape="rounded" radius="6" placeholder="Drop a hero photo"></image-slot>
+      </div>
+    </div>
+
+    <!-- compact booking bar -->
+    <div style="margin-top:clamp(32px,5vw,56px);background:#fff;border:1px solid #E4DCCE;border-radius:10px;box-shadow:0 24px 60px -34px rgba(35,32,25,0.45);display:flex;flex-wrap:wrap;align-items:stretch;overflow:hidden">
+      <div style="flex:1 1 130px;min-width:120px;padding:16px 22px;display:flex;flex-direction:column;gap:4px;justify-content:center;border-right:1px solid #ECE5D8">
+        <span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#8C8678">{{ t.widget.from }}</span>
+        <span style="font-size:16px;font-weight:700">{{ fromPrice }} <span style="font-weight:500;font-size:13px;color:#8C8678">{{ t.widget.night }}</span></span>
+      </div>
+      <a href="#book" style="flex:1 1 150px;min-width:140px;padding:16px 22px;display:flex;flex-direction:column;gap:4px;justify-content:center;border-right:1px solid #ECE5D8" style-hover="{{ segHover }}">
+        <span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#8C8678">{{ t.widget.dates }}</span>
+        <span style="font-size:15px;font-weight:600">{{ rangeLabel }}</span>
+      </a>
+      <a href="#book" style="flex:1 1 130px;min-width:120px;padding:16px 22px;display:flex;flex-direction:column;gap:4px;justify-content:center;border-right:1px solid #ECE5D8" style-hover="{{ segHover }}">
+        <span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#8C8678">{{ t.widget.guests }}</span>
+        <span style="font-size:15px;font-weight:600">{{ guestsLabel }}</span>
+      </a>
+      <a href="#book" style="flex:1 1 190px;min-width:170px;background:#2E5A52;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;padding:18px 22px;font-weight:600;font-size:15px" style-hover="{{ ctaHover }}">{{ t.widget.cta }} <span style="font-size:18px">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="scroll-margin-top:80px;padding:clamp(64px,9vw,120px) clamp(20px,5vw,40px)">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,64px);align-items:center">
+    <div style="flex:1 1 380px;min-width:300px">
+      <image-slot id="about" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1623102965390266812/original/f0145cfc-b564-427b-9a58-5795c0933ec9.jpeg?im_w=1200" style="width:100%;height:clamp(380px,50vh,520px)" shape="rounded" radius="6" placeholder="Drop a photo of the space"></image-slot>
+    </div>
+    <div style="flex:1 1 380px;min-width:300px">
+      <div style="font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#2E5A52;font-weight:600">{{ t.about.label }}</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.2vw,48px);line-height:1.06;letter-spacing:-0.5px;margin:16px 0 0">{{ t.about.title }}</h2>
+      <p style="font-size:16.5px;line-height:1.75;color:#5E5A50;margin:22px 0 0">{{ t.about.body }}</p>
+      <p style="font-size:16.5px;line-height:1.75;color:#5E5A50;margin:18px 0 0">{{ t.about.body2 }}</p>
+      <div style="margin-top:26px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#2E5A52">{{ t.about.host }}</div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities" style="scroll-margin-top:80px;background:#FBF7F1;border-top:1px solid #ECE3D5;border-bottom:1px solid #ECE3D5;padding:clamp(64px,9vw,120px) clamp(20px,5vw,40px)">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#2E5A52;font-weight:600">{{ t.amenities.label }}</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.2vw,48px);line-height:1.06;letter-spacing:-0.5px;margin:14px 0 36px;max-width:520px">{{ t.amenities.title }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));column-gap:36px">
+      <div style="display:flex;gap:14px;align-items:center;padding:20px 0;border-top:1px solid #E4DCCE">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round"><path d="M2 17c2 0 2.5-1.5 5-1.5s2.5 1.5 5 1.5 2.5-1.5 5-1.5 3 1.5 5 1.5M2 13c2 0 2.5-1.5 5-1.5s2.5 1.5 5 1.5 2.5-1.5 5-1.5 3 1.5 5 1.5M9 9V4h6v5"/></svg>
+        <span style="font-size:15px;font-weight:500">{{ t.am.sea }}</span>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;padding:20px 0;border-top:1px solid #E4DCCE">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round"><path d="M2 8.5c5.5-5 14.5-5 20 0M5 12c3.5-3.2 10.5-3.2 14 0M8.5 15.5c2-1.6 5-1.6 7 0"/><circle cx="12" cy="19" r="0.8" fill="#2E5A52"/></svg>
+        <span style="font-size:15px;font-weight:500">{{ t.am.wifi }}</span>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;padding:20px 0;border-top:1px solid #E4DCCE">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round"><path d="M5 2v8a2 2 0 0 0 4 0V2M7 10v12M17 2c-1.5 0-2.5 2-2.5 5s1 4 2.5 4 2.5-1 2.5-4S18.5 2 17 2ZM17 11v11"/></svg>
+        <span style="font-size:15px;font-weight:500">{{ t.am.kitchen }}</span>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;padding:20px 0;border-top:1px solid #E4DCCE">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M2 20h20M9 16l-.5 4M15 16l.5 4"/></svg>
+        <span style="font-size:15px;font-weight:500">{{ t.am.work }}</span>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;padding:20px 0;border-top:1px solid #E4DCCE">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <span style="font-size:15px;font-weight:500">{{ t.am.tv }}</span>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;padding:20px 0;border-top:1px solid #E4DCCE">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="3.6"/><path d="M8.5 6h.01M11 6h.01"/></svg>
+        <span style="font-size:15px;font-weight:500">{{ t.am.washer }}</span>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;padding:20px 0;border-top:1px solid #E4DCCE">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round"><path d="M4 9l8-5 8 5M4 13h16M4 13v8M20 13v8M8 13v8M12 13v8M16 13v8"/></svg>
+        <span style="font-size:15px;font-weight:500">{{ t.am.balcony }}</span>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;padding:20px 0;border-top:1px solid #E4DCCE">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round"><circle cx="8" cy="8" r="4"/><path d="M11 11l8 8M16 16l2-2M19 19l2-2"/></svg>
+        <span style="font-size:15px;font-weight:500">{{ t.am.checkin }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY SLIDER -->
+<section id="gallery" style="scroll-margin-top:80px;padding:clamp(64px,9vw,120px) clamp(20px,5vw,40px)">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:28px">
+      <div>
+        <div style="font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#2E5A52;font-weight:600">{{ t.gallery.label }}</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.2vw,48px);line-height:1.06;letter-spacing:-0.5px;margin:14px 0 0">{{ t.gallery.title }}</h2>
+      </div>
+      <div style="font-size:14px;color:#8C8678">{{ t.gallery.caption }}</div>
+    </div>
+
+    <div style="position:relative;border-radius:8px;overflow:hidden;background:#EFEAE1;border:1px solid #E4DCCE">
+      <div style="overflow:hidden;width:100%;height:clamp(340px,58vh,620px)">
+        <div style="{{ trackStyle }}">
+          <sc-for list="{{ slides }}" as="sl" hint-placeholder-count="5">
+            <div style="flex:0 0 100%;height:100%">
+              <image-slot id="{{ sl.id }}" src="{{ sl.src }}" style="width:100%;height:100%" shape="rect" placeholder="＋ Σύρετε εδώ μια φωτογραφία"></image-slot>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <button onClick="{{ prevSlide }}" aria-label="Previous photo" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:999px;border:none;background:rgba(255,255,255,0.92);box-shadow:0 6px 18px rgba(0,0,0,0.18);cursor:pointer;font-size:22px;line-height:1;color:#232019;display:flex;align-items:center;justify-content:center" style-hover="{{ arrowHover }}">‹</button>
+      <button onClick="{{ nextSlide }}" aria-label="Next photo" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:999px;border:none;background:rgba(255,255,255,0.92);box-shadow:0 6px 18px rgba(0,0,0,0.18);cursor:pointer;font-size:22px;line-height:1;color:#232019;display:flex;align-items:center;justify-content:center" style-hover="{{ arrowHover }}">›</button>
+      <div style="position:absolute;right:16px;bottom:16px;background:rgba(35,32,25,0.72);color:#fff;font-size:12.5px;font-weight:600;letter-spacing:0.5px;padding:6px 12px;border-radius:999px;backdrop-filter:blur(4px)">{{ slideCounter }}</div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px">
+      <sc-for list="{{ dots }}" as="dot" hint-placeholder-count="10">
+        <button onClick="{{ dot.onClick }}" aria-label="Go to photo" style="{{ dot.style }}"></button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- SPACES -->
+<section style="background:#FBF7F1;border-top:1px solid #ECE3D5;border-bottom:1px solid #ECE3D5;padding:clamp(64px,9vw,120px) clamp(20px,5vw,40px)">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#2E5A52;font-weight:600">{{ t.spaces.label }}</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.2vw,48px);line-height:1.06;letter-spacing:-0.5px;margin:14px 0 36px">{{ t.spaces.title }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px">
+      <sc-for list="{{ spacesArr }}" as="sp" hint-placeholder-count="3">
+        <div>
+          <image-slot id="{{ sp.id }}" src="{{ sp.src }}" style="width:100%;height:220px" shape="rounded" radius="6" placeholder="Photo"></image-slot>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;margin:18px 0 6px">{{ sp.title }}</h3>
+          <p style="font-size:15px;line-height:1.65;color:#5E5A50;margin:0">{{ sp.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location" style="scroll-margin-top:80px;padding:clamp(64px,9vw,120px) clamp(20px,5vw,40px)">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,64px);align-items:center">
+    <div style="flex:1 1 360px;min-width:300px">
+      <div style="font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#2E5A52;font-weight:600">{{ t.location.label }}</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.2vw,48px);line-height:1.06;letter-spacing:-0.5px;margin:14px 0 0">{{ t.location.title }}</h2>
+      <p style="font-size:16.5px;line-height:1.75;color:#5E5A50;margin:20px 0 28px;max-width:440px">{{ t.location.body }}</p>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ nearby }}" as="n" hint-placeholder-count="4">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-top:1px solid #E4DCCE">
+            <span style="font-size:15px;font-weight:500">{{ n.place }}</span>
+            <span style="font-size:14px;color:#8C8678">{{ n.dist }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="flex:1 1 360px;min-width:300px">
+      <image-slot id="map" style="width:100%;height:clamp(320px,46vh,440px)" shape="rounded" radius="6" placeholder="Drop a map screenshot of Mikrolimano"></image-slot>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="scroll-margin-top:80px;background:#FBF7F1;border-top:1px solid #ECE3D5;border-bottom:1px solid #ECE3D5;padding:clamp(64px,9vw,120px) clamp(20px,5vw,40px)">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:16px;margin-bottom:40px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,72px);font-weight:500;line-height:1;color:#2E5A52">5.0</div>
+      <div>
+        <div style="color:#2E5A52;font-size:18px;letter-spacing:3px">★★★★★</div>
+        <div style="font-size:14px;color:#8C8678;margin-top:4px">{{ t.reviews.count }}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+      <sc-for list="{{ reviewsArr }}" as="r" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #E4DCCE;border-radius:8px;padding:28px">
+          <div style="color:#2E5A52;font-size:14px;letter-spacing:2px;margin-bottom:14px">★★★★★</div>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.45;color:#2C2820;margin:0 0 20px">"{{ r.quote }}"</p>
+          <div style="font-size:14px;font-weight:600">{{ r.name }}</div>
+          <div style="font-size:13px;color:#8C8678;margin-top:2px">{{ r.meta }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="book" style="scroll-margin-top:80px;padding:clamp(64px,9vw,120px) clamp(20px,5vw,40px)">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="margin-bottom:36px">
+      <div style="font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#2E5A52;font-weight:600">{{ t.book.label }}</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.2vw,48px);line-height:1.06;letter-spacing:-0.5px;margin:14px 0 0">{{ t.book.title }}</h2>
+      <p style="font-size:16.5px;line-height:1.7;color:#5E5A50;margin:14px 0 0;max-width:480px">{{ t.book.sub }}</p>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+      <!-- calendar -->
+      <div style="flex:1 1 340px;min-width:300px;background:#fff;border:1px solid #E4DCCE;border-radius:12px;padding:clamp(20px,3vw,30px)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <button onClick="{{ prevMonth }}" aria-label="Previous month" style="width:38px;height:38px;border:1px solid #E4DCCE;background:#fff;border-radius:999px;cursor:pointer;font-size:16px;color:#3C382F" style-hover="{{ navBtnHover }}">‹</button>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500">{{ monthLabel }}</div>
+          <button onClick="{{ nextMonth }}" aria-label="Next month" style="width:38px;height:38px;border:1px solid #E4DCCE;background:#fff;border-radius:999px;cursor:pointer;font-size:16px;color:#3C382F" style-hover="{{ navBtnHover }}">›</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:6px">
+          <sc-for list="{{ weekdays }}" as="wd" hint-placeholder-count="7">
+            <div style="text-align:center;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#A39C8C;padding:6px 0">{{ wd }}</div>
+          </sc-for>
+        </div>
+        <sc-for list="{{ weeks }}" as="week" hint-placeholder-count="6">
+          <div style="display:grid;grid-template-columns:repeat(7,1fr)">
+            <sc-for list="{{ week }}" as="d" hint-placeholder-count="7">
+              <div style="{{ d.outerStyle }}" onClick="{{ d.onClick }}">
+                <div style="{{ d.innerStyle }}">{{ d.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+        <div style="margin-top:16px;font-size:12.5px;color:#A39C8C">{{ t.book.minStay }}</div>
+      </div>
+
+      <!-- summary -->
+      <div style="flex:1 1 320px;min-width:290px;background:#fff;border:1px solid #E4DCCE;border-radius:12px;padding:clamp(22px,3vw,30px);box-shadow:0 24px 60px -40px rgba(35,32,25,0.45)">
+        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:22px">
+          <span style="font-size:26px;font-weight:700">{{ fromPrice }}</span>
+          <span style="font-size:14px;color:#8C8678">{{ t.widget.night }}</span>
+        </div>
+
+        <div style="border:1px solid #E4DCCE;border-radius:10px;overflow:hidden;margin-bottom:18px">
+          <div style="display:flex">
+            <div style="flex:1;padding:12px 16px;border-right:1px solid #ECE5D8">
+              <div style="font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:#A39C8C">{{ t.widget.checkin }}</div>
+              <div style="font-size:14.5px;font-weight:600;margin-top:3px">{{ checkInLabel }}</div>
+            </div>
+            <div style="flex:1;padding:12px 16px">
+              <div style="font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:#A39C8C">{{ t.widget.checkout }}</div>
+              <div style="font-size:14.5px;font-weight:600;margin-top:3px">{{ checkOutLabel }}</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid #ECE5D8">
+            <div>
+              <div style="font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:#A39C8C">{{ t.widget.guests }}</div>
+              <div style="font-size:14.5px;font-weight:600;margin-top:3px">{{ guestsLabel }}</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <button onClick="{{ decGuests }}" aria-label="Fewer guests" style="width:32px;height:32px;border:1px solid #D8CFBE;background:#fff;border-radius:999px;cursor:pointer;font-size:18px;line-height:1;color:#3C382F">–</button>
+              <span style="font-size:16px;font-weight:600;min-width:14px;text-align:center">{{ guests }}</span>
+              <button onClick="{{ incGuests }}" aria-label="More guests" style="width:32px;height:32px;border:1px solid #D8CFBE;background:#fff;border-radius:999px;cursor:pointer;font-size:18px;line-height:1;color:#3C382F">+</button>
+            </div>
+          </div>
+        </div>
+
+        <sc-if value="{{ hasDates }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:18px">
+            <div style="display:flex;justify-content:space-between;font-size:14.5px;color:#5E5A50">
+              <span>{{ rateLineLabel }}</span><span>{{ rateLineValue }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:14.5px;color:#5E5A50">
+              <span>{{ t.book.cleaning }}</span><span>{{ cleanValue }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:14.5px;color:#5E5A50">
+              <span>{{ t.book.service }}</span><span>{{ serviceValue }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:17px;font-weight:700;padding-top:14px;border-top:1px solid #E4DCCE">
+              <span>{{ t.book.total }}</span><span>{{ totalValue }}</span>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noDates }}" hint-placeholder-val="{{ true }}">
+          <div style="background:#FBF7F1;border:1px dashed #DCD3C2;border-radius:10px;padding:18px;text-align:center;font-size:14px;color:#8C8678;margin-bottom:18px">{{ t.book.selectDates }}</div>
+        </sc-if>
+
+        <button onClick="{{ requestBook }}" style="{{ bookBtnStyle }}">{{ bookBtnLabel }}</button>
+        <div style="display:flex;align-items:center;justify-content:center;gap:7px;margin-top:16px;font-size:12.5px;color:#A39C8C">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A39C8C" stroke-width="1.6"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          {{ t.book.secure }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#232019;color:#E7E0D2;padding:clamp(56px,7vw,88px) clamp(20px,5vw,40px) 36px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between">
+      <div style="flex:1 1 280px;min-width:240px">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:600;letter-spacing:4px">PETITE NEST</div>
+        <p style="font-size:15px;line-height:1.7;color:#A8A18F;max-width:300px;margin:16px 0 0">{{ t.footer.tagline }}</p>
+      </div>
+      <div style="flex:0 1 220px">
+        <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#7E7868;margin-bottom:16px">{{ t.footer.contact }}</div>
+        <div style="font-size:14.5px;line-height:2;color:#D6CFBE">hello@petitenest.gr<br>+30 210 000 0000<br>Μικρολίμανο, Πειραιάς 18533</div>
+      </div>
+      <div style="flex:0 1 180px">
+        <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#7E7868;margin-bottom:16px">{{ t.footer.explore }}</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:#D6CFBE">
+          <a href="#gallery" style-hover="{{ footHover }}">{{ t.nav.gallery }}</a>
+          <a href="#amenities" style-hover="{{ footHover }}">{{ t.nav.amenities }}</a>
+          <a href="#location" style-hover="{{ footHover }}">{{ t.nav.location }}</a>
+          <a href="#book" style-hover="{{ footHover }}">{{ t.nav.book }}</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-top:48px;padding-top:24px;border-top:1px solid #3A352B;font-size:12.5px;color:#7E7868">
+      <span>© 2026 Petite Nest · {{ t.footer.rights }} · ΑΜΑ 00003723040</span>
+      <span>{{ t.footer.poweredBy }}</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;nightlyRate&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:70,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:20,&quot;max&quot;:2000},&quot;cleaningFee&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:25,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:0,&quot;max&quot;:500},&quot;serviceFeePct&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:5,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:0,&quot;max&quot;:30}}">
+class Component extends DCLogic {
+  state = {
+    lang: 'gr',
+    menuOpen: false,
+    width: (typeof window !== 'undefined' ? window.innerWidth : 1200),
+    monthStart: null,
+    checkIn: null,
+    checkOut: null,
+    guests: 2,
+    sent: false,
+    slide: 0,
+  };
+
+  componentDidMount() {
+    const today = new Date();
+    this.setState({ monthStart: new Date(today.getFullYear(), today.getMonth(), 1) });
+    this._onResize = () => this.setState({ width: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+  }
+  componentWillUnmount() {
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+    clearTimeout(this._sentTimer);
+  }
+
+  midnight(d) { const x = new Date(d); x.setHours(0,0,0,0); return x; }
+  addDays(d, n) { const x = new Date(d); x.setDate(x.getDate()+n); return x; }
+  sameDay(a, b) { return !!(a && b && a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate()); }
+  diffDays(a, b) { return Math.round((this.midnight(b) - this.midnight(a)) / 86400000); }
+  fmtShort(d, t) { return d ? (d.getDate() + ' ' + t.monShort[d.getMonth()]) : null; }
+
+  content() {
+    const P = (id) => 'https://a0.muscache.com/im/pictures/hosting/Hosting-1623102965390266812/original/' + id + '.jpeg?im_w=1200';
+    const photos = {
+      hero: P('aeb13811-6d01-458b-9ff2-6e6fa5e4777d'),
+      about: P('f0145cfc-b564-427b-9a58-5795c0933ec9'),
+      a: P('14cf1690-3d8b-4ee0-9b40-c93e41af3763'),
+      b: P('26092a45-da2f-480b-8e00-a8178c67d1ac'),
+      c: P('1a2b8a18-dec1-4101-a026-61c84c6975eb'),
+    };
+    const gr = {
+      nav: { residence:'Το Διαμέρισμα', gallery:'Φωτογραφίες', amenities:'Παροχές', location:'Τοποθεσία', reviews:'Κριτικές', book:'Κράτηση' },
+      hero: { place:'Μικρολίμανο · Πειραιάς', title:'Μια μικρή φωλιά δίπλα στη θάλασσα', sub:'Φωτεινό, άνετο διαμέρισμα με minimal & boho πινελιές, στην καρδιά του Μικρολίμανου — λίγα βήματα από το κύμα.' },
+      widget: { from:'από', night:'/ βράδυ', dates:'Ημερομηνίες', guests:'Άτομα', cta:'Διαθεσιμότητα', checkin:'Άφιξη', checkout:'Αναχώρηση', add:'Επιλέξτε' },
+      about: { label:'Το Διαμέρισμα', title:'Φωτεινό, ήρεμο, με boho αισθητική', body:'Ένα φωτεινό διαμέρισμα στο Μικρολίμανο, σχεδιασμένο με απλότητα και φυσικές αποχρώσεις. Μια ήρεμη ατμόσφαιρα όπου όλα είναι στη θέση τους.', body2:'Απολαύστε τον καφέ σας στο μπαλκόνι και εξερευνήστε τα καφέ και τα εστιατόρια δίπλα στο νερό, με τα πόδια. Ιδανικό για ζευγάρια ή μοναχικούς ταξιδιώτες.', host:'— Με αγάπη, η Χρύσσα' },
+      amenities: { label:'Παροχές', title:'Όλα όσα χρειάζεστε για μια ξεκούραστη διαμονή' },
+      am: { sea:'Δίπλα στη θάλασσα', wifi:'Γρήγορο Wi-Fi', kitchen:'Πλήρης κουζίνα', work:'Χώρος εργασίας', tv:'Τηλεόραση', washer:'Πλυντήριο', balcony:'Μπαλκόνι', checkin:'Self check-in' },
+      gallery: { label:'Φωτογραφίες', title:'Μια ματιά στον χώρο', caption:'Από το κατάλυμα' },
+      spaces: { label:'Οι χώροι', title:'Άνετα, λιτά, λειτουργικά', list:[
+        { id:'space1', src:photos.b, title:'Καθιστικό', body:'Φωτεινός χώρος με άνετο καθιστικό και φυσικές αποχρώσεις που κρατούν τη δροσιά.' },
+        { id:'space2', src:photos.c, title:'Υπνοδωμάτιο', body:'Ήρεμο δωμάτιο με ποιοτικά λευκά είδη και απαλό φυσικό φως το πρωί.' },
+        { id:'space3', src:photos.about, title:'Μπαλκόνι', body:'Ιδιωτικό μπαλκόνι για τον πρωινό καφέ, με τη ζωή του Μικρολίμανου από κάτω.' } ] },
+      location: { label:'Τοποθεσία', title:'Στην καρδιά του Μικρολίμανου', body:'Σε μία από τις πιο γραφικές γωνιές του Πειραιά — καφέ, εστιατόρια και βόλτες δίπλα στο κύμα, όλα σε απόσταση αναπνοής. Ζωντανά αλλά ασφαλή.', nearby:[
+        { place:'Μαρίνα Μικρολίμανου', dist:'200 μ.' },
+        { place:'Εστιατόρια & καφέ', dist:'2\u2032 με τα πόδια' },
+        { place:'Μετρό / ΗΣΑΠ Πειραιά', dist:'2,5 χλμ.' },
+        { place:'Αεροδρόμιο «Ελ. Βενιζέλος»', dist:'42 χλμ.' } ] },
+      reviews: { count:'9 κριτικές · Guest favourite', list:[
+        { quote:'Ακριβώς όπως στις φωτογραφίες — καθαρό, ήσυχο και πεντακάθαρο. Υπέροχη τοποθεσία δίπλα στο λιμανάκι.', name:'Ελένη Κ.', meta:'Ιούλιος 2025' },
+        { quote:'Μια μικρή φωλιά γεμάτη φως, με άψογη επικοινωνία από τη Χρύσσα. Θα ξανάρθουμε σίγουρα.', name:'Marco R.', meta:'Σεπτέμβριος 2025' },
+        { quote:'Ιδανικό για ζευγάρι, δίπλα σε καφέ και θάλασσα. Το προτείνω ανεπιφύλακτα.', name:'Sophie L.', meta:'Αύγουστος 2025' } ] },
+      book: { label:'Κρατήσεις', title:'Δείτε διαθεσιμότητα', sub:'Επιλέξτε ημερομηνίες για να δείτε τη συνολική τιμή. Η οριστικοποίηση γίνεται μέσω του ασφαλούς συστήματος κρατήσεων.', cleaning:'Καθαριότητα', service:'Υπηρεσίες', total:'Σύνολο', selectDates:'Επιλέξτε ημερομηνίες για το κόστος', secure:'Ασφαλής κράτηση μέσω Smoobu', minStay:'Άφιξη μετά 15:00 · Αναχώρηση πριν 11:00 · έως 3 άτομα', requestEmpty:'Επιλέξτε ημερομηνίες', requestReady:'Αίτημα κράτησης', sent:'✓ Το αίτημα εστάλη' },
+      footer: { tagline:'Μια μικρή φωλιά δίπλα στη θάλασσα, στο Μικρολίμανο του Πειραιά.', contact:'Επικοινωνία', explore:'Εξερευνήστε', rights:'Με επιφύλαξη παντός δικαιώματος.', poweredBy:'Κρατήσεις μέσω Smoobu' },
+      months:['Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νοέμβριος','Δεκέμβριος'],
+      monShort:['Ιαν','Φεβ','Μαρ','Απρ','Μαΐ','Ιουν','Ιουλ','Αυγ','Σεπ','Οκτ','Νοε','Δεκ'],
+      weekdays:['Δε','Τρ','Τε','Πε','Πα','Σά','Κυ'],
+      statsList:['3 άτομα','1 υπνοδωμάτιο','1 μπάνιο','Wi-Fi & workspace','Μπαλκόνι'],
+      nightWord:(n)=> n===1?'βράδυ':'βράδια',
+      guestWord:(n)=> n===1?'άτομο':'άτομα',
+    };
+    const en = {
+      nav: { residence:'The Apartment', gallery:'Gallery', amenities:'Amenities', location:'Location', reviews:'Reviews', book:'Book now' },
+      hero: { place:'Mikrolimano · Piraeus', title:'A little nest by the sea', sub:'A bright, cosy apartment with minimal & boho touches, in the heart of Mikrolimano — just steps from the water.' },
+      widget: { from:'from', night:'/ night', dates:'Dates', guests:'Guests', cta:'Check availability', checkin:'Check-in', checkout:'Checkout', add:'Add dates' },
+      about: { label:'The Apartment', title:'Bright, calm, with a boho feel', body:'A bright apartment in Mikrolimano, designed with simplicity and natural tones. A calm atmosphere where everything is in its place.', body2:'Enjoy your coffee on the balcony and explore the cafés and restaurants by the water, all on foot. Perfect for couples or solo travellers.', host:'— With love, Chryssa' },
+      amenities: { label:'Amenities', title:'Everything you need for a restful stay' },
+      am: { sea:'Steps from the sea', wifi:'Fast Wi-Fi', kitchen:'Full kitchen', work:'Dedicated workspace', tv:'TV', washer:'Washer', balcony:'Balcony', checkin:'Self check-in' },
+      gallery: { label:'Gallery', title:'A look inside', caption:'From the stay' },
+      spaces: { label:'The spaces', title:'Comfortable, simple, functional', list:[
+        { id:'space1', src:photos.b, title:'Living area', body:'A bright space with a comfortable seating area and cool natural tones.' },
+        { id:'space2', src:photos.c, title:'Bedroom', body:'A calm room with quality linens and soft natural morning light.' },
+        { id:'space3', src:photos.about, title:'Balcony', body:'A private balcony for your morning coffee, with Mikrolimano below.' } ] },
+      location: { label:'Location', title:'In the heart of Mikrolimano', body:'In one of the most charming corners of Piraeus — cafés, restaurants and seaside walks, all within a few minutes. Lively yet safe.', nearby:[
+        { place:'Mikrolimano marina', dist:'200 m' },
+        { place:'Restaurants & cafés', dist:'2 min walk' },
+        { place:'Piraeus metro / station', dist:'2.5 km' },
+        { place:'Athens Int. Airport', dist:'42 km' } ] },
+      reviews: { count:'9 reviews · Guest favourite', list:[
+        { quote:'Exactly like the photos — clean, quiet and spotless. A wonderful location right by the marina.', name:'Eleni K.', meta:'July 2025' },
+        { quote:'A little nest full of light, with flawless communication from Chryssa. We will be back.', name:'Marco R.', meta:'September 2025' },
+        { quote:'Perfect for a couple, next to cafés and the sea. Highly recommended.', name:'Sophie L.', meta:'August 2025' } ] },
+      book: { label:'Reservations', title:'Check availability', sub:'Pick your dates to see the total. Final confirmation is handled through our secure booking system.', cleaning:'Cleaning fee', service:'Service fee', total:'Total', selectDates:'Select dates to see the total', secure:'Secure booking powered by Smoobu', minStay:'Check-in after 3:00 PM · Checkout before 11:00 AM · up to 3 guests', requestEmpty:'Select dates', requestReady:'Request to book', sent:'✓ Request sent' },
+      footer: { tagline:'A little nest by the sea, in Mikrolimano, Piraeus.', contact:'Contact', explore:'Explore', rights:'All rights reserved.', poweredBy:'Bookings powered by Smoobu' },
+      months:['January','February','March','April','May','June','July','August','September','October','November','December'],
+      monShort:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+      weekdays:['Mo','Tu','We','Th','Fr','Sa','Su'],
+      statsList:['3 guests','1 bedroom','1 bath','Wi-Fi & workspace','Balcony'],
+      nightWord:(n)=> n===1?'night':'nights',
+      guestWord:(n)=> n===1?'guest':'guests',
+    };
+    return this.state.lang === 'gr' ? gr : en;
+  }
+
+  buildWeeks(t, accent) {
+    const ms = this.state.monthStart;
+    if (!ms) return [];
+    const today = this.midnight(new Date());
+    const { checkIn, checkOut } = this.state;
+    const firstWeekday = (ms.getDay() + 6) % 7;
+    const gridStart = this.addDays(ms, -firstWeekday);
+    const weeks = [];
+    for (let w = 0; w < 6; w++) {
+      const week = [];
+      for (let i = 0; i < 7; i++) {
+        const date = this.addDays(gridStart, w*7 + i);
+        const inMonth = date.getMonth() === ms.getMonth();
+        const disabled = this.midnight(date) < today;
+        const isStart = this.sameDay(date, checkIn);
+        const isEnd = this.sameDay(date, checkOut);
+        const inRange = checkIn && checkOut && this.midnight(date) > this.midnight(checkIn) && this.midnight(date) < this.midnight(checkOut);
+
+        const outerStyle = { height:'44px', display:'flex', alignItems:'center', justifyContent:'center', cursor:(inMonth && !disabled)?'pointer':'default' };
+        const innerStyle = { width:'38px', height:'38px', display:'flex', alignItems:'center', justifyContent:'center', borderRadius:'999px', fontSize:'14px', fontWeight:500, color:'#3C382F' };
+
+        if (inMonth) {
+          if (disabled) innerStyle.color = '#CFC8BA';
+          if (inRange) outerStyle.background = '#E7E0D2';
+          if (isStart && checkOut) outerStyle.background = 'linear-gradient(to right, transparent 50%, #E7E0D2 50%)';
+          if (isEnd) outerStyle.background = 'linear-gradient(to right, #E7E0D2 50%, transparent 50%)';
+          if (isStart || isEnd) { innerStyle.background = accent; innerStyle.color = '#fff'; innerStyle.fontWeight = 600; }
+        }
+
+        week.push({
+          key: w*7+i,
+          label: inMonth ? String(date.getDate()) : '',
+          outerStyle,
+          innerStyle,
+          onClick: (inMonth && !disabled) ? () => this.selectDay(date) : undefined,
+        });
+      }
+      weeks.push(week);
+    }
+    return weeks;
+  }
+
+  selectDay(date) {
+    const d = this.midnight(date);
+    const { checkIn, checkOut } = this.state;
+    if (!checkIn || (checkIn && checkOut)) { this.setState({ checkIn: d, checkOut: null, sent:false }); }
+    else if (this.midnight(d) <= this.midnight(checkIn)) { this.setState({ checkIn: d, checkOut: null, sent:false }); }
+    else { this.setState({ checkOut: d, sent:false }); }
+  }
+
+  prevMonth = () => {
+    const m = this.state.monthStart; if (!m) return;
+    const today = new Date(); const cur = new Date(today.getFullYear(), today.getMonth(), 1);
+    const prev = new Date(m.getFullYear(), m.getMonth()-1, 1);
+    if (prev >= cur) this.setState({ monthStart: prev });
+  }
+  nextMonth = () => { const m = this.state.monthStart; if (!m) return; this.setState({ monthStart: new Date(m.getFullYear(), m.getMonth()+1, 1) }); }
+  incGuests = () => this.setState(s => ({ guests: Math.min(3, s.guests+1) }));
+  decGuests = () => this.setState(s => ({ guests: Math.max(1, s.guests-1) }));
+
+  galleryPhotos() {
+    const P = (id) => 'https://a0.muscache.com/im/pictures/hosting/Hosting-1623102965390266812/original/' + id + '.jpeg?im_w=1200';
+    // First 5 = real listing photos. Empty slots invite the host to drop the rest.
+    // ids are preserved so any photos already dropped persist.
+    return [
+      { id:'gallery1', src:P('14cf1690-3d8b-4ee0-9b40-c93e41af3763') },
+      { id:'gallery2', src:P('26092a45-da2f-480b-8e00-a8178c67d1ac') },
+      { id:'gallery3', src:P('1a2b8a18-dec1-4101-a026-61c84c6975eb') },
+      { id:'gallery6', src:P('aeb13811-6d01-458b-9ff2-6e6fa5e4777d') },
+      { id:'gallery7', src:P('f0145cfc-b564-427b-9a58-5795c0933ec9') },
+      { id:'gallery4' },
+      { id:'gallery5' },
+      { id:'gallery8' },
+      { id:'gallery9' },
+      { id:'gallery10' },
+    ];
+  }
+  nextSlide = () => { const n = this.galleryPhotos().length; this.setState(s => ({ slide: (s.slide + 1) % n })); }
+  prevSlide = () => { const n = this.galleryPhotos().length; this.setState(s => ({ slide: (s.slide - 1 + n) % n })); }
+  goSlide = (i) => this.setState({ slide: i });
+
+  requestBook = () => {
+    const { checkIn, checkOut } = this.state;
+    if (!(checkIn && checkOut)) return;
+    this.setState({ sent: true });
+    clearTimeout(this._sentTimer);
+    this._sentTimer = setTimeout(() => this.setState({ sent: false }), 2600);
+  }
+
+  renderVals() {
+    const t = this.content();
+    const accent = '#2E5A52';
+    const RATE = this.props.nightlyRate ?? 70;
+    const CLEAN = this.props.cleaningFee ?? 25;
+    const SVC = this.props.serviceFeePct ?? 5;
+    const { checkIn, checkOut, guests, width, lang, menuOpen, sent, slide } = this.state;
+
+    const nights = (checkIn && checkOut) ? this.diffDays(checkIn, checkOut) : 0;
+    const subtotal = nights * RATE;
+    const service = Math.round(subtotal * (SVC/100));
+    const total = nights ? subtotal + CLEAN + service : 0;
+    const hasDates = nights > 0;
+
+    const ci = this.fmtShort(checkIn, t);
+    const co = this.fmtShort(checkOut, t);
+    let rangeLabel;
+    if (checkIn && checkOut) rangeLabel = ci + ' – ' + co;
+    else if (checkIn) rangeLabel = ci + ' – …';
+    else rangeLabel = t.widget.add;
+
+    const monthLabel = this.state.monthStart ? (t.months[this.state.monthStart.getMonth()] + ' ' + this.state.monthStart.getFullYear()) : '';
+
+    const bookBtnStyle = {
+      width:'100%', padding:'16px', borderRadius:'999px', border:'none',
+      fontFamily:"'Manrope',sans-serif", fontSize:'15px', fontWeight:600, cursor: hasDates ? 'pointer' : 'default',
+      background: hasDates ? accent : '#E1D9CA', color: hasDates ? '#fff' : '#A39C8C', transition:'background 0.15s'
+    };
+    const bookBtnLabel = sent ? t.book.sent : (hasDates ? t.book.requestReady : t.book.requestEmpty);
+
+    const slides = this.galleryPhotos();
+    const N = slides.length;
+    const cur = Math.min(slide, N - 1);
+    const trackStyle = { display:'flex', height:'100%', transition:'transform 0.55s cubic-bezier(0.4,0,0.2,1)', transform:'translateX(-' + (cur * 100) + '%)' };
+    const dots = slides.map((s, i) => ({
+      key: i,
+      onClick: () => this.goSlide(i),
+      style: {
+        height:'8px', width: i === cur ? '26px' : '8px', borderRadius:'999px', border:'none', cursor:'pointer', padding:0,
+        background: i === cur ? '#2E5A52' : '#D8CFBE', transition:'width 0.3s, background 0.3s',
+      },
+    }));
+    const slideCounter = (cur + 1) + ' / ' + N;
+
+    return {
+      t,
+      lang,
+      isDesktop: width >= 820,
+      isMobile: width < 820,
+      menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      toggleLang: () => this.setState(s => ({ lang: s.lang === 'gr' ? 'en' : 'gr' })),
+      langSwitchLabel: lang === 'gr' ? 'EN' : 'ΕΛ',
+
+      linkHover: { color: accent },
+      ctaHover: { background: '#244A43' },
+      segHover: { background: '#FBF7F1' },
+      navBtnHover: { background: '#F4EFE7', borderColor:'#CFC6B4' },
+      footHover: { color: '#fff' },
+
+      stats: t.statsList.map(x => ({ t: x })),
+      spacesArr: t.spaces.list,
+      reviewsArr: t.reviews.list,
+      nearby: t.location.nearby,
+      weekdays: t.weekdays,
+      weeks: this.buildWeeks(t, accent),
+      monthLabel,
+      prevMonth: this.prevMonth,
+      nextMonth: this.nextMonth,
+
+      fromPrice: '€' + RATE,
+      rangeLabel,
+      guestsLabel: guests + ' ' + t.guestWord(guests),
+      guests,
+      incGuests: this.incGuests,
+      decGuests: this.decGuests,
+
+      checkInLabel: ci || '—',
+      checkOutLabel: co || '—',
+
+      hasDates,
+      noDates: !hasDates,
+      rateLineLabel: '€' + RATE + ' × ' + nights + ' ' + t.nightWord(nights),
+      rateLineValue: '€' + subtotal,
+      cleanValue: '€' + CLEAN,
+      serviceValue: '€' + service,
+      totalValue: '€' + total,
+
+      bookBtnStyle,
+      bookBtnLabel,
+      requestBook: this.requestBook,
+
+      slides,
+      trackStyle,
+      dots,
+      slideCounter,
+      prevSlide: this.prevSlide,
+      nextSlide: this.nextSlide,
+      arrowHover: { background: '#ffffff' },
+    };
+  }
+}
+</script>
+</body>
+</html>

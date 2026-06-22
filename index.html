@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petite Nest · Μικρολίμανο, Πειραιάς</title>
+  <meta name="description" content="Φωτεινό, άνετο διαμέρισμα στο Μικρολίμανο Πειραιά. Minimal & boho αισθητική, μπαλκόνι, δίπλα στη θάλασσα.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Reset & base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #F4EFE7;
+      color: #232019;
+      font-family: 'Manrope', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { font-family: inherit; cursor: pointer; }
+    ::selection { background: #2E5A52; color: #fff; }
+
+    /* ─── Layout ────────────────────────────────────────────── */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 40px);
+    }
+
+    /* ─── Shared typographic elements ───────────────────────── */
+    .label {
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #2E5A52;
+      font-weight: 600;
+    }
+    h1, h2, h3 { margin: 0; }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: clamp(40px, 5.6vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -1px;
+      margin-top: 18px;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: clamp(30px, 4.2vw, 48px);
+      line-height: 1.06;
+      letter-spacing: -0.5px;
+      margin-top: 14px;
+    }
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 24px;
+      margin: 18px 0 6px;
+    }
+
+    /* ─── Header ────────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: rgba(244, 239, 231, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid #E4DCCE;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      height: 70px;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 23px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .desktop-nav {
+      display: flex;
+      gap: 30px;
+    }
+    .desktop-nav a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #3C382F;
+      letter-spacing: 0.2px;
+      transition: color 0.15s;
+    }
+    .desktop-nav a:hover { color: #2E5A52; }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .btn-lang {
+      background: transparent;
+      border: 1px solid #D8CFBE;
+      color: #3C382F;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: background 0.15s;
+    }
+    .btn-lang:hover { background: #EDE8DF; }
+    .btn-cta-nav {
+      background: #2E5A52;
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 11px 20px;
+      border-radius: 999px;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .btn-cta-nav:hover { background: #244A43; }
+    .btn-hamburger {
+      background: transparent;
+      border: none;
+      padding: 8px;
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .btn-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #232019;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      border-top: 1px solid #E4DCCE;
+      background: #F4EFE7;
+      padding: 8px clamp(20px, 5vw, 40px) 20px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 14px 0;
+      border-bottom: 1px solid #E9E1D2;
+      font-size: 16px;
+    }
+    .mobile-nav .mobile-book {
+      margin-top: 16px;
+      background: #2E5A52;
+      color: #fff;
+      text-align: center;
+      font-weight: 600;
+      padding: 14px;
+      border-radius: 999px;
+      border: none;
+      font-size: 15px;
+      font-family: inherit;
+    }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    .hero-section {
+      padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 40px) 0;
+    }
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(28px, 5vw, 60px);
+      align-items: center;
+    }
+    .hero-text { flex: 1 1 380px; min-width: 280px; }
+    .hero-img  { flex: 1 1 380px; min-width: 280px; }
+    .hero-img img {
+      width: 100%;
+      height: clamp(320px, 52vh, 560px);
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 18px);
+      line-height: 1.7;
+      color: #5E5A50;
+      max-width: 440px;
+      margin: 22px 0 0;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .badge {
+      font-size: 13px;
+      font-weight: 500;
+      color: #3C382F;
+      background: #fff;
+      border: 1px solid #E4DCCE;
+      padding: 8px 14px;
+      border-radius: 999px;
+    }
+
+    /* ─── Booking bar ───────────────────────────────────────── */
+    .booking-bar {
+      margin-top: clamp(32px, 5vw, 56px);
+      background: #fff;
+      border: 1px solid #E4DCCE;
+      border-radius: 10px;
+      box-shadow: 0 24px 60px -34px rgba(35, 32, 25, 0.45);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      overflow: hidden;
+    }
+    .bar-seg {
+      flex: 1 1 130px;
+      min-width: 110px;
+      padding: 16px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      justify-content: center;
+      border-right: 1px solid #ECE5D8;
+    }
+    .bar-seg.clickable {
+      transition: background 0.15s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .bar-seg.clickable:hover { background: #FBF7F1; }
+    .bar-seg-lbl {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8C8678;
+    }
+    .bar-price { font-size: 16px; font-weight: 700; }
+    .bar-price-sub { font-weight: 500; font-size: 13px; color: #8C8678; }
+    .bar-val { font-size: 15px; font-weight: 600; }
+    .bar-cta {
+      flex: 1 1 190px;
+      min-width: 160px;
+      background: #2E5A52;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px 22px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.15s;
+      text-decoration: none;
+    }
+    .bar-cta:hover { background: #244A43; }
+
+    /* ─── Sections ──────────────────────────────────────────── */
+    .section {
+      padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 40px);
+    }
+    .section.bg-warm {
+      background: #FBF7F1;
+      border-top: 1px solid #ECE3D5;
+      border-bottom: 1px solid #ECE3D5;
+    }
+    [id] { scroll-margin-top: 80px; }
+
+    /* ─── About ─────────────────────────────────────────────── */
+    .about-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(32px, 5vw, 64px);
+      align-items: center;
+    }
+    .about-img { flex: 1 1 380px; min-width: 280px; }
+    .about-img img {
+      width: 100%;
+      height: clamp(360px, 50vh, 520px);
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .about-text { flex: 1 1 380px; min-width: 280px; }
+    .about-body {
+      font-size: 16.5px;
+      line-height: 1.75;
+      color: #5E5A50;
+      margin: 22px 0 0;
+    }
+    .about-body + .about-body { margin-top: 18px; }
+    .about-host {
+      margin-top: 26px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 20px;
+      color: #2E5A52;
+    }
+
+    /* ─── Amenities ─────────────────────────────────────────── */
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      column-gap: 36px;
+      margin-top: 36px;
+    }
+    .amenity {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 20px 0;
+      border-top: 1px solid #E4DCCE;
+    }
+    .amenity span { font-size: 15px; font-weight: 500; }
+
+    /* ─── Gallery ───────────────────────────────────────────── */
+    .gallery-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .gallery-caption { font-size: 14px; color: #8C8678; }
+    .slider-outer {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #EFEAE1;
+      border: 1px solid #E4DCCE;
+    }
+    .slider-viewport {
+      overflow: hidden;
+      width: 100%;
+      height: clamp(300px, 58vh, 620px);
+    }
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .slide { flex: 0 0 100%; height: 100%; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+      font-size: 22px;
+      color: #232019;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .slider-arrow:hover { background: #fff; }
+    .arrow-prev { left: 14px; }
+    .arrow-next { right: 14px; }
+    .slide-counter {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      background: rgba(35, 32, 25, 0.72);
+      color: #fff;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+      pointer-events: none;
+    }
+    .slider-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .dot {
+      height: 8px;
+      width: 8px;
+      border-radius: 999px;
+      border: none;
+      background: #D8CFBE;
+      padding: 0;
+      transition: width 0.3s, background 0.3s;
+    }
+    .dot.active { width: 26px; background: #2E5A52; }
+
+    /* ─── Spaces ─────────────────────────────────────────────── */
+    .spaces-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 26px;
+      margin-top: 36px;
+    }
+    .space-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .space-card p { font-size: 15px; line-height: 1.65; color: #5E5A50; margin: 0; }
+
+    /* ─── Location ──────────────────────────────────────────── */
+    .location-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(32px, 5vw, 64px);
+      align-items: center;
+    }
+    .location-text { flex: 1 1 360px; min-width: 280px; }
+    .location-map  { flex: 1 1 360px; min-width: 280px; }
+    .location-map iframe {
+      width: 100%;
+      height: clamp(300px, 46vh, 440px);
+      border: none;
+      border-radius: 6px;
+      display: block;
+    }
+    .location-body {
+      font-size: 16.5px;
+      line-height: 1.75;
+      color: #5E5A50;
+      margin: 20px 0 28px;
+      max-width: 440px;
+    }
+    .nearby-list { display: flex; flex-direction: column; }
+    .nearby-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-top: 1px solid #E4DCCE;
+    }
+    .nearby-place { font-size: 15px; font-weight: 500; }
+    .nearby-dist  { font-size: 14px; color: #8C8678; }
+
+    /* ─── Reviews ───────────────────────────────────────────── */
+    .reviews-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .review-score {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 7vw, 72px);
+      font-weight: 500;
+      line-height: 1;
+      color: #2E5A52;
+    }
+    .stars     { color: #2E5A52; font-size: 18px; letter-spacing: 3px; }
+    .stars-sm  { color: #2E5A52; font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+    .review-count { font-size: 14px; color: #8C8678; margin-top: 4px; }
+    /* ─── Reviews Grid ───────────────────────────────────────── */
+    .rev-carousel-outer { overflow: hidden; }
+    .rev-carousel-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .rev-carousel-page {
+      flex: 0 0 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 960px) {
+      .rev-carousel-page { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .rev-carousel-page { grid-template-columns: 1fr; }
+    }
+    .rev-carousel-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+    .rev-car-dot {
+      height: 8px; width: 8px;
+      border-radius: 999px;
+      border: none;
+      background: #D8CFBE;
+      padding: 0;
+      cursor: pointer;
+      transition: width 0.3s, background 0.3s;
+    }
+    .rev-car-dot.active { width: 26px; background: #2E5A52; }
+    .rev-card {
+      background: #fff;
+      border: 1px solid #E4DCCE;
+      border-radius: 8px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+    }
+    .rev-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      line-height: 1.5;
+      color: #2C2820;
+      margin: 0 0 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .rev-body.expanded {
+      display: block;
+      overflow: visible;
+    }
+    .read-more-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #2E5A52;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    .read-more-btn:hover { color: #244A43; }
+    .rev-footer { margin-top: auto; }
+    .rev-name { font-size: 14px; font-weight: 600; }
+    .rev-meta { font-size: 13px; color: #8C8678; margin-top: 2px; }
+    .airbnb-link-wrap {
+      text-align: center;
+      margin-top: 8px;
+    }
+    .airbnb-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2E5A52;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .airbnb-link:hover { color: #244A43; }
+    .review-card {
+      background: #fff;
+      border: 1px solid #E4DCCE;
+      border-radius: 8px;
+      padding: 28px;
+    }
+    .review-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      line-height: 1.45;
+      color: #2C2820;
+      margin: 0 0 20px;
+    }
+    .review-name { font-size: 14px; font-weight: 600; }
+    .review-meta { font-size: 13px; color: #8C8678; margin-top: 2px; }
+
+    /* ─── Booking ───────────────────────────────────────────── */
+    .booking-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    /* Calendar */
+    .calendar-card {
+      flex: 1 1 340px;
+      min-width: 290px;
+      background: #fff;
+      border: 1px solid #E4DCCE;
+      border-radius: 12px;
+      padding: clamp(20px, 3vw, 30px);
+    }
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .cal-month {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 500;
+    }
+    .cal-nav {
+      width: 38px;
+      height: 38px;
+      border: 1px solid #E4DCCE;
+      background: #fff;
+      border-radius: 999px;
+      font-size: 16px;
+      color: #3C382F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .cal-nav:hover { background: #F4EFE7; border-color: #CFC6B4; }
+    .cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 6px;
+    }
+    .cal-wd {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #A39C8C;
+      padding: 6px 0;
+    }
+    .cal-days { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .cal-day {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cal-day-inner {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #3C382F;
+    }
+    .cal-day.available { cursor: pointer; }
+    .cal-day.available:hover .cal-day-inner { background: #F4EFE7; }
+    .cal-day.past .cal-day-inner { color: #CFC8BA; }
+    .cal-day.in-range { background: #E7E0D2; }
+    .cal-day.range-start { background: linear-gradient(to right, transparent 50%, #E7E0D2 50%); }
+    .cal-day.range-end   { background: linear-gradient(to right, #E7E0D2 50%, transparent 50%); }
+    .cal-day.selected .cal-day-inner,
+    .cal-day.range-end .cal-day-inner {
+      background: #2E5A52;
+      color: #fff;
+      font-weight: 600;
+    }
+    .cal-day.available.selected:hover .cal-day-inner,
+    .cal-day.available.range-end:hover .cal-day-inner { background: #244A43; }
+    .min-stay-note {
+      margin-top: 16px;
+      font-size: 12.5px;
+      color: #A39C8C;
+    }
+
+    /* Summary card */
+    .summary-card {
+      flex: 1 1 310px;
+      min-width: 280px;
+      background: #fff;
+      border: 1px solid #E4DCCE;
+      border-radius: 12px;
+      padding: clamp(22px, 3vw, 30px);
+      box-shadow: 0 24px 60px -40px rgba(35, 32, 25, 0.45);
+    }
+    .summary-rate {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+    .summary-price { font-size: 26px; font-weight: 700; }
+    .summary-night { font-size: 14px; color: #8C8678; }
+
+    .dates-box {
+      border: 1px solid #E4DCCE;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .dates-row { display: flex; }
+    .date-cell {
+      flex: 1;
+      padding: 12px 16px;
+      border-right: 1px solid #ECE5D8;
+    }
+    .date-cell:last-child { border-right: none; }
+    .date-cell-lbl {
+      font-size: 10.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #A39C8C;
+    }
+    .date-cell-val { font-size: 14.5px; font-weight: 600; margin-top: 3px; }
+
+    .guests-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-top: 1px solid #ECE5D8;
+    }
+    .guests-ctrl { display: flex; align-items: center; gap: 14px; }
+    .guests-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #D8CFBE;
+      background: #fff;
+      border-radius: 999px;
+      font-size: 18px;
+      line-height: 1;
+      color: #3C382F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .guests-btn:hover { background: #F4EFE7; }
+    .guests-n { font-size: 16px; font-weight: 600; min-width: 16px; text-align: center; }
+
+    .price-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14.5px;
+      color: #5E5A50;
+    }
+    .price-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 17px;
+      font-weight: 700;
+      padding-top: 14px;
+      border-top: 1px solid #E4DCCE;
+      color: #232019;
+      margin-bottom: 18px;
+    }
+    .no-dates-msg {
+      background: #FBF7F1;
+      border: 1px dashed #DCD3C2;
+      border-radius: 10px;
+      padding: 18px;
+      text-align: center;
+      font-size: 14px;
+      color: #8C8678;
+      margin-bottom: 18px;
+    }
+    .book-btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 999px;
+      border: none;
+      font-family: 'Manrope', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .book-btn.ready    { background: #2E5A52; color: #fff; }
+    .book-btn.ready:hover { background: #244A43; }
+    .book-btn.empty    { background: #E1D9CA; color: #A39C8C; cursor: default; }
+    .book-btn.sent     { background: #244A43; color: #fff; }
+    .secure-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 16px;
+      font-size: 12.5px;
+      color: #A39C8C;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer {
+      background: #232019;
+      color: #E7E0D2;
+      padding: clamp(56px, 7vw, 88px) clamp(20px, 5vw, 40px) 36px;
+    }
+    .footer-grid {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+    }
+    .footer-brand { flex: 1 1 280px; min-width: 220px; }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: 4px;
+    }
+    .footer-tagline { font-size: 15px; line-height: 1.7; color: #A8A18F; max-width: 300px; margin: 16px 0 0; }
+    .footer-col { flex: 0 1 200px; }
+    .footer-col-title {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7E7868;
+      margin-bottom: 16px;
+    }
+    .footer-contact { font-size: 14.5px; line-height: 2; color: #D6CFBE; }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14.5px;
+      color: #D6CFBE;
+    }
+    .footer-links a { transition: color 0.15s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom {
+      max-width: 1180px;
+      margin: 48px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid #3A352B;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      color: #7E7868;
+    }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 820px) {
+      .desktop-nav  { display: none; }
+      .btn-cta-nav  { display: none; }
+      .btn-hamburger { display: flex; }
+    }
+
+    /* ─── Lightbox ──────────────────────────────────────────── */
+    .lb-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.93);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .lb-overlay.open { display: flex; }
+    .lb-img-wrap {
+      max-width: 92vw;
+      max-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lb-img-wrap img {
+      max-width: 92vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 4px;
+      display: block;
+      user-select: none;
+      pointer-events: none;
+    }
+    .lb-close {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      background: rgba(255,255,255,0.13);
+      border: none;
+      color: #fff;
+      font-size: 26px;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .lb-close:hover { background: rgba(255,255,255,0.25); }
+    .lb-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.13);
+      border: none;
+      color: #fff;
+      font-size: 32px;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .lb-arrow:hover { background: rgba(255,255,255,0.25); }
+    .lb-prev { left: 14px; }
+    .lb-next { right: 14px; }
+    .lb-counter {
+      color: rgba(255,255,255,0.65);
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      margin-top: 14px;
+    }
+    .slide { cursor: zoom-in; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════ -->
+<header>
+  <div class="container header-inner">
+    <a href="#top" class="logo">PETITE NEST</a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#about"     data-t="nav.residence"></a>
+      <a href="#gallery"   data-t="nav.gallery"></a>
+      <a href="#amenities" data-t="nav.amenities"></a>
+      <a href="#location"  data-t="nav.location"></a>
+      <a href="#reviews"   data-t="nav.reviews"></a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn-lang" id="langBtn" aria-label="Switch language">EN</button>
+      <a href="#book" class="btn-cta-nav" data-t="nav.book"></a>
+      <button class="btn-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="#about"     data-t="nav.residence"></a>
+    <a href="#gallery"   data-t="nav.gallery"></a>
+    <a href="#amenities" data-t="nav.amenities"></a>
+    <a href="#location"  data-t="nav.location"></a>
+    <a href="#reviews"   data-t="nav.reviews"></a>
+    <a href="#book" class="mobile-book" data-t="nav.book"></a>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<div id="top">
+<section class="hero-section">
+  <div style="max-width:1180px;margin:0 auto">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="label" data-t="hero.place"></div>
+        <h1 data-t="hero.title"></h1>
+        <p class="hero-sub" data-t="hero.sub"></p>
+        <div class="hero-badges" id="heroBadges"></div>
+      </div>
+      <div class="hero-img">
+        <img src="./Pettite Nest Photos/IMG-5a64b26c214af9b37eb6faaa1ab0c2fd-V.jpg"
+             alt="Petite Nest — Μικρολίμανο"
+             loading="eager">
+      </div>
+    </div>
+
+    <!-- Compact booking bar -->
+    <div class="booking-bar">
+      <div class="bar-seg">
+        <span class="bar-seg-lbl" data-t="widget.from"></span>
+        <span class="bar-price">€70 <span class="bar-price-sub" data-t="widget.night"></span></span>
+      </div>
+      <a href="#book" class="bar-seg clickable">
+        <span class="bar-seg-lbl" data-t="widget.dates"></span>
+        <span class="bar-val" id="barDates"></span>
+      </a>
+      <a href="#book" class="bar-seg clickable">
+        <span class="bar-seg-lbl" data-t="widget.guests"></span>
+        <span class="bar-val" id="barGuests"></span>
+      </a>
+      <a href="#book" class="bar-cta">
+        <span data-t="widget.cta"></span>
+        <span style="font-size:18px">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════ -->
+<section id="about" class="section">
+  <div class="container about-grid">
+    <div class="about-img">
+      <img src="./Pettite Nest Photos/IMG-c6093b3aabd642d85501b2925ee7a83e-V.jpg"
+           alt="Το διαμέρισμα" loading="lazy">
+    </div>
+    <div class="about-text">
+      <div class="label" data-t="about.label"></div>
+      <h2 data-t="about.title"></h2>
+      <p class="about-body" data-t="about.body"></p>
+      <p class="about-body" data-t="about.body2"></p>
+      <div class="about-host" data-t="about.host"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     AMENITIES
+════════════════════════════════════════════ -->
+<section id="amenities" class="section bg-warm">
+  <div class="container">
+    <div class="label" data-t="amenities.label"></div>
+    <h2 data-t="amenities.title"></h2>
+    <div class="amenities-grid">
+
+      <div class="amenity">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 17c2 0 2.5-1.5 5-1.5s2.5 1.5 5 1.5 2.5-1.5 5-1.5 3 1.5 5 1.5"/>
+          <path d="M2 13c2 0 2.5-1.5 5-1.5s2.5 1.5 5 1.5 2.5-1.5 5-1.5 3 1.5 5 1.5"/>
+          <path d="M9 9V4h6v5"/>
+        </svg>
+        <span data-t="am.sea"></span>
+      </div>
+
+      <div class="amenity">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round">
+          <path d="M2 8.5c5.5-5 14.5-5 20 0"/>
+          <path d="M5 12c3.5-3.2 10.5-3.2 14 0"/>
+          <path d="M8.5 15.5c2-1.6 5-1.6 7 0"/>
+          <circle cx="12" cy="19" r="0.8" fill="#2E5A52"/>
+        </svg>
+        <span data-t="am.wifi"></span>
+      </div>
+
+      <div class="amenity">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round">
+          <path d="M5 2v8a2 2 0 0 0 4 0V2"/>
+          <path d="M7 10v12"/>
+          <path d="M17 2c-1.5 0-2.5 2-2.5 5s1 4 2.5 4 2.5-1 2.5-4S18.5 2 17 2Z"/>
+          <path d="M17 11v11"/>
+        </svg>
+        <span data-t="am.kitchen"></span>
+      </div>
+
+      <div class="amenity">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round">
+          <rect x="3" y="4" width="18" height="12" rx="1.5"/>
+          <path d="M2 20h20M9 16l-.5 4M15 16l.5 4"/>
+        </svg>
+        <span data-t="am.work"></span>
+      </div>
+
+      <div class="amenity">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round">
+          <rect x="3" y="5" width="18" height="12" rx="2"/>
+          <path d="M8 21h8M12 17v4"/>
+        </svg>
+        <span data-t="am.tv"></span>
+      </div>
+
+      <div class="amenity">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round">
+          <rect x="5" y="3" width="14" height="18" rx="2"/>
+          <circle cx="12" cy="13" r="3.6"/>
+          <path d="M8.5 6h.01M11 6h.01"/>
+        </svg>
+        <span data-t="am.washer"></span>
+      </div>
+
+      <div class="amenity">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round">
+          <path d="M4 9l8-5 8 5"/>
+          <path d="M4 13h16"/>
+          <path d="M4 13v8M20 13v8M8 13v8M12 13v8M16 13v8"/>
+        </svg>
+        <span data-t="am.balcony"></span>
+      </div>
+
+      <div class="amenity">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2E5A52" stroke-width="1.4" stroke-linecap="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        <span data-t="am.checkin"></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     GALLERY
+════════════════════════════════════════════ -->
+<section id="gallery" class="section">
+  <div class="container">
+    <div class="gallery-header">
+      <div>
+        <div class="label" data-t="gallery.label"></div>
+        <h2 data-t="gallery.title"></h2>
+      </div>
+      <div class="gallery-caption" data-t="gallery.caption"></div>
+    </div>
+
+    <div class="slider-outer">
+      <div class="slider-viewport">
+        <div class="slider-track" id="sliderTrack"></div>
+      </div>
+      <button class="slider-arrow arrow-prev" id="arrowPrev" aria-label="Previous photo">‹</button>
+      <button class="slider-arrow arrow-next" id="arrowNext" aria-label="Next photo">›</button>
+      <div class="slide-counter" id="slideCounter">1 / 10</div>
+    </div>
+
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SPACES
+════════════════════════════════════════════ -->
+<section class="section bg-warm">
+  <div class="container">
+    <div class="label" data-t="spaces.label"></div>
+    <h2 data-t="spaces.title"></h2>
+    <div class="spaces-grid">
+      <div class="space-card">
+        <img src="./Pettite Nest Photos/IMG-6e83c2641642772ee21e03e37907aaf0-V.jpg" alt="" loading="lazy">
+        <h3 data-t="spaces.living.title"></h3>
+        <p data-t="spaces.living.body"></p>
+      </div>
+      <div class="space-card">
+        <img src="./Pettite Nest Photos/IMG-59deedcdb96549528c4b2ee57c895598-V.jpg" alt="" loading="lazy">
+        <h3 data-t="spaces.bedroom.title"></h3>
+        <p data-t="spaces.bedroom.body"></p>
+      </div>
+      <div class="space-card">
+        <img src="./Pettite Nest Photos/IMG-def4ff0c0ca6584d5066f75b5ce229a2-V.jpg" alt="" loading="lazy">
+        <h3 data-t="spaces.balcony.title"></h3>
+        <p data-t="spaces.balcony.body"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     LOCATION
+════════════════════════════════════════════ -->
+<section id="location" class="section">
+  <div class="container location-grid">
+    <div class="location-text">
+      <div class="label" data-t="location.label"></div>
+      <h2 data-t="location.title"></h2>
+      <p class="location-body" data-t="location.body"></p>
+      <div class="nearby-list" id="nearbyList"></div>
+    </div>
+    <div class="location-map">
+      <img src="./mikrolimano_pic.jpg"
+           alt="Μικρολίμανο, Πειραιάς"
+           loading="lazy"
+           style="width:100%;height:clamp(300px,46vh,440px);object-fit:cover;border-radius:6px;display:block;">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     REVIEWS
+════════════════════════════════════════════ -->
+<section id="reviews" class="section bg-warm">
+  <div class="container">
+    <div class="reviews-header">
+      <div class="review-score">5.0</div>
+      <div>
+        <div class="stars">★★★★★</div>
+        <div class="review-count" id="reviewCount"></div>
+      </div>
+    </div>
+    <div class="rev-carousel-outer">
+      <div class="rev-carousel-track" id="revTrack"></div>
+    </div>
+    <div class="rev-carousel-dots" id="revCarDots"></div>
+    <div class="airbnb-link-wrap">
+      <a class="airbnb-link"
+         href="https://www.airbnb.gr/rooms/1416649063751268196"
+         target="_blank"
+         rel="noopener noreferrer">
+        Δες όλες τις 9 κριτικές στο Airbnb →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     BOOKING
+════════════════════════════════════════════ -->
+<section id="book" class="section">
+  <div class="container">
+    <div style="margin-bottom:36px">
+      <div class="label" data-t="book.label"></div>
+      <h2 data-t="book.title"></h2>
+      <p style="font-size:16.5px;line-height:1.7;color:#5E5A50;margin:14px 0 0;max-width:480px"
+         data-t="book.sub"></p>
+    </div>
+
+    <div class="booking-grid">
+      <!-- Calendar -->
+      <div class="calendar-card">
+        <div class="cal-header">
+          <button class="cal-nav" id="prevMonth" aria-label="Previous month">‹</button>
+          <div class="cal-month" id="calMonth"></div>
+          <button class="cal-nav" id="nextMonth" aria-label="Next month">›</button>
+        </div>
+        <div class="cal-weekdays" id="calWeekdays"></div>
+        <div class="cal-days"     id="calDays"></div>
+        <p class="min-stay-note"  data-t="book.minStay"></p>
+      </div>
+
+      <!-- Summary -->
+      <div class="summary-card">
+        <div class="summary-rate">
+          <span class="summary-price">€70</span>
+          <span class="summary-night" data-t="widget.night"></span>
+        </div>
+
+        <div class="dates-box">
+          <div class="dates-row">
+            <div class="date-cell">
+              <div class="date-cell-lbl" data-t="widget.checkin"></div>
+              <div class="date-cell-val" id="sumCheckIn">—</div>
+            </div>
+            <div class="date-cell">
+              <div class="date-cell-lbl" data-t="widget.checkout"></div>
+              <div class="date-cell-val" id="sumCheckOut">—</div>
+            </div>
+          </div>
+          <div class="guests-row">
+            <div>
+              <div class="date-cell-lbl" data-t="widget.guests"></div>
+              <div class="date-cell-val" id="sumGuests"></div>
+            </div>
+            <div class="guests-ctrl">
+              <button class="guests-btn" id="decGuests" aria-label="Remove guest">–</button>
+              <span   class="guests-n"   id="guestNum">2</span>
+              <button class="guests-btn" id="incGuests" aria-label="Add guest">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Price breakdown (shown when dates selected) -->
+        <div id="priceBlock" style="display:none">
+          <div class="price-breakdown">
+            <div class="price-row">
+              <span id="rateLine"></span>
+              <span id="rateAmt"></span>
+            </div>
+            <div class="price-row">
+              <span data-t="book.cleaning"></span>
+              <span>€25</span>
+            </div>
+            <div class="price-row">
+              <span data-t="book.service"></span>
+              <span id="serviceAmt"></span>
+            </div>
+          </div>
+          <div class="price-total">
+            <span data-t="book.total"></span>
+            <span id="totalAmt"></span>
+          </div>
+        </div>
+
+        <!-- No-dates placeholder -->
+        <div class="no-dates-msg" id="noDatesMsg" data-t="book.selectDates"></div>
+
+        <button class="book-btn empty" id="bookBtn" data-t="book.requestEmpty"></button>
+
+        <div class="secure-note">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A39C8C" stroke-width="1.6">
+            <rect x="4" y="10" width="16" height="11" rx="2"/>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+          </svg>
+          <span data-t="book.secure"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- #top -->
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">PETITE NEST</div>
+      <p class="footer-tagline" data-t="footer.tagline"></p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-t="footer.contact"></div>
+      <div class="footer-contact">
+        hello@petitenest.gr<br>
+        +30 210 000 0000<br>
+        Μικρολίμανο, Πειραιάς 18533
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-t="footer.explore"></div>
+      <div class="footer-links">
+        <a href="#gallery"   data-t="nav.gallery"></a>
+        <a href="#amenities" data-t="nav.amenities"></a>
+        <a href="#location"  data-t="nav.location"></a>
+        <a href="#book"      data-t="nav.book"></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Petite Nest · <span data-t="footer.rights"></span> · ΑΜΑ 00003723040</span>
+    <span data-t="footer.powered"></span>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <div class="lb-img-wrap" id="lbImgWrap">
+    <img id="lbImg" src="" alt="">
+  </div>
+  <div class="lb-counter" id="lbCounter"></div>
+  <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <button class="lb-arrow lb-next" id="lbNext" aria-label="Next">›</button>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+// ── GALLERY PHOTOS ─────────────────────────────────────────
+const PHOTOS = [
+  './Pettite Nest Photos/IMG-20260222-WA0055.jpg',
+  './Pettite Nest Photos/IMG-20260222-WA0058.jpg',
+  './Pettite Nest Photos/IMG-20260222-WA0059.jpg',
+  './Pettite Nest Photos/IMG-20260222-WA0061.jpg',
+  './Pettite Nest Photos/IMG-20260222-WA0065.jpg',
+  './Pettite Nest Photos/IMG-20260222-WA0066.jpg',
+  './Pettite Nest Photos/IMG-20260222-WA0067.jpg',
+  './Pettite Nest Photos/IMG-0d5539a284dee874eca0737033a08651-V.jpg',
+  './Pettite Nest Photos/IMG-0d86fb936d301cc9e1381b7b4a59671e-V.jpg',
+  './Pettite Nest Photos/IMG-0eba5f40673f125aff717f48962ae252-V.jpg',
+  './Pettite Nest Photos/IMG-0fbe71f6f13aa596dad7056200a582d5-V.jpg',
+  './Pettite Nest Photos/IMG-1a262a2d13adf6fb4753d80ba1732788-V.jpg',
+  './Pettite Nest Photos/IMG-20f974413443a9ed16b417d2715b1c2d-V.jpg',
+  './Pettite Nest Photos/IMG-267cccbfdff73e78882fac69f9c761d7-V.jpg',
+  './Pettite Nest Photos/IMG-287022e13b16eba608843d9153a4d659-V.jpg',
+  './Pettite Nest Photos/IMG-2d46c7c13c2fdadb0c753939bfcf2be8-V.jpg',
+  './Pettite Nest Photos/IMG-2d9fc608b9e814e9085cbf6358a26159-V.jpg',
+  './Pettite Nest Photos/IMG-3785124e77f810763d036578882a8902-V.jpg',
+  './Pettite Nest Photos/IMG-3c51873fc1e0155eadc8e04445098935-V.jpg',
+  './Pettite Nest Photos/IMG-50c0dd16b77c2531570fb1d3a51b5546-V.jpg',
+  './Pettite Nest Photos/IMG-52863ad81771d3ca527aa746d08f500a-V.jpg',
+  './Pettite Nest Photos/IMG-5734d408fcbc028dd0c83a4f783a15be-V.jpg',
+  './Pettite Nest Photos/IMG-59deedcdb96549528c4b2ee57c895598-V.jpg',
+  './Pettite Nest Photos/IMG-5a64b26c214af9b37eb6faaa1ab0c2fd-V.jpg',
+  './Pettite Nest Photos/IMG-6d2425a40078bc5aa30aaf414c4249e8-V.jpg',
+  './Pettite Nest Photos/IMG-6e83c2641642772ee21e03e37907aaf0-V.jpg',
+  './Pettite Nest Photos/IMG-7088fad459c1c9b387fbaa5a84e303d7-V.jpg',
+  './Pettite Nest Photos/IMG-748ed196675e4ea22ff41fbdf487a1ac-V.jpg',
+  './Pettite Nest Photos/IMG-79d4acaf477cd3003f60153f9b82dd22-V.jpg',
+  './Pettite Nest Photos/IMG-7c33daf395cdd0e99506ba429c173ac5-V.jpg',
+  './Pettite Nest Photos/IMG-7e17aba224f9ffc033a2af602b26a25e-V.jpg',
+  './Pettite Nest Photos/IMG-8bb442cf75c104a25bb7e59f4abdf01b-V.jpg',
+  './Pettite Nest Photos/IMG-8c0ada3f7426c381103605971d6006d6-V.jpg',
+  './Pettite Nest Photos/IMG-8e4da3f0ad14353c1a6e763deebf1ff4-V.jpg',
+  './Pettite Nest Photos/IMG-9376a2321ab763c446d1b4e23d9ef46e-V.jpg',
+  './Pettite Nest Photos/IMG-9a6deb0cc469ab89d4f7bc6d99c03e3b-V.jpg',
+  './Pettite Nest Photos/IMG-a18e07447bf11fe88cb503b0fc3b0727-V.jpg',
+  './Pettite Nest Photos/IMG-a8de8442150936e833556152df882d84-V.jpg',
+  './Pettite Nest Photos/IMG-aae13af0fc57778fa4451f2419b7bda7-V.jpg',
+  './Pettite Nest Photos/IMG-b4acbfe71530c5a94f06e72af6acdb83-V.jpg',
+  './Pettite Nest Photos/IMG-b688764c0301e2dca1a731d2facc7873-V.jpg',
+  './Pettite Nest Photos/IMG-bbf4a74e1189482f566d62783f5b0969-V.jpg',
+  './Pettite Nest Photos/IMG-c1400b605b86a31805ad9f008cd4ef63-V.jpg',
+  './Pettite Nest Photos/IMG-c6093b3aabd642d85501b2925ee7a83e-V.jpg',
+  './Pettite Nest Photos/IMG-def4ff0c0ca6584d5066f75b5ce229a2-V.jpg',
+  './Pettite Nest Photos/IMG-dfe97ab6817816ad752654354d9736d9-V.jpg',
+  './Pettite Nest Photos/IMG-ec96beccd1ae955ba946927ba976ccdd-V.jpg',
+  './Pettite Nest Photos/IMG-f3258c8f4390857d1ac64371ece71627-V.jpg',
+  './Pettite Nest Photos/IMG-f4f928107f70f11e87dd622d4d5588ed-V.jpg',
+  './Pettite Nest Photos/IMG-f59eaf06b3241bbc25726ea023fded97-V.jpg',
+];
+
+// ── REVIEWS DATA ─────────────────────────────────────────────
+const REVIEWS = [
+  {
+    quote: 'Very beautiful and spotless apartment, exactly as shown in the photos. The location in Mikrolimano was excellent, right next to the sea and close to many nice places for food and walks. Communication with the host was smooth and easy, and the small welcome gifts were such a thoughtful touch. We had a great stay and would definitely choose it again!',
+    name: 'Eleni', meta: 'Μάιος 2026',
+  },
+  {
+    quote: 'Petite Nest was a real gem. A really beautiful interior design for an affordable price. We stayed for a week for vacations and it really felt like home. The photos are accurate. The area is very good, next to marina with a lot of restaurants, within 10 minutes from public transportations. Chryssa helped us with transport from the airport and stayed in touch for every need and even a little gift when we checked in 🤩. We would definitely book again. We highly recommend Petite Nest — you will not regret it.',
+    name: 'Fiantra', meta: 'Μάιος 2026',
+  },
+  {
+    quote: 'We had a wonderful stay and truly enjoyed our time here. The place was spotless and exceptionally well equipped. Chryssa was incredibly kind, welcoming and always available. She even checked in on us during our stay, which we really appreciated. We were also welcomed with lovely little gifts upon arrival — a thoughtful gesture that made us feel at home from the very beginning. The location is fantastic, right by the sea and within walking distance of cafés and restaurants. I would absolutely recommend this place and would happily stay here again.',
+    name: 'Dimitra', meta: 'Μάιος 2026',
+  },
+  {
+    quote: 'We had a wonderful last-minute stay hosted by Chryssa. She was incredibly kind, welcoming, and responsive, making everything smooth and stress-free. The place was spotless and very well taken care of. We were also pleasantly surprised by the thoughtful touches — a bottle of wine, fresh fruit, and even a small gift with a candle and a bracelet. These details truly made our stay feel special. The location is fantastic, in the Mikrolimano area, surrounded by lovely cafés and restaurants. I highly recommend this place to anyone looking for a clean, cozy, and welcoming stay.',
+    name: 'Vanessa', meta: 'Απρίλιος 2026',
+  },
+  {
+    quote: 'Wonderful! Everything perfect and excellent host! Would definitely recommend to stay here!',
+    name: 'Nicolas', meta: 'Ιούνιος 2026',
+  },
+  {
+    quote: 'Simply wonderful to stay at this place! Extremely comfortable, clean, new place! We got welcome gifts! The place has everything we needed to make meals. Our stay was perfect in Athens — very good! I recommend it.',
+    name: 'Gabriella', meta: 'Ιούνιος 2026',
+  },
+  {
+    quote: 'A very nice stay at Chryssa\'s. This apartment is in a good location and is beautiful! 30 meters from the quay and port, where the marina with a multitude of restaurants welcomes you with kindness. The apartment is very comfortable, I can only recommend it. The photos are real and up to date.',
+    name: 'Marc', meta: 'Ιούνιος 2026',
+  },
+  {
+    quote: 'I chose Petite Nest to prepare as a bride. The place was spotless, beautifully designed, and ideal for the special moments of the day. The hostess was excellent, polite, always available, and responsive. Everything went perfectly and helped make the day even more special. We highly recommend it — we\'ll visit again at the first opportunity ❤️ Chryssa is an excellent professional!',
+    name: 'Αθηνά', meta: 'Ιούνιος 2026',
+  },
+  {
+    quote: 'We stayed three nights in Petite Nest. It was fantastic. Beautiful, complete apartment. Great location. A delicious bottle of wine as a welcome. The best word is AMAZING. A gem.',
+    name: 'Astrid', meta: 'Ιούνιος 2026',
+  },
+];
+
+// ── TRANSLATIONS ────────────────────────────────────────────
+const TR = {
+  gr: {
+    nav: {
+      residence: 'Το Διαμέρισμα',
+      gallery:   'Φωτογραφίες',
+      amenities: 'Παροχές',
+      location:  'Τοποθεσία',
+      reviews:   'Κριτικές',
+      book:      'Κράτηση',
+    },
+    hero: {
+      place: 'Μικρολίμανο · Πειραιάς',
+      title: 'Μια μικρή φωλιά δίπλα στη θάλασσα',
+      sub:   'Φωτεινό, άνετο διαμέρισμα με minimal & boho πινελιές, στην καρδιά του Μικρολίμανου — λίγα βήματα από το κύμα.',
+    },
+    widget: {
+      from:    'από',
+      night:   '/ βράδυ',
+      dates:   'Ημερομηνίες',
+      guests:  'Άτομα',
+      cta:     'Διαθεσιμότητα',
+      checkin: 'Άφιξη',
+      checkout:'Αναχώρηση',
+      add:     'Επιλέξτε',
+    },
+    about: {
+      label: 'Το Διαμέρισμα',
+      title: 'Φωτεινό, ήρεμο, με boho αισθητική',
+      body:  'Ένα φωτεινό διαμέρισμα στο Μικρολίμανο, σχεδιασμένο με απλότητα και φυσικές αποχρώσεις. Μια ήρεμη ατμόσφαιρα όπου όλα είναι στη θέση τους.',
+      body2: 'Απολαύστε τον καφέ σας στο μπαλκόνι και εξερευνήστε τα καφέ και τα εστιατόρια δίπλα στο νερό, με τα πόδια. Ιδανικό για ζευγάρια ή μοναχικούς ταξιδιώτες.',
+      host:  '— Με αγάπη, η Χρύσσα',
+    },
+    amenities: {
+      label: 'Παροχές',
+      title: 'Όλα όσα χρειάζεστε για μια ξεκούραστη διαμονή',
+    },
+    am: {
+      sea:     'Δίπλα στη θάλασσα',
+      wifi:    'Γρήγορο Wi-Fi',
+      kitchen: 'Πλήρης κουζίνα',
+      work:    'Χώρος εργασίας',
+      tv:      'Τηλεόραση',
+      washer:  'Πλυντήριο',
+      balcony: 'Μπαλκόνι',
+      checkin: 'Self check-in',
+    },
+    gallery: {
+      label:   'Φωτογραφίες',
+      title:   'Μια ματιά στον χώρο',
+      caption: 'Από το κατάλυμα',
+    },
+    spaces: {
+      label: 'Οι χώροι',
+      title: 'Άνετα, λιτά, λειτουργικά',
+      living:  { title: 'Καθιστικό',    body: 'Φωτεινός χώρος με άνετο καθιστικό και φυσικές αποχρώσεις που κρατούν τη δροσιά.' },
+      bedroom: { title: 'Υπνοδωμάτιο', body: 'Ήρεμο δωμάτιο με ποιοτικά λευκά είδη και απαλό φυσικό φως το πρωί.' },
+      balcony: { title: 'Μπαλκόνι',    body: 'Ιδιωτικό μπαλκόνι για τον πρωινό καφέ, με τη ζωή του Μικρολίμανου από κάτω.' },
+    },
+    location: {
+      label: 'Τοποθεσία',
+      title: 'Στην καρδιά του Μικρολίμανου',
+      body:  'Σε μία από τις πιο γραφικές γωνιές του Πειραιά — καφέ, εστιατόρια και βόλτες δίπλα στο κύμα, όλα σε απόσταση αναπνοής. Ζωντανά αλλά ασφαλή.',
+      nearby: [
+        { place: 'Μαρίνα Μικρολίμανου',          dist: '200 μ.' },
+        { place: 'Εστιατόρια & καφέ',              dist: '2′ με τα πόδια' },
+        { place: 'Μετρό / ΗΣΑΠ Πειραιά',          dist: '2,5 χλμ.' },
+        { place: 'Αεροδρόμιο «Ελ. Βενιζέλος»',   dist: '42 χλμ.' },
+      ],
+    },
+    reviews: { count: '9 κριτικές · Guest favourite' },
+    book: {
+      label:        'Κρατήσεις',
+      title:        'Δείτε διαθεσιμότητα',
+      sub:          'Επιλέξτε ημερομηνίες για να δείτε τη συνολική τιμή. Η οριστικοποίηση γίνεται μέσω του ασφαλούς συστήματος κρατήσεων.',
+      cleaning:     'Καθαριότητα',
+      service:      'Υπηρεσίες',
+      total:        'Σύνολο',
+      selectDates:  'Επιλέξτε ημερομηνίες για να δείτε το κόστος',
+      secure:       'Ασφαλής κράτηση μέσω Smoobu',
+      minStay:      'Άφιξη μετά 15:00 · Αναχώρηση πριν 11:00 · έως 3 άτομα',
+      requestEmpty: 'Επιλέξτε ημερομηνίες',
+      requestReady: 'Αίτημα κράτησης',
+      sent:         '✓ Το αίτημα εστάλη',
+    },
+    footer: {
+      tagline: 'Μια μικρή φωλιά δίπλα στη θάλασσα, στο Μικρολίμανο του Πειραιά.',
+      contact: 'Επικοινωνία',
+      explore: 'Εξερευνήστε',
+      rights:  'Με επιφύλαξη παντός δικαιώματος.',
+      powered: 'Κρατήσεις μέσω Smoobu',
+    },
+    months:    ['Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νοέμβριος','Δεκέμβριος'],
+    monShort:  ['Ιαν','Φεβ','Μαρ','Απρ','Μαΐ','Ιουν','Ιουλ','Αυγ','Σεπ','Οκτ','Νοε','Δεκ'],
+    weekdays:  ['Δε','Τρ','Τε','Πε','Πα','Σά','Κυ'],
+    badges:    ['3 άτομα','1 υπνοδωμάτιο','1 μπάνιο','Wi-Fi & workspace','Μπαλκόνι'],
+    nightWord: n => n === 1 ? 'βράδυ' : 'βράδια',
+    guestWord: n => n === 1 ? 'άτομο' : 'άτομα',
+    langBtn:   'EN',
+  },
+  en: {
+    nav: {
+      residence: 'The Apartment',
+      gallery:   'Gallery',
+      amenities: 'Amenities',
+      location:  'Location',
+      reviews:   'Reviews',
+      book:      'Book now',
+    },
+    hero: {
+      place: 'Mikrolimano · Piraeus',
+      title: 'A little nest by the sea',
+      sub:   'A bright, cosy apartment with minimal & boho touches, in the heart of Mikrolimano — just steps from the water.',
+    },
+    widget: {
+      from:    'from',
+      night:   '/ night',
+      dates:   'Dates',
+      guests:  'Guests',
+      cta:     'Check availability',
+      checkin: 'Check-in',
+      checkout:'Checkout',
+      add:     'Add dates',
+    },
+    about: {
+      label: 'The Apartment',
+      title: 'Bright, calm, with a boho feel',
+      body:  'A bright apartment in Mikrolimano, designed with simplicity and natural tones. A calm atmosphere where everything is in its place.',
+      body2: 'Enjoy your coffee on the balcony and explore the cafés and restaurants by the water, all on foot. Perfect for couples or solo travellers.',
+      host:  '— With love, Chryssa',
+    },
+    amenities: {
+      label: 'Amenities',
+      title: 'Everything you need for a restful stay',
+    },
+    am: {
+      sea:     'Steps from the sea',
+      wifi:    'Fast Wi-Fi',
+      kitchen: 'Full kitchen',
+      work:    'Dedicated workspace',
+      tv:      'Smart TV',
+      washer:  'Washer',
+      balcony: 'Balcony',
+      checkin: 'Self check-in',
+    },
+    gallery: {
+      label:   'Gallery',
+      title:   'A look inside',
+      caption: 'From the stay',
+    },
+    spaces: {
+      label: 'The spaces',
+      title: 'Comfortable, simple, functional',
+      living:  { title: 'Living area', body: 'A bright space with a comfortable seating area and cool natural tones.' },
+      bedroom: { title: 'Bedroom',     body: 'A calm room with quality linens and soft natural morning light.' },
+      balcony: { title: 'Balcony',     body: 'A private balcony for your morning coffee, with Mikrolimano below.' },
+    },
+    location: {
+      label: 'Location',
+      title: 'In the heart of Mikrolimano',
+      body:  'In one of the most charming corners of Piraeus — cafés, restaurants and seaside walks, all within a few minutes. Lively yet safe.',
+      nearby: [
+        { place: 'Mikrolimano marina',     dist: '200 m' },
+        { place: 'Restaurants & cafés',    dist: '2 min walk' },
+        { place: 'Piraeus metro / station',dist: '2.5 km' },
+        { place: 'Athens Int. Airport',    dist: '42 km' },
+      ],
+    },
+    reviews: { count: '9 reviews · Guest favourite' },
+    book: {
+      label:        'Reservations',
+      title:        'Check availability',
+      sub:          'Pick your dates to see the total price. Final confirmation is handled through our secure booking system.',
+      cleaning:     'Cleaning fee',
+      service:      'Service fee',
+      total:        'Total',
+      selectDates:  'Select dates to see the total',
+      secure:       'Secure booking powered by Smoobu',
+      minStay:      'Check-in after 3:00 PM · Checkout before 11:00 AM · up to 3 guests',
+      requestEmpty: 'Select dates',
+      requestReady: 'Request to book',
+      sent:         '✓ Request sent',
+    },
+    footer: {
+      tagline: 'A little nest by the sea, in Mikrolimano, Piraeus.',
+      contact: 'Contact',
+      explore: 'Explore',
+      rights:  'All rights reserved.',
+      powered: 'Bookings powered by Smoobu',
+    },
+    months:    ['January','February','March','April','May','June','July','August','September','October','November','December'],
+    monShort:  ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    weekdays:  ['Mo','Tu','We','Th','Fr','Sa','Su'],
+    badges:    ['3 guests','1 bedroom','1 bath','Wi-Fi & workspace','Balcony'],
+    nightWord: n => n === 1 ? 'night'  : 'nights',
+    guestWord: n => n === 1 ? 'guest'  : 'guests',
+    langBtn:   'ΕΛ',
+  },
+};
+
+// ── PRICING ─────────────────────────────────────────────────
+const RATE  = 70;
+const CLEAN = 25;
+const SVC   = 0.05;
+
+// ── STATE ────────────────────────────────────────────────────
+const S = {
+  lang:       'gr',
+  slide:      0,
+  guests:     2,
+  checkIn:    null,
+  checkOut:   null,
+  monthStart: null,
+  sent:       false,
+  sentTimer:  null,
+};
+
+// ── UTILS ────────────────────────────────────────────────────
+const t       = () => TR[S.lang];
+const mid     = d => { const x = new Date(d); x.setHours(0,0,0,0); return x; };
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+const sameDay = (a, b) => !!(a && b && a.toDateString() === b.toDateString());
+const diffDays= (a, b) => Math.round((mid(b) - mid(a)) / 864e5);
+const fmtD    = d => d ? `${d.getDate()} ${t().monShort[d.getMonth()]}` : null;
+
+// ── TRANSLATIONS APPLY ───────────────────────────────────────
+function applyTr() {
+  const tr = t();
+  document.documentElement.lang = S.lang === 'gr' ? 'el' : 'en';
+
+  // data-t: dot-path lookup with support for nested objects
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const path = el.getAttribute('data-t').split('.');
+    let v = tr;
+    for (const k of path) v = v?.[k];
+    if (typeof v === 'string') el.textContent = v;
+  });
+
+  // Language button
+  document.getElementById('langBtn').textContent = tr.langBtn;
+
+  // Badges
+  const badgeWrap = document.getElementById('heroBadges');
+  badgeWrap.innerHTML = tr.badges
+    .map(b => `<span class="badge">${b}</span>`).join('');
+
+  // Nearby list
+  const nearby = document.getElementById('nearbyList');
+  nearby.innerHTML = tr.location.nearby.map(n =>
+    `<div class="nearby-item">
+       <span class="nearby-place">${n.place}</span>
+       <span class="nearby-dist">${n.dist}</span>
+     </div>`
+  ).join('');
+
+  // Review count
+  document.getElementById('reviewCount').textContent = tr.reviews.count;
+
+  // Booking bar updates
+  updateBarDates();
+  updateGuestsDisplay();
+  renderCalendar();
+  updateSummary();
+}
+
+// ── LANGUAGE TOGGLE ──────────────────────────────────────────
+document.getElementById('langBtn').addEventListener('click', () => {
+  S.lang = S.lang === 'gr' ? 'en' : 'gr';
+  applyTr();
+});
+
+// ── MOBILE MENU ──────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+
+hamburger.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', open);
+});
+mobileNav.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  })
+);
+
+// ── GALLERY ──────────────────────────────────────────────────
+function buildGallery() {
+  const track = document.getElementById('sliderTrack');
+  track.innerHTML = PHOTOS.map((src, i) =>
+    `<div class="slide" onclick="LB.open(${i})">
+       <img src="${src}" alt="Photo ${i+1}" loading="${i < 2 ? 'eager' : 'lazy'}">
+     </div>`
+  ).join('');
+
+  const dots = document.getElementById('sliderDots');
+  dots.innerHTML = PHOTOS.map((_, i) =>
+    `<button class="dot" data-i="${i}" aria-label="Go to photo ${i+1}"></button>`
+  ).join('');
+  dots.querySelectorAll('.dot').forEach(btn =>
+    btn.addEventListener('click', () => { S.slide = +btn.dataset.i; updateGallery(); })
+  );
+
+  updateGallery();
+}
+
+function updateGallery() {
+  const n   = PHOTOS.length;
+  const cur = ((S.slide % n) + n) % n;
+  document.getElementById('sliderTrack').style.transform = `translateX(-${cur * 100}%)`;
+  document.getElementById('slideCounter').textContent = `${cur + 1} / ${n}`;
+  document.querySelectorAll('#sliderDots .dot').forEach((d, i) =>
+    d.classList.toggle('active', i === cur)
+  );
+}
+
+document.getElementById('arrowPrev').addEventListener('click', () => {
+  S.slide = (S.slide - 1 + PHOTOS.length) % PHOTOS.length;
+  updateGallery();
+});
+document.getElementById('arrowNext').addEventListener('click', () => {
+  S.slide = (S.slide + 1) % PHOTOS.length;
+  updateGallery();
+});
+
+// Touch swipe
+let tx0 = null;
+const vp = document.querySelector('.slider-viewport');
+vp.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
+vp.addEventListener('touchend',   e => {
+  if (tx0 === null) return;
+  const dx = e.changedTouches[0].clientX - tx0;
+  if (Math.abs(dx) > 40) {
+    S.slide = dx > 0
+      ? (S.slide - 1 + PHOTOS.length) % PHOTOS.length
+      : (S.slide + 1) % PHOTOS.length;
+    updateGallery();
+  }
+  tx0 = null;
+});
+
+// ── CALENDAR ─────────────────────────────────────────────────
+function initCalendar() {
+  const now = new Date();
+  S.monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+}
+
+function renderCalendar() {
+  const tr = t();
+  const ms = S.monthStart;
+  if (!ms) return;
+
+  document.getElementById('calMonth').textContent =
+    `${tr.months[ms.getMonth()]} ${ms.getFullYear()}`;
+
+  document.getElementById('calWeekdays').innerHTML =
+    tr.weekdays.map(d => `<div class="cal-wd">${d}</div>`).join('');
+
+  const today       = mid(new Date());
+  const { checkIn, checkOut } = S;
+  const startOffset = (ms.getDay() + 6) % 7; // Mon = 0
+  const gridStart   = addDays(ms, -startOffset);
+
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < 42; i++) {
+    const date    = addDays(gridStart, i);
+    const inMonth = date.getMonth() === ms.getMonth();
+    const isPast  = mid(date) < today;
+    const isCI    = checkIn  && sameDay(date, checkIn);
+    const isCO    = checkOut && sameDay(date, checkOut);
+    const inRange = checkIn && checkOut
+      && mid(date) > mid(checkIn) && mid(date) < mid(checkOut);
+
+    const cell = document.createElement('div');
+    cell.className = 'cal-day';
+
+    if (inMonth) {
+      if (isPast) {
+        cell.classList.add('past');
+      } else {
+        cell.classList.add('available');
+        if (isCI && checkOut) cell.classList.add('range-start');
+        if (isCO)             cell.classList.add('range-end');
+        if (inRange)          cell.classList.add('in-range');
+        if (isCI)             cell.classList.add('selected');
+
+        const d = new Date(date);
+        cell.addEventListener('click', () => pickDay(d));
+      }
+    }
+
+    const inner = document.createElement('div');
+    inner.className = 'cal-day-inner';
+    inner.textContent = inMonth ? date.getDate() : '';
+    cell.appendChild(inner);
+    frag.appendChild(cell);
+  }
+
+  const grid = document.getElementById('calDays');
+  grid.innerHTML = '';
+  grid.appendChild(frag);
+}
+
+function pickDay(date) {
+  const d = mid(date);
+  const { checkIn, checkOut } = S;
+  if (!checkIn || (checkIn && checkOut)) {
+    S.checkIn  = d;
+    S.checkOut = null;
+  } else if (d <= mid(checkIn)) {
+    S.checkIn  = d;
+    S.checkOut = null;
+  } else {
+    S.checkOut = d;
+  }
+  S.sent = false;
+  renderCalendar();
+  updateSummary();
+  updateBarDates();
+}
+
+document.getElementById('prevMonth').addEventListener('click', () => {
+  const now  = new Date();
+  const cur  = new Date(now.getFullYear(), now.getMonth(), 1);
+  const prev = new Date(S.monthStart.getFullYear(), S.monthStart.getMonth() - 1, 1);
+  if (prev >= cur) { S.monthStart = prev; renderCalendar(); }
+});
+document.getElementById('nextMonth').addEventListener('click', () => {
+  S.monthStart = new Date(S.monthStart.getFullYear(), S.monthStart.getMonth() + 1, 1);
+  renderCalendar();
+});
+
+// ── GUESTS ───────────────────────────────────────────────────
+document.getElementById('incGuests').addEventListener('click', () => {
+  S.guests = Math.min(3, S.guests + 1);
+  updateGuestsDisplay();
+  updateSummary();
+});
+document.getElementById('decGuests').addEventListener('click', () => {
+  S.guests = Math.max(1, S.guests - 1);
+  updateGuestsDisplay();
+  updateSummary();
+});
+
+function updateGuestsDisplay() {
+  const label = `${S.guests} ${t().guestWord(S.guests)}`;
+  document.getElementById('guestNum').textContent = S.guests;
+  document.getElementById('sumGuests').textContent = label;
+  document.getElementById('barGuests').textContent = label;
+}
+
+// ── SUMMARY ──────────────────────────────────────────────────
+function updateSummary() {
+  const tr = t();
+  const { checkIn, checkOut, sent } = S;
+  const hasDates = !!(checkIn && checkOut);
+  const nights   = hasDates ? diffDays(checkIn, checkOut) : 0;
+  const subtotal = nights * RATE;
+  const service  = Math.round(subtotal * SVC);
+  const total    = hasDates ? subtotal + CLEAN + service : 0;
+
+  document.getElementById('sumCheckIn').textContent  = fmtD(checkIn)  || '—';
+  document.getElementById('sumCheckOut').textContent = fmtD(checkOut) || '—';
+
+  const priceBlock = document.getElementById('priceBlock');
+  const noDatesMsg = document.getElementById('noDatesMsg');
+  const bookBtn    = document.getElementById('bookBtn');
+
+  if (hasDates) {
+    priceBlock.style.display = 'block';
+    noDatesMsg.style.display = 'none';
+    document.getElementById('rateLine').textContent  = `€${RATE} × ${nights} ${tr.nightWord(nights)}`;
+    document.getElementById('rateAmt').textContent   = `€${subtotal}`;
+    document.getElementById('serviceAmt').textContent= `€${service}`;
+    document.getElementById('totalAmt').textContent  = `€${total}`;
+    bookBtn.textContent = sent ? tr.book.sent : tr.book.requestReady;
+    bookBtn.className   = sent ? 'book-btn sent' : 'book-btn ready';
+  } else {
+    priceBlock.style.display = 'none';
+    noDatesMsg.style.display = 'block';
+    bookBtn.textContent = tr.book.requestEmpty;
+    bookBtn.className   = 'book-btn empty';
+  }
+}
+
+function updateBarDates() {
+  const tr = t();
+  const { checkIn, checkOut } = S;
+  let label;
+  if (checkIn && checkOut)  label = `${fmtD(checkIn)} – ${fmtD(checkOut)}`;
+  else if (checkIn)          label = `${fmtD(checkIn)} – …`;
+  else                       label = tr.widget.add;
+  document.getElementById('barDates').textContent = label;
+}
+
+// ── BOOK BUTTON ──────────────────────────────────────────────
+document.getElementById('bookBtn').addEventListener('click', () => {
+  if (!(S.checkIn && S.checkOut)) return;
+  S.sent = true;
+  updateSummary();
+  clearTimeout(S.sentTimer);
+  S.sentTimer = setTimeout(() => { S.sent = false; updateSummary(); }, 2600);
+});
+
+// ── REVIEWS CAROUSEL ─────────────────────────────────────────
+const RV = {
+  cur: 0, total: 0, timer: null, INTERVAL: 7000,
+  go(i) {
+    const n = RV.total;
+    RV.cur = ((i % n) + n) % n;
+    document.getElementById('revTrack').style.transform = `translateX(-${RV.cur * 100}%)`;
+    document.querySelectorAll('.rev-car-dot').forEach((d, j) =>
+      d.classList.toggle('active', j === RV.cur)
+    );
+  },
+  next()    { RV.go(RV.cur + 1); },
+  startAuto() { clearInterval(RV.timer); RV.timer = setInterval(RV.next, RV.INTERVAL); },
+  restart()   { clearInterval(RV.timer); RV.startAuto(); },
+};
+
+function buildReviews() {
+  const CHUNK = 3;
+  const pages = [];
+  for (let i = 0; i < REVIEWS.length; i += CHUNK) pages.push(REVIEWS.slice(i, i + CHUNK));
+
+  document.getElementById('revTrack').innerHTML = pages.map((page, pi) =>
+    `<div class="rev-carousel-page">${
+      page.map((r, ri) => {
+        const idx = pi * CHUNK + ri;
+        return `<div class="rev-card">
+          <div class="stars-sm">★★★★★</div>
+          <p class="rev-body" id="revBody${idx}">"${r.quote}"</p>
+          <button class="read-more-btn" id="revBtn${idx}" onclick="toggleReview(${idx})">Read more</button>
+          <div class="rev-footer">
+            <div class="rev-name">${r.name}</div>
+            <div class="rev-meta">${r.meta}</div>
+          </div>
+        </div>`;
+      }).join('')
+    }</div>`
+  ).join('');
+
+  document.getElementById('revCarDots').innerHTML = pages.map((_, i) =>
+    `<button class="rev-car-dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Page ${i+1}"></button>`
+  ).join('');
+
+  document.querySelectorAll('.rev-car-dot').forEach(btn =>
+    btn.addEventListener('click', () => { RV.go(+btn.dataset.i); RV.restart(); })
+  );
+
+  RV.total = pages.length;
+  RV.startAuto();
+}
+
+function toggleReview(i) {
+  const body = document.getElementById('revBody' + i);
+  const btn  = document.getElementById('revBtn' + i);
+  const expanded = body.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Read less' : 'Read more';
+}
+
+// ── LIGHTBOX ─────────────────────────────────────────────────
+const LB = {
+  cur: 0,
+  open(i) {
+    LB.cur = ((i % PHOTOS.length) + PHOTOS.length) % PHOTOS.length;
+    LB._show();
+    document.getElementById('lbOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  },
+  close() {
+    document.getElementById('lbOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  },
+  prev() { LB.cur = (LB.cur - 1 + PHOTOS.length) % PHOTOS.length; LB._show(); },
+  next() { LB.cur = (LB.cur + 1) % PHOTOS.length; LB._show(); },
+  _show() {
+    document.getElementById('lbImg').src = PHOTOS[LB.cur];
+    document.getElementById('lbCounter').textContent = `${LB.cur + 1} / ${PHOTOS.length}`;
+  },
+};
+
+document.getElementById('lbClose').addEventListener('click', LB.close);
+document.getElementById('lbPrev').addEventListener('click', LB.prev);
+document.getElementById('lbNext').addEventListener('click', LB.next);
+document.getElementById('lbOverlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget || e.target.id === 'lbImgWrap') LB.close();
+});
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lbOverlay').classList.contains('open')) return;
+  if (e.key === 'Escape')     LB.close();
+  if (e.key === 'ArrowLeft')  LB.prev();
+  if (e.key === 'ArrowRight') LB.next();
+});
+
+document.getElementById('lbOverlay').addEventListener('wheel', e => {
+  e.preventDefault();
+  e.deltaY > 0 ? LB.next() : LB.prev();
+}, { passive: false });
+
+let lbTx = null;
+document.getElementById('lbOverlay').addEventListener('touchstart', e => {
+  lbTx = e.touches[0].clientX;
+}, { passive: true });
+document.getElementById('lbOverlay').addEventListener('touchend', e => {
+  if (lbTx === null) return;
+  const dx = e.changedTouches[0].clientX - lbTx;
+  if (Math.abs(dx) > 40) { dx > 0 ? LB.prev() : LB.next(); }
+  lbTx = null;
+});
+
+// ── INIT ─────────────────────────────────────────────────────
+buildGallery();
+buildReviews();
+initCalendar();
+applyTr();
+</script>
+</body>
+</html>
