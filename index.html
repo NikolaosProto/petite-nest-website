@@ -925,9 +925,34 @@
       margin-top: 14px;
     }
     .slide { cursor: zoom-in; }
+
+    /* ─── Under-construction banner ─────────────────────────── */
+    .construction-banner {
+      background: #2E5A52;
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    .construction-note {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 3px;
+      font-weight: 400;
+    }
   </style>
 </head>
 <body>
+
+<!-- ═══════════════════════════════════════════
+     UNDER CONSTRUCTION BANNER (προσωρινό)
+════════════════════════════════════════════ -->
+<div class="construction-banner">
+  🚧 Η σελίδα βρίσκεται υπό κατασκευή &nbsp;·&nbsp; Page is under construction
+  <div class="construction-note">* Προς το παρόν δεν δεχόμαστε κρατήσεις μέσω της σελίδας · Bookings are not available through this page yet</div>
+</div>
 
 <!-- ═══════════════════════════════════════════
      HEADER
@@ -1487,15 +1512,15 @@ const TR = {
     location: {
       label: 'Τοποθεσία',
       title: 'Στην καρδιά του Μικρολίμανου',
-      body:  'Σε μία από τις πιο γραφικές γωνιές του Πειραιά — καφέ, εστιατόρια κSαι βόλτες δίπλα στο κύμα, όλα σε απόσταση αναπνοής. Η πόλη στην πιο χαλαρή της εκδοχή.',
+      body:  'Σε μία από τις πιο γραφικές γωνιές του Πειραιά — καφέ, εστιατόρια και βόλτες δίπλα στο κύμα, όλα σε απόσταση αναπνοής. Η πόλη στην πιο χαλαρή της εκδοχή.',
       nearby: [
-        { place: 'Μαρίνα Μικρολίμανου',          dist: '200 μ.' },
-        { place: 'Εστιατόρια & καφέ',              dist: '1′ με τα πόδια' },
-        { place: 'Μετρό / ΗΣΑΠ Πειραιά',          dist: '2,5 χλμ.' },
+        { place: 'Μαρίνα Μικρολίμανου',          dist: '50 μ.' },
+        { place: 'Εστιατόρια & καφέ',            dist: '1′ με τα πόδια' },
+        { place: 'Μετρό / ΗΣΑΠ Πειραιά',         dist: '2,5 χλμ.' },
         { place: 'Αεροδρόμιο «Ελ. Βενιζέλος»',   dist: '42 χλμ.' },
       ],
     },
-    reviews: { count: '9 κριτικές · Guest favourite' },
+    reviews: { count: '10 κριτικές · Guest favourite' },
     book: {
       label:        'Κρατήσεις',
       title:        'Δείτε διαθεσιμότητα',
