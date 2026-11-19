@@ -8,6 +8,9 @@
   <meta name="robots" content="index, follow">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://petitenest.gr/">
+  <link rel="alternate" hreflang="el" href="https://petitenest.gr/">
+  <link rel="alternate" hreflang="en" href="https://petitenest.gr/en/">
+  <link rel="alternate" hreflang="x-default" href="https://petitenest.gr/">
 
   <!-- Social sharing (Facebook, WhatsApp, Viber, etc.) -->
   <meta property="og:type" content="website">
@@ -1894,9 +1897,9 @@ function applyTr() {
 }
 
 // ── LANGUAGE TOGGLE ──────────────────────────────────────────
+// Each language has its own page (/ and /en/) so search engines index both.
 document.getElementById('langBtn').addEventListener('click', () => {
-  S.lang = S.lang === 'gr' ? 'en' : 'gr';
-  applyTr();
+  location.href = location.pathname.replace(/\/?(index\.html)?$/, '/') + 'en/';
 });
 
 // ── MOBILE MENU ──────────────────────────────────────────────
