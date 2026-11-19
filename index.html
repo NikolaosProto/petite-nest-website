@@ -1006,6 +1006,35 @@
       margin-top: 3px;
       font-weight: 400;
     }
+
+    /* ─── FAQ ───────────────────────────────────────────────── */
+    .faq-list { max-width: 820px; margin-top: 32px; border-top: 1px solid #E4DCCE; }
+    .faq-item { border-bottom: 1px solid #E4DCCE; }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 500;
+      color: #232019;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-family: 'Manrope', sans-serif;
+      font-size: 22px;
+      color: #2E5A52;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item summary:hover { color: #2E5A52; }
+    .faq-item p { margin: 0 0 22px; max-width: 680px; font-size: 15px; line-height: 1.7; color: #5A5448; }
   </style>
 </head>
 <body>
@@ -1015,7 +1044,7 @@
 ════════════════════════════════════════════ -->
 <div class="construction-banner">
   🚧 Η σελίδα βρίσκεται υπό κατασκευή &nbsp;·&nbsp; Page is under construction
-  <div class="construction-note">* Προς το παρόν δεν δεχόμαστε κρατήσεις μέσω της σελίδας · Bookings are not available through this page yet</div>
+  <div class="construction-note">Κρατήσεις προς το παρόν <strong>ΜΟΝΟ τηλεφωνικά</strong> στο <a href="tel:+306980384084" style="text-decoration:underline;white-space:nowrap"><strong>+30 698 038 4084</strong></a> &nbsp;·&nbsp; Bookings currently <strong>by phone ONLY</strong>: <a href="tel:+306980384084" style="text-decoration:underline;white-space:nowrap"><strong>+30 698 038 4084</strong></a></div>
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -1106,8 +1135,8 @@
     <div class="about-text">
       <div class="label" data-t="about.label">Το Διαμέρισμα</div>
       <h2 data-t="about.title">Φωτεινό, ήρεμο, με boho αισθητική</h2>
-      <p class="about-body" data-t="about.body">Ένα φωτεινό διαμέρισμα στο Μικρολίμανο, σχεδιασμένο με απλότητα και φυσικές αποχρώσεις. Μια ήρεμη ατμόσφαιρα όπου όλα είναι στη θέση τους.</p>
-      <p class="about-body" data-t="about.body2">Απολαύστε τον καφέ σας στο μπαλκόνι και εξερευνήστε τα καφέ και τα εστιατόρια δίπλα στο νερό, με τα πόδια. Ιδανικό για ζευγάρια ή μοναχικούς ταξιδιώτες.</p>
+      <p class="about-body" data-t="about.body">Το Petite Nest είναι ένα φωτεινό διαμέρισμα στο Μικρολίμανο του Πειραιά, σχεδιασμένο με απλότητα και φυσικές αποχρώσεις. Μια ήρεμη ατμόσφαιρα όπου όλα είναι στη θέση τους.</p>
+      <p class="about-body" data-t="about.body2">Απολαύστε τον καφέ σας στο μπαλκόνι και εξερευνήστε τα καφέ και τα εστιατόρια δίπλα στο νερό, με τα πόδια. Ιδανικό για ζευγάρια ή μοναχικούς ταξιδιώτες, και ως βάση πριν ή μετά τα νησιά, λίγα λεπτά από το λιμάνι του Πειραιά.</p>
       <div class="about-host" data-t="about.host">— Με αγάπη, η Χρύσα</div>
     </div>
   </div>
@@ -1258,8 +1287,8 @@
     <div class="location-text">
       <div class="label" data-t="location.label">Τοποθεσία</div>
       <h2 data-t="location.title">Στην καρδιά του Μικρολίμανου</h2>
-      <p class="location-body" data-t="location.body">Σε μία από τις πιο γραφικές γωνιές του Πειραιά — καφέ, εστιατόρια και βόλτες δίπλα στο κύμα, όλα σε απόσταση αναπνοής. Η πόλη στην πιο χαλαρή της εκδοχή.</p>
-      <div class="nearby-list" id="nearbyList"><div class="nearby-item"><span class="nearby-place">Μαρίνα Μικρολίμανου</span><span class="nearby-dist">50 μ.</span></div><div class="nearby-item"><span class="nearby-place">Εστιατόρια &amp; καφέ</span><span class="nearby-dist">1′ με τα πόδια</span></div><div class="nearby-item"><span class="nearby-place">Μετρό / ΗΣΑΠ Πειραιά</span><span class="nearby-dist">2,5 χλμ.</span></div><div class="nearby-item"><span class="nearby-place">Αεροδρόμιο «Ελ. Βενιζέλος»</span><span class="nearby-dist">42 χλμ.</span></div></div>
+      <p class="location-body" data-t="location.body">Σε μία από τις πιο γραφικές γωνιές του Πειραιά — καφέ, εστιατόρια και βόλτες δίπλα στο κύμα, όλα σε απόσταση αναπνοής. Η πόλη στην πιο χαλαρή της εκδοχή, με εύκολη πρόσβαση στο κέντρο της Αθήνας.</p>
+      <div class="nearby-list" id="nearbyList"><div class="nearby-item"><span class="nearby-place">Μαρίνα Μικρολίμανου</span><span class="nearby-dist">20 μ.</span></div><div class="nearby-item"><span class="nearby-place">Εστιατόρια &amp; καφέ</span><span class="nearby-dist">1′ με τα πόδια</span></div><div class="nearby-item"><span class="nearby-place">Μετρό / ΗΣΑΠ Πειραιά</span><span class="nearby-dist">2,5 χλμ.</span></div><div class="nearby-item"><span class="nearby-place">Αεροδρόμιο «Ελ. Βενιζέλος»</span><span class="nearby-dist">42 χλμ.</span></div></div>
     </div>
     <div class="location-map">
       <img src="./Photos/mikrolimano_pic.jpg"
@@ -1388,6 +1417,50 @@
           <span data-t="book.secure">Ασφαλής κράτηση μέσω Smoobu</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FAQ
+════════════════════════════════════════════ -->
+<section id="faq" class="section bg-warm">
+  <div class="container">
+    <div class="label" data-t="faq.label">Συχνές ερωτήσεις</div>
+    <h2 data-t="faq.title">Καλό να ξέρετε πριν έρθετε</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary data-t="faq.q1">Πού βρίσκεται το Petite Nest;</summary>
+        <p data-t="faq.a1">Στο Μικρολίμανο του Πειραιά, μόλις 20 μέτρα από τη μαρίνα, με καφέ και εστιατόρια δίπλα στη θάλασσα σε απόσταση λίγων βημάτων.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-t="faq.q2">Πώς έρχομαι από το αεροδρόμιο;</summary>
+        <p data-t="faq.a2">Το αεροδρόμιο «Ελευθέριος Βενιζέλος» απέχει περίπου 42 χλμ., δηλαδή περίπου 55 λεπτά με ταξί ή αυτοκίνητο.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-t="faq.q3">Πόσο απέχει από το λιμάνι του Πειραιά;</summary>
+        <p data-t="faq.a3">Ο σταθμός Μετρό / ΗΣΑΠ Πειραιά, δίπλα στο λιμάνι, απέχει περίπου 2,5 χλμ. Ιδανική βάση πριν ή μετά τα νησιά.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-t="faq.q4">Υπάρχει χώρος στάθμευσης;</summary>
+        <p data-t="faq.a4">Προς το παρόν το διαμέρισμα δεν διαθέτει ιδιωτικό χώρο στάθμευσης.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-t="faq.q5">Ποιες είναι οι ώρες check-in και check-out;</summary>
+        <p data-t="faq.a5">Άφιξη από τις 15:00 και αναχώρηση έως τις 11:00. Το check-in γίνεται αυτόνομα (self check-in).</p>
+      </details>
+      <details class="faq-item">
+        <summary data-t="faq.q6">Πόσα άτομα φιλοξενεί;</summary>
+        <p data-t="faq.a6">Έως 3 άτομα, με 1 υπνοδωμάτιο και 1 μπάνιο.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-t="faq.q7">Υπάρχει Wi-Fi και χώρος εργασίας;</summary>
+        <p data-t="faq.a7">Ναι, γρήγορο Wi-Fi και ειδικός χώρος εργασίας, ιδανικά και για όσους δουλεύουν εξ αποστάσεως.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-t="faq.q8">Επιτρέπονται τα κατοικίδια;</summary>
+        <p data-t="faq.a8">Δυστυχώς τα κατοικίδια δεν επιτρέπονται.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -1544,8 +1617,8 @@ const TR = {
     about: {
       label: 'Το Διαμέρισμα',
       title: 'Φωτεινό, ήρεμο, με boho αισθητική',
-      body:  'Ένα φωτεινό διαμέρισμα στο Μικρολίμανο, σχεδιασμένο με απλότητα και φυσικές αποχρώσεις. Μια ήρεμη ατμόσφαιρα όπου όλα είναι στη θέση τους.',
-      body2: 'Απολαύστε τον καφέ σας στο μπαλκόνι και εξερευνήστε τα καφέ και τα εστιατόρια δίπλα στο νερό, με τα πόδια. Ιδανικό για ζευγάρια ή μοναχικούς ταξιδιώτες.',
+      body:  'Το Petite Nest είναι ένα φωτεινό διαμέρισμα στο Μικρολίμανο του Πειραιά, σχεδιασμένο με απλότητα και φυσικές αποχρώσεις. Μια ήρεμη ατμόσφαιρα όπου όλα είναι στη θέση τους.',
+      body2: 'Απολαύστε τον καφέ σας στο μπαλκόνι και εξερευνήστε τα καφέ και τα εστιατόρια δίπλα στο νερό, με τα πόδια. Ιδανικό για ζευγάρια ή μοναχικούς ταξιδιώτες, και ως βάση πριν ή μετά τα νησιά, λίγα λεπτά από το λιμάνι του Πειραιά.',
       host:  '— Με αγάπη, η Χρύσα',
     },
     amenities: {
@@ -1577,9 +1650,9 @@ const TR = {
     location: {
       label: 'Τοποθεσία',
       title: 'Στην καρδιά του Μικρολίμανου',
-      body:  'Σε μία από τις πιο γραφικές γωνιές του Πειραιά — καφέ, εστιατόρια και βόλτες δίπλα στο κύμα, όλα σε απόσταση αναπνοής. Η πόλη στην πιο χαλαρή της εκδοχή.',
+      body:  'Σε μία από τις πιο γραφικές γωνιές του Πειραιά — καφέ, εστιατόρια και βόλτες δίπλα στο κύμα, όλα σε απόσταση αναπνοής. Η πόλη στην πιο χαλαρή της εκδοχή, με εύκολη πρόσβαση στο κέντρο της Αθήνας.',
       nearby: [
-        { place: 'Μαρίνα Μικρολίμανου',          dist: '50 μ.' },
+        { place: 'Μαρίνα Μικρολίμανου',          dist: '20 μ.' },
         { place: 'Εστιατόρια & καφέ',            dist: '1′ με τα πόδια' },
         { place: 'Μετρό / ΗΣΑΠ Πειραιά',         dist: '2,5 χλμ.' },
         { place: 'Αεροδρόμιο «Ελ. Βενιζέλος»',   dist: '42 χλμ.' },
@@ -1613,6 +1686,26 @@ const TR = {
     badges:    ['3 άτομα','1 υπνοδωμάτιο','1 μπάνιο','Wi-Fi & workspace','Μπαλκόνι'],
     nightWord: n => n === 1 ? 'βράδυ' : 'βράδια',
     guestWord: n => n === 1 ? 'άτομο' : 'άτομα',
+    faq: {
+      label: 'Συχνές ερωτήσεις',
+      title: 'Καλό να ξέρετε πριν έρθετε',
+      q1: 'Πού βρίσκεται το Petite Nest;',
+      a1: 'Στο Μικρολίμανο του Πειραιά, μόλις 20 μέτρα από τη μαρίνα, με καφέ και εστιατόρια δίπλα στη θάλασσα σε απόσταση λίγων βημάτων.',
+      q2: 'Πώς έρχομαι από το αεροδρόμιο;',
+      a2: 'Το αεροδρόμιο «Ελευθέριος Βενιζέλος» απέχει περίπου 42 χλμ., δηλαδή περίπου 55 λεπτά με ταξί ή αυτοκίνητο.',
+      q3: 'Πόσο απέχει από το λιμάνι του Πειραιά;',
+      a3: 'Ο σταθμός Μετρό / ΗΣΑΠ Πειραιά, δίπλα στο λιμάνι, απέχει περίπου 2,5 χλμ. Ιδανική βάση πριν ή μετά τα νησιά.',
+      q4: 'Υπάρχει χώρος στάθμευσης;',
+      a4: 'Προς το παρόν το διαμέρισμα δεν διαθέτει ιδιωτικό χώρο στάθμευσης.',
+      q5: 'Ποιες είναι οι ώρες check-in και check-out;',
+      a5: 'Άφιξη από τις 15:00 και αναχώρηση έως τις 11:00. Το check-in γίνεται αυτόνομα (self check-in).',
+      q6: 'Πόσα άτομα φιλοξενεί;',
+      a6: 'Έως 3 άτομα, με 1 υπνοδωμάτιο και 1 μπάνιο.',
+      q7: 'Υπάρχει Wi-Fi και χώρος εργασίας;',
+      a7: 'Ναι, γρήγορο Wi-Fi και ειδικός χώρος εργασίας, ιδανικά και για όσους δουλεύουν εξ αποστάσεως.',
+      q8: 'Επιτρέπονται τα κατοικίδια;',
+      a8: 'Δυστυχώς τα κατοικίδια δεν επιτρέπονται.',
+    },
     langBtn:   'EN',
   },
   en: {
@@ -1627,7 +1720,7 @@ const TR = {
     hero: {
       place: 'Petite Nest · Mikrolimano · Piraeus',
       title: 'A little nest by the sea',
-      sub:   'A bright, cosy apartment with minimal & boho touches, in the heart of Mikrolimano — just steps from the water.',
+      sub:   'A bright, cosy apartment with minimal & boho touches, in the heart of Mikrolimano, Piraeus — just steps from the water.',
     },
     widget: {
       from:    'from',
@@ -1642,8 +1735,8 @@ const TR = {
     about: {
       label: 'The Apartment',
       title: 'Bright, calm, with a boho feel',
-      body:  'A bright apartment in Mikrolimano, designed with simplicity and natural tones. A calm atmosphere where everything is in its place.',
-      body2: 'Enjoy your coffee on the balcony and explore the cafés and restaurants by the water, all on foot. Perfect for couples or solo travellers.',
+      body:  'Petite Nest is a bright apartment in Mikrolimano, Piraeus, designed with simplicity and natural tones. A calm atmosphere where everything is in its place.',
+      body2: 'Enjoy your coffee on the balcony and explore the cafés and restaurants by the water, all on foot. Perfect for couples or solo travellers, and an easy base before or after the islands, minutes from Piraeus port.',
       host:  '— With love, Chryssa',
     },
     amenities: {
@@ -1675,9 +1768,9 @@ const TR = {
     location: {
       label: 'Location',
       title: 'In the heart of Mikrolimano',
-      body:  'In one of the most charming corners of Piraeus — cafés, restaurants and seaside walks, all within a few minutes. The city at its most laid-back.',
+      body:  'In one of the most charming corners of Piraeus — cafés, restaurants and seaside walks, all within a few minutes. The city at its most laid-back, with easy access to central Athens.',
       nearby: [
-        { place: 'Mikrolimano Marina',     dist: '200 m' },
+        { place: 'Mikrolimano Marina',     dist: '20 m' },
         { place: 'Restaurants & cafés',    dist: '2 min walk' },
         { place: 'Piraeus metro/station',  dist: '2.5 km' },
         { place: 'Athens Int. Airport',    dist: '42 km' },
@@ -1711,6 +1804,26 @@ const TR = {
     badges:    ['3 guests','1 bedroom','1 bath','Wi-Fi & workspace','Balcony'],
     nightWord: n => n === 1 ? 'night'  : 'nights',
     guestWord: n => n === 1 ? 'guest'  : 'guests',
+    faq: {
+      label: 'FAQ',
+      title: 'Good to know before you arrive',
+      q1: 'Where is Petite Nest located?',
+      a1: 'In Mikrolimano, Piraeus, just 20 metres from the marina, with seaside cafés and restaurants a few steps away.',
+      q2: 'How do I get there from the airport?',
+      a2: 'Athens International Airport “Eleftherios Venizelos” is about 42 km away, around 55 minutes by taxi or car.',
+      q3: 'How far is Piraeus port?',
+      a3: 'Piraeus Metro station, next to the port, is about 2.5 km away. A handy base before or after the islands.',
+      q4: 'Is there parking?',
+      a4: 'The apartment does not currently have private parking.',
+      q5: 'What are the check-in and check-out times?',
+      a5: 'Check-in from 15:00 and check-out by 11:00, with self check-in.',
+      q6: 'How many guests can stay?',
+      a6: 'Up to 3 guests, with 1 bedroom and 1 bathroom.',
+      q7: 'Is there Wi-Fi and a workspace?',
+      a7: 'Yes, fast Wi-Fi and a dedicated workspace, great for remote work too.',
+      q8: 'Are pets allowed?',
+      a8: 'Unfortunately, pets are not allowed.',
+    },
     langBtn:   'ΕΛ',
   },
 };
