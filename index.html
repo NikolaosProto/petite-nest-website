@@ -6,6 +6,7 @@
   <title>Petite Nest · Διαμέρισμα στο Μικρολίμανο, Πειραιάς</title>
   <meta name="description" content="Petite Nest: φωτεινό, άνετο διαμέρισμα στο Μικρολίμανο Πειραιά. Minimal & boho αισθητική, μπαλκόνι, δίπλα στη θάλασσα. Κάντε κράτηση απευθείας.">
   <meta name="robots" content="index, follow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://petitenest.gr/">
 
   <!-- Social sharing (Facebook, WhatsApp, Viber, etc.) -->
@@ -38,6 +39,32 @@
       "addressRegion": "Mikrolimano",
       "postalCode": "18533",
       "addressCountry": "GR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 37.9363,
+      "longitude": 23.6588
+    },
+    "hasMap": "https://www.openstreetmap.org/?mlat=37.9363&mlon=23.6588#map=17/37.9363/23.6588",
+    "checkinTime": "15:00",
+    "checkoutTime": "11:00",
+    "numberOfRooms": 1,
+    "petsAllowed": false,
+    "availableLanguage": ["el", "en"],
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Δίπλα στη θάλασσα", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Πλήρης κουζίνα", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Χώρος εργασίας", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Τηλεόραση", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Πλυντήριο", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Μπαλκόνι", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Self check-in", "value": true }
+    ],
+    "containsPlace": {
+      "@type": "Accommodation",
+      "name": "Petite Nest apartment",
+      "occupancy": { "@type": "QuantitativeValue", "maxValue": 3 }
     },
     "sameAs": ["https://www.airbnb.com/rooms/1623102965390266812"]
   }
@@ -999,16 +1026,16 @@
     <a href="#top" class="logo">PETITE NEST</a>
 
     <nav class="desktop-nav" aria-label="Main navigation">
-      <a href="#about"     data-t="nav.residence"></a>
-      <a href="#gallery"   data-t="nav.gallery"></a>
-      <a href="#amenities" data-t="nav.amenities"></a>
-      <a href="#location"  data-t="nav.location"></a>
-      <a href="#reviews"   data-t="nav.reviews"></a>
+      <a href="#about"     data-t="nav.residence">Το Διαμέρισμα</a>
+      <a href="#gallery"   data-t="nav.gallery">Φωτογραφίες</a>
+      <a href="#amenities" data-t="nav.amenities">Παροχές</a>
+      <a href="#location"  data-t="nav.location">Τοποθεσία</a>
+      <a href="#reviews"   data-t="nav.reviews">Κριτικές</a>
     </nav>
 
     <div class="header-actions">
       <button class="btn-lang" id="langBtn" aria-label="Switch language">EN</button>
-      <a href="#book" class="btn-cta-nav" data-t="nav.book"></a>
+      <a href="#book" class="btn-cta-nav" data-t="nav.book">Κράτηση</a>
       <button class="btn-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -1016,12 +1043,12 @@
   </div>
 
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-    <a href="#about"     data-t="nav.residence"></a>
-    <a href="#gallery"   data-t="nav.gallery"></a>
-    <a href="#amenities" data-t="nav.amenities"></a>
-    <a href="#location"  data-t="nav.location"></a>
-    <a href="#reviews"   data-t="nav.reviews"></a>
-    <a href="#book" class="mobile-book" data-t="nav.book"></a>
+    <a href="#about"     data-t="nav.residence">Το Διαμέρισμα</a>
+    <a href="#gallery"   data-t="nav.gallery">Φωτογραφίες</a>
+    <a href="#amenities" data-t="nav.amenities">Παροχές</a>
+    <a href="#location"  data-t="nav.location">Τοποθεσία</a>
+    <a href="#reviews"   data-t="nav.reviews">Κριτικές</a>
+    <a href="#book" class="mobile-book" data-t="nav.book">Κράτηση</a>
   </nav>
 </header>
 
@@ -1033,14 +1060,14 @@
   <div style="max-width:1180px;margin:0 auto">
     <div class="hero-grid">
       <div class="hero-text">
-        <div class="label" data-t="hero.place"></div>
-        <h1 data-t="hero.title"></h1>
-        <p class="hero-sub" data-t="hero.sub"></p>
-        <div class="hero-badges" id="heroBadges"></div>
+        <div class="label" data-t="hero.place">Petite Nest · Μικρολίμανο · Πειραιάς</div>
+        <h1 data-t="hero.title">Στυλ &amp; ηρεμία δίπλα στη θάλασσα</h1>
+        <p class="hero-sub" data-t="hero.sub">Φωτεινό, άνετο διαμέρισμα με minimal &amp; boho πινελιές, στην καρδιά του Μικρολίμανου — λίγα βήματα από το κύμα.</p>
+        <div class="hero-badges" id="heroBadges"><span class="badge">3 άτομα</span><span class="badge">1 υπνοδωμάτιο</span><span class="badge">1 μπάνιο</span><span class="badge">Wi-Fi & workspace</span><span class="badge">Μπαλκόνι</span></div>
       </div>
       <div class="hero-img">
         <img src="./Photos/photos_for_site_slider/IMG-5a64b26c214af9b37eb6faaa1ab0c2fd-V.jpg"
-             alt="Petite Nest — Μικρολίμανο"
+             alt="Petite Nest — φωτεινό διαμέρισμα στο Μικρολίμανο, Πειραιάς"
              loading="eager">
       </div>
     </div>
@@ -1048,19 +1075,19 @@
     <!-- Compact booking bar -->
     <div class="booking-bar">
       <div class="bar-seg">
-        <span class="bar-seg-lbl" data-t="widget.from"></span>
-        <span class="bar-price">€70 <span class="bar-price-sub" data-t="widget.night"></span></span>
+        <span class="bar-seg-lbl" data-t="widget.from">από</span>
+        <span class="bar-price">€70 <span class="bar-price-sub" data-t="widget.night">/ βράδυ</span></span>
       </div>
       <a href="#book" class="bar-seg clickable">
-        <span class="bar-seg-lbl" data-t="widget.dates"></span>
+        <span class="bar-seg-lbl" data-t="widget.dates">Ημερομηνίες</span>
         <span class="bar-val" id="barDates"></span>
       </a>
       <a href="#book" class="bar-seg clickable">
-        <span class="bar-seg-lbl" data-t="widget.guests"></span>
+        <span class="bar-seg-lbl" data-t="widget.guests">Άτομα</span>
         <span class="bar-val" id="barGuests"></span>
       </a>
       <a href="#book" class="bar-cta">
-        <span data-t="widget.cta"></span>
+        <span data-t="widget.cta">Διαθεσιμότητα</span>
         <span style="font-size:18px">→</span>
       </a>
     </div>
@@ -1074,14 +1101,14 @@
   <div class="container about-grid">
     <div class="about-img">
       <img src="./Photos/photos_for_site_slider/IMG-c6093b3aabd642d85501b2925ee7a83e-V.jpg"
-           alt="Το διαμέρισμα" loading="lazy">
+           alt="Το εσωτερικό του διαμερίσματος Petite Nest στο Μικρολίμανο" loading="lazy">
     </div>
     <div class="about-text">
-      <div class="label" data-t="about.label"></div>
-      <h2 data-t="about.title"></h2>
-      <p class="about-body" data-t="about.body"></p>
-      <p class="about-body" data-t="about.body2"></p>
-      <div class="about-host" data-t="about.host"></div>
+      <div class="label" data-t="about.label">Το Διαμέρισμα</div>
+      <h2 data-t="about.title">Φωτεινό, ήρεμο, με boho αισθητική</h2>
+      <p class="about-body" data-t="about.body">Ένα φωτεινό διαμέρισμα στο Μικρολίμανο, σχεδιασμένο με απλότητα και φυσικές αποχρώσεις. Μια ήρεμη ατμόσφαιρα όπου όλα είναι στη θέση τους.</p>
+      <p class="about-body" data-t="about.body2">Απολαύστε τον καφέ σας στο μπαλκόνι και εξερευνήστε τα καφέ και τα εστιατόρια δίπλα στο νερό, με τα πόδια. Ιδανικό για ζευγάρια ή μοναχικούς ταξιδιώτες.</p>
+      <div class="about-host" data-t="about.host">— Με αγάπη, η Χρύσα</div>
     </div>
   </div>
 </section>
@@ -1091,8 +1118,8 @@
 ════════════════════════════════════════════ -->
 <section id="amenities" class="section bg-warm">
   <div class="container">
-    <div class="label" data-t="amenities.label"></div>
-    <h2 data-t="amenities.title"></h2>
+    <div class="label" data-t="amenities.label">Παροχές</div>
+    <h2 data-t="amenities.title">Όλα όσα χρειάζεστε για μια ξεκούραστη διαμονή</h2>
     <div class="amenities-grid">
 
       <div class="amenity">
@@ -1101,7 +1128,7 @@
           <path d="M2 13c2 0 2.5-1.5 5-1.5s2.5 1.5 5 1.5 2.5-1.5 5-1.5 3 1.5 5 1.5"/>
           <path d="M9 9V4h6v5"/>
         </svg>
-        <span data-t="am.sea"></span>
+        <span data-t="am.sea">Δίπλα στη θάλασσα</span>
       </div>
 
       <div class="amenity">
@@ -1111,7 +1138,7 @@
           <path d="M8.5 15.5c2-1.6 5-1.6 7 0"/>
           <circle cx="12" cy="19" r="0.8" fill="#2E5A52"/>
         </svg>
-        <span data-t="am.wifi"></span>
+        <span data-t="am.wifi">Γρήγορο Wi-Fi</span>
       </div>
 
       <div class="amenity">
@@ -1121,7 +1148,7 @@
           <path d="M17 2c-1.5 0-2.5 2-2.5 5s1 4 2.5 4 2.5-1 2.5-4S18.5 2 17 2Z"/>
           <path d="M17 11v11"/>
         </svg>
-        <span data-t="am.kitchen"></span>
+        <span data-t="am.kitchen">Πλήρης κουζίνα</span>
       </div>
 
       <div class="amenity">
@@ -1129,7 +1156,7 @@
           <rect x="3" y="4" width="18" height="12" rx="1.5"/>
           <path d="M2 20h20M9 16l-.5 4M15 16l.5 4"/>
         </svg>
-        <span data-t="am.work"></span>
+        <span data-t="am.work">Χώρος εργασίας</span>
       </div>
 
       <div class="amenity">
@@ -1137,7 +1164,7 @@
           <rect x="3" y="5" width="18" height="12" rx="2"/>
           <path d="M8 21h8M12 17v4"/>
         </svg>
-        <span data-t="am.tv"></span>
+        <span data-t="am.tv">Τηλεόραση</span>
       </div>
 
       <div class="amenity">
@@ -1146,7 +1173,7 @@
           <circle cx="12" cy="13" r="3.6"/>
           <path d="M8.5 6h.01M11 6h.01"/>
         </svg>
-        <span data-t="am.washer"></span>
+        <span data-t="am.washer">Πλυντήριο</span>
       </div>
 
       <div class="amenity">
@@ -1155,7 +1182,7 @@
           <path d="M4 13h16"/>
           <path d="M4 13v8M20 13v8M8 13v8M12 13v8M16 13v8"/>
         </svg>
-        <span data-t="am.balcony"></span>
+        <span data-t="am.balcony">Μπαλκόνι</span>
       </div>
 
       <div class="amenity">
@@ -1163,7 +1190,7 @@
           <rect x="3" y="11" width="18" height="11" rx="2"/>
           <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
         </svg>
-        <span data-t="am.checkin"></span>
+        <span data-t="am.checkin">Self check-in</span>
       </div>
 
     </div>
@@ -1177,10 +1204,10 @@
   <div class="container">
     <div class="gallery-header">
       <div>
-        <div class="label" data-t="gallery.label"></div>
-        <h2 data-t="gallery.title"></h2>
+        <div class="label" data-t="gallery.label">Φωτογραφίες</div>
+        <h2 data-t="gallery.title">Μια ματιά στον χώρο</h2>
       </div>
-      <div class="gallery-caption" data-t="gallery.caption"></div>
+      <div class="gallery-caption" data-t="gallery.caption">Από το κατάλυμα</div>
     </div>
 
     <div class="slider-outer">
@@ -1201,23 +1228,23 @@
 ════════════════════════════════════════════ -->
 <section class="section bg-warm">
   <div class="container">
-    <div class="label" data-t="spaces.label"></div>
-    <h2 data-t="spaces.title"></h2>
+    <div class="label" data-t="spaces.label">Οι χώροι</div>
+    <h2 data-t="spaces.title">Άνετα, λιτά, λειτουργικά</h2>
     <div class="spaces-grid">
       <div class="space-card">
-        <img src="./Photos/photos_for_site_slider/IMG-6e83c2641642772ee21e03e37907aaf0-V.jpg" alt="" loading="lazy">
-        <h3 data-t="spaces.living.title"></h3>
-        <p data-t="spaces.living.body"></p>
+        <img src="./Photos/photos_for_site_slider/IMG-6e83c2641642772ee21e03e37907aaf0-V.jpg" alt="Καθιστικό του διαμερίσματος Petite Nest στο Μικρολίμανο" loading="lazy">
+        <h3 data-t="spaces.living.title">Καθιστικό</h3>
+        <p data-t="spaces.living.body">Φωτεινός χώρος με άνετο καθιστικό και φυσικές αποχρώσεις που κρατούν τη δροσιά.</p>
       </div>
       <div class="space-card">
-        <img src="./Photos/photos_for_site_slider/IMG-59deedcdb96549528c4b2ee57c895598-V.jpg" alt="" loading="lazy">
-        <h3 data-t="spaces.bedroom.title"></h3>
-        <p data-t="spaces.bedroom.body"></p>
+        <img src="./Photos/photos_for_site_slider/IMG-59deedcdb96549528c4b2ee57c895598-V.jpg" alt="Υπνοδωμάτιο του διαμερίσματος Petite Nest στον Πειραιά" loading="lazy">
+        <h3 data-t="spaces.bedroom.title">Υπνοδωμάτιο</h3>
+        <p data-t="spaces.bedroom.body">Ήρεμο δωμάτιο με ποιοτικά λευκά είδη και απαλό φυσικό φως το πρωί.</p>
       </div>
       <div class="space-card">
-        <img src="./Photos/photos_for_site_slider/IMG-def4ff0c0ca6584d5066f75b5ce229a2-V.jpg" alt="" loading="lazy">
-        <h3 data-t="spaces.balcony.title"></h3>
-        <p data-t="spaces.balcony.body"></p>
+        <img src="./Photos/photos_for_site_slider/IMG-def4ff0c0ca6584d5066f75b5ce229a2-V.jpg" alt="Μπαλκόνι του Petite Nest με θέα στη ζωή του Μικρολίμανου" loading="lazy">
+        <h3 data-t="spaces.balcony.title">Μπαλκόνι</h3>
+        <p data-t="spaces.balcony.body">Ιδιωτικό μπαλκόνι για τον πρωινό καφέ, με τη ζωή του Μικρολίμανου.</p>
       </div>
     </div>
   </div>
@@ -1229,14 +1256,14 @@
 <section id="location" class="section">
   <div class="container location-grid">
     <div class="location-text">
-      <div class="label" data-t="location.label"></div>
-      <h2 data-t="location.title"></h2>
-      <p class="location-body" data-t="location.body"></p>
-      <div class="nearby-list" id="nearbyList"></div>
+      <div class="label" data-t="location.label">Τοποθεσία</div>
+      <h2 data-t="location.title">Στην καρδιά του Μικρολίμανου</h2>
+      <p class="location-body" data-t="location.body">Σε μία από τις πιο γραφικές γωνιές του Πειραιά — καφέ, εστιατόρια και βόλτες δίπλα στο κύμα, όλα σε απόσταση αναπνοής. Η πόλη στην πιο χαλαρή της εκδοχή.</p>
+      <div class="nearby-list" id="nearbyList"><div class="nearby-item"><span class="nearby-place">Μαρίνα Μικρολίμανου</span><span class="nearby-dist">50 μ.</span></div><div class="nearby-item"><span class="nearby-place">Εστιατόρια &amp; καφέ</span><span class="nearby-dist">1′ με τα πόδια</span></div><div class="nearby-item"><span class="nearby-place">Μετρό / ΗΣΑΠ Πειραιά</span><span class="nearby-dist">2,5 χλμ.</span></div><div class="nearby-item"><span class="nearby-place">Αεροδρόμιο «Ελ. Βενιζέλος»</span><span class="nearby-dist">42 χλμ.</span></div></div>
     </div>
     <div class="location-map">
       <img src="./Photos/mikrolimano_pic.jpg"
-           alt="Μικρολίμανο, Πειραιάς"
+           alt="Η μαρίνα του Μικρολίμανου στον Πειραιά, δίπλα στο Petite Nest"
            loading="lazy"
            style="width:100%;height:clamp(300px,46vh,440px);object-fit:cover;border-radius:6px;display:block;">
     </div>
@@ -1252,7 +1279,7 @@
       <div class="review-score">5.0</div>
       <div>
         <div class="stars">★★★★★</div>
-        <div class="review-count" id="reviewCount"></div>
+        <div class="review-count" id="reviewCount">10 κριτικές · Guest favourite</div>
       </div>
     </div>
     <div class="rev-carousel-outer">
@@ -1276,10 +1303,10 @@
 <section id="book" class="section">
   <div class="container">
     <div style="margin-bottom:36px">
-      <div class="label" data-t="book.label"></div>
-      <h2 data-t="book.title"></h2>
+      <div class="label" data-t="book.label">Κρατήσεις</div>
+      <h2 data-t="book.title">Δείτε διαθεσιμότητα</h2>
       <p style="font-size:16.5px;line-height:1.7;color:#5E5A50;margin:14px 0 0;max-width:480px"
-         data-t="book.sub"></p>
+         data-t="book.sub">Επιλέξτε ημερομηνίες για να δείτε τη συνολική τιμή. Η οριστικοποίηση γίνεται μέσω του ασφαλούς συστήματος κρατήσεων.</p>
     </div>
 
     <div class="booking-grid">
@@ -1292,30 +1319,30 @@
         </div>
         <div class="cal-weekdays" id="calWeekdays"></div>
         <div class="cal-days"     id="calDays"></div>
-        <p class="min-stay-note"  data-t="book.minStay"></p>
+        <p class="min-stay-note"  data-t="book.minStay">Άφιξη μετά 15:00 · Αναχώρηση πριν 11:00 · έως 3 άτομα</p>
       </div>
 
       <!-- Summary -->
       <div class="summary-card">
         <div class="summary-rate">
           <span class="summary-price">€70</span>
-          <span class="summary-night" data-t="widget.night"></span>
+          <span class="summary-night" data-t="widget.night">/ βράδυ</span>
         </div>
 
         <div class="dates-box">
           <div class="dates-row">
             <div class="date-cell">
-              <div class="date-cell-lbl" data-t="widget.checkin"></div>
+              <div class="date-cell-lbl" data-t="widget.checkin">Άφιξη</div>
               <div class="date-cell-val" id="sumCheckIn">—</div>
             </div>
             <div class="date-cell">
-              <div class="date-cell-lbl" data-t="widget.checkout"></div>
+              <div class="date-cell-lbl" data-t="widget.checkout">Αναχώρηση</div>
               <div class="date-cell-val" id="sumCheckOut">—</div>
             </div>
           </div>
           <div class="guests-row">
             <div>
-              <div class="date-cell-lbl" data-t="widget.guests"></div>
+              <div class="date-cell-lbl" data-t="widget.guests">Άτομα</div>
               <div class="date-cell-val" id="sumGuests"></div>
             </div>
             <div class="guests-ctrl">
@@ -1334,31 +1361,31 @@
               <span id="rateAmt"></span>
             </div>
             <div class="price-row">
-              <span data-t="book.cleaning"></span>
+              <span data-t="book.cleaning">Καθαριότητα</span>
               <span>€25</span>
             </div>
             <div class="price-row">
-              <span data-t="book.service"></span>
+              <span data-t="book.service">Υπηρεσίες</span>
               <span id="serviceAmt"></span>
             </div>
           </div>
           <div class="price-total">
-            <span data-t="book.total"></span>
+            <span data-t="book.total">Σύνολο</span>
             <span id="totalAmt"></span>
           </div>
         </div>
 
         <!-- No-dates placeholder -->
-        <div class="no-dates-msg" id="noDatesMsg" data-t="book.selectDates"></div>
+        <div class="no-dates-msg" id="noDatesMsg" data-t="book.selectDates">Επιλέξτε ημερομηνίες για να δείτε το κόστος</div>
 
-        <button class="book-btn empty" id="bookBtn" data-t="book.requestEmpty"></button>
+        <button class="book-btn empty" id="bookBtn" data-t="book.requestEmpty">Επιλέξτε ημερομηνίες</button>
 
         <div class="secure-note">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A39C8C" stroke-width="1.6">
             <rect x="4" y="10" width="16" height="11" rx="2"/>
             <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
           </svg>
-          <span data-t="book.secure"></span>
+          <span data-t="book.secure">Ασφαλής κράτηση μέσω Smoobu</span>
         </div>
       </div>
     </div>
@@ -1373,10 +1400,10 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo">PETITE NEST</div>
-      <p class="footer-tagline" data-t="footer.tagline"></p>
+      <p class="footer-tagline" data-t="footer.tagline">Στυλ &amp; ηρεμία δίπλα στη θάλασσα, στο Μικρολίμανο του Πειραιά.</p>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title" data-t="footer.contact"></div>
+      <div class="footer-col-title" data-t="footer.contact">Επικοινωνία</div>
       <div class="footer-contact">
         info@petitenest.gr<br>
         +30 698 038 4084<br>
@@ -1384,18 +1411,18 @@
       </div>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title" data-t="footer.explore"></div>
+      <div class="footer-col-title" data-t="footer.explore">Εξερευνήστε</div>
       <div class="footer-links">
-        <a href="#gallery"   data-t="nav.gallery"></a>
-        <a href="#amenities" data-t="nav.amenities"></a>
-        <a href="#location"  data-t="nav.location"></a>
-        <a href="#book"      data-t="nav.book"></a>
+        <a href="#gallery"   data-t="nav.gallery">Φωτογραφίες</a>
+        <a href="#amenities" data-t="nav.amenities">Παροχές</a>
+        <a href="#location"  data-t="nav.location">Τοποθεσία</a>
+        <a href="#book"      data-t="nav.book">Κράτηση</a>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Petite Nest · <span data-t="footer.rights"></span> · ΑΜΑ 00003723040</span>
-    <span data-t="footer.powered"></span>
+    <span>© 2026 Petite Nest · <span data-t="footer.rights">Με επιφύλαξη παντός δικαιώματος.</span> · ΑΜΑ 00003723040</span>
+    <span data-t="footer.powered">Κρατήσεις μέσω Smoobu</span>
   </div>
 </footer>
 
@@ -1403,7 +1430,7 @@
 <div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true" aria-label="Photo viewer">
   <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
   <div class="lb-img-wrap" id="lbImgWrap">
-    <img id="lbImg" src="" alt="">
+    <img id="lbImg" src="" alt="Petite Nest — φωτογραφία σε μεγέθυνση">
   </div>
   <div class="lb-counter" id="lbCounter"></div>
   <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous">‹</button>
@@ -1500,7 +1527,7 @@ const TR = {
       book:      'Κράτηση',
     },
     hero: {
-      place: 'Μικρολίμανο · Πειραιάς',
+      place: 'Petite Nest · Μικρολίμανο · Πειραιάς',
       title: 'Στυλ & ηρεμία δίπλα στη θάλασσα',
       sub:   'Φωτεινό, άνετο διαμέρισμα με minimal & boho πινελιές, στην καρδιά του Μικρολίμανου — λίγα βήματα από το κύμα.',
     },
@@ -1598,7 +1625,7 @@ const TR = {
       book:      'Book now',
     },
     hero: {
-      place: 'Mikrolimano · Piraeus',
+      place: 'Petite Nest · Mikrolimano · Piraeus',
       title: 'A little nest by the sea',
       sub:   'A bright, cosy apartment with minimal & boho touches, in the heart of Mikrolimano — just steps from the water.',
     },
@@ -1779,7 +1806,7 @@ function buildGallery() {
   const track = document.getElementById('sliderTrack');
   track.innerHTML = PHOTOS.map((src, i) =>
     `<div class="slide" onclick="LB.open(${i})">
-       <img src="${src}" alt="Photo ${i+1}" loading="${i < 2 ? 'eager' : 'lazy'}">
+       <img src="${src}" alt="Petite Nest Μικρολίμανο — φωτογραφία ${i+1}" loading="${i < 2 ? 'eager' : 'lazy'}">
      </div>`
   ).join('');
 
