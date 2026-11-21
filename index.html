@@ -857,6 +857,7 @@
       font-size: 12.5px;
       color: #A39C8C;
     }
+    .soon-note { margin: 12px 0 0; text-align: center; font-size: 12.5px; line-height: 1.5; color: #2E5A52; background: #F3F7F5; border-radius: 10px; padding: 8px 12px; }
 
     /* ─── Footer ────────────────────────────────────────────── */
     footer {
@@ -993,23 +994,6 @@
     }
     .slide { cursor: zoom-in; }
 
-    /* ─── Under-construction banner ─────────────────────────── */
-    .construction-banner {
-      background: #2E5A52;
-      color: #fff;
-      text-align: center;
-      padding: 10px 20px;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-    }
-    .construction-note {
-      font-size: 12px;
-      opacity: 0.8;
-      margin-top: 3px;
-      font-weight: 400;
-    }
-
     /* ─── FAQ ───────────────────────────────────────────────── */
     .faq-list { max-width: 820px; margin-top: 32px; border-top: 1px solid #E4DCCE; }
     .faq-item { border-bottom: 1px solid #E4DCCE; }
@@ -1041,14 +1025,6 @@
   </style>
 </head>
 <body>
-
-<!-- ═══════════════════════════════════════════
-     UNDER CONSTRUCTION BANNER (προσωρινό)
-════════════════════════════════════════════ -->
-<div class="construction-banner">
-  🚧 Η σελίδα βρίσκεται υπό κατασκευή &nbsp;·&nbsp; Page is under construction
-  <div class="construction-note">Κρατήσεις προς το παρόν <strong>ΜΟΝΟ τηλεφωνικά</strong> στο <a href="tel:+306980384084" style="text-decoration:underline;white-space:nowrap"><strong>+30 698 038 4084</strong></a> &nbsp;·&nbsp; Bookings currently <strong>by phone ONLY</strong>: <a href="tel:+306980384084" style="text-decoration:underline;white-space:nowrap"><strong>+30 698 038 4084</strong></a></div>
-</div>
 
 <!-- ═══════════════════════════════════════════
      HEADER
@@ -1415,6 +1391,7 @@
           </svg>
           <span data-t="book.secure">Η διαθεσιμότητα επιβεβαιώνεται από εμάς · +30 698 038 4084</span>
         </div>
+        <p class="soon-note" data-t="book.soon">💳 Σύντομα και online πληρωμή με κάρτα μέσω Stripe</p>
       </div>
     </div>
   </div>
@@ -1668,6 +1645,7 @@ const TR = {
       total:        'Σύνολο',
       selectDates:  'Επιλέξτε ημερομηνίες για να δείτε το κόστος',
       secure:       'Η διαθεσιμότητα επιβεβαιώνεται από εμάς · +30 698 038 4084',
+      soon:         '💳 Σύντομα και online πληρωμή με κάρτα μέσω Stripe',
       minStay:      'Άφιξη μετά 15:00 · Αναχώρηση πριν 11:00 · έως 3 άτομα',
       requestEmpty: 'Επιλέξτε ημερομηνίες',
       requestReady: 'Κράτηση μέσω WhatsApp',
@@ -1789,6 +1767,7 @@ const TR = {
       total:        'Total',
       selectDates:  'Select dates to see the total',
       secure:       'Availability is confirmed by us · +30 698 038 4084',
+      soon:         '💳 Online card payment via Stripe coming soon',
       minStay:      'Check-in after 3:00 PM · Checkout before 11:00 AM · up to 3 guests',
       requestEmpty: 'Select dates',
       requestReady: 'Book via WhatsApp',
