@@ -720,6 +720,8 @@
     .cal-day.available { cursor: pointer; }
     .cal-day.available:hover .cal-day-inner { background: #F4EFE7; }
     .cal-day.past .cal-day-inner { color: #CFC8BA; }
+    .cal-day.unavailable .cal-day-inner { color: #CFC8BA; text-decoration: line-through; text-decoration-color: #DCD3C2; }
+    .cal-status-note { margin-top: 12px; font-size: 12.5px; color: #A34A3A; }
     .cal-day.in-range { background: #E7E0D2; }
     .cal-day.range-start { background: linear-gradient(to right, transparent 50%, #E7E0D2 50%); }
     .cal-day.range-end   { background: linear-gradient(to right, #E7E0D2 50%, transparent 50%); }
@@ -1328,6 +1330,7 @@
         <div class="cal-weekdays" id="calWeekdays"></div>
         <div class="cal-days"     id="calDays"></div>
         <p class="min-stay-note"  data-t="book.minStay">Check-in after 3:00 PM · Checkout before 11:00 AM · up to 3 guests</p>
+        <p class="cal-status-note" id="calStatusNote" style="display:none"></p>
       </div>
 
       <!-- Summary -->
@@ -1647,6 +1650,7 @@ const TR = {
       secure:       'Η διαθεσιμότητα επιβεβαιώνεται από εμάς · +30 698 038 4084',
       soon:         '💳 Σύντομα και online πληρωμή με κάρτα μέσω Stripe',
       minStay:      'Άφιξη μετά 15:00 · Αναχώρηση πριν 11:00 · έως 3 άτομα',
+      rangeError:   'Κάποιες από τις επιλεγμένες βραδιές είναι ήδη κλεισμένες. Επιλέξτε άλλες ημερομηνίες.',
       requestEmpty: 'Επιλέξτε ημερομηνίες',
       requestReady: 'Κράτηση μέσω WhatsApp',
       envFee:       'Τέλος ανθεκτικότητας στην κλιματική κρίση',
@@ -1769,6 +1773,7 @@ const TR = {
       secure:       'Availability is confirmed by us · +30 698 038 4084',
       soon:         '💳 Online card payment via Stripe coming soon',
       minStay:      'Check-in after 3:00 PM · Checkout before 11:00 AM · up to 3 guests',
+      rangeError:   'Some of the selected nights are already booked. Please pick other dates.',
       requestEmpty: 'Select dates',
       requestReady: 'Book via WhatsApp',
       envFee:       'Climate resilience fee',
@@ -1832,6 +1837,9 @@ const S = {
   checkIn:    null,
   checkOut:   null,
   monthStart: null,
+  availability: {},   // from the booking Worker (read-only): { 'yyyy-mm-dd': { available } }
+  availLoaded:  false,
+  rangeError:   false,
   sent:       false,
   sentTimer:  null,
 };
@@ -1960,6 +1968,35 @@ vp.addEventListener('touchend',   e => {
   tx0 = null;
 });
 
+// ── AVAILABILITY (read-only, from the booking Worker ← Airbnb calendar) ──
+// If the Worker can't be reached, every future day stays selectable (as before).
+const WORKER_URL = 'https://petite-nest-booking.nikolaos-protopsaltis.workers.dev';
+const isoDate = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const nightBooked = d => S.availLoaded && S.availability[isoDate(d)]?.available === false;
+function rangeIsFree(checkIn, checkOut) {
+  for (let d = mid(checkIn); d < mid(checkOut); d = addDays(d, 1)) {
+    if (nightBooked(d)) return false;
+  }
+  return true;
+}
+async function loadAvailability() {
+  try {
+    const start = isoDate(new Date());
+    const end   = isoDate(addDays(new Date(), 365));
+    const res = await fetch(`${WORKER_URL}/availability?start=${start}&end=${end}`);
+    if (!res.ok) return;
+    const data = await res.json();
+    S.availability = data.days || {};
+    S.availLoaded  = true;
+    // Drop a selection that turns out to include booked nights.
+    if (S.checkIn && (nightBooked(S.checkIn) || (S.checkOut && !rangeIsFree(S.checkIn, S.checkOut)))) {
+      S.checkIn = null; S.checkOut = null;
+      updateSummary(); updateBarDates();
+    }
+    renderCalendar();
+  } catch (e) { /* stay fail-open */ }
+}
+
 // ── CALENDAR ─────────────────────────────────────────────────
 function initCalendar() {
   const now = new Date();
@@ -1991,6 +2028,9 @@ function renderCalendar() {
     const isCO    = checkOut && sameDay(date, checkOut);
     const inRange = checkIn && checkOut
       && mid(date) > mid(checkIn) && mid(date) < mid(checkOut);
+    // A booked night can still be the check-out day, if every night before it is free.
+    const isOpen  = !nightBooked(date) || isCO
+      || (checkIn && !checkOut && mid(date) > mid(checkIn) && rangeIsFree(checkIn, date));
 
     const cell = document.createElement('div');
     cell.className = 'cal-day';
@@ -1998,7 +2038,7 @@ function renderCalendar() {
     if (inMonth) {
       if (isPast) {
         cell.classList.add('past');
-      } else {
+      } else if (isOpen) {
         cell.classList.add('available');
         if (isCI && checkOut) cell.classList.add('range-start');
         if (isCO)             cell.classList.add('range-end');
@@ -2007,6 +2047,8 @@ function renderCalendar() {
 
         const d = new Date(date);
         cell.addEventListener('click', () => pickDay(d));
+      } else {
+        cell.classList.add('unavailable');
       }
     }
 
@@ -2020,19 +2062,26 @@ function renderCalendar() {
   const grid = document.getElementById('calDays');
   grid.innerHTML = '';
   grid.appendChild(frag);
+
+  const note = document.getElementById('calStatusNote');
+  note.textContent = S.rangeError ? tr.book.rangeError : '';
+  note.style.display = S.rangeError ? 'block' : 'none';
 }
 
 function pickDay(date) {
   const d = mid(date);
   const { checkIn, checkOut } = S;
+  S.rangeError = false;
   if (!checkIn || (checkIn && checkOut)) {
     S.checkIn  = d;
     S.checkOut = null;
   } else if (d <= mid(checkIn)) {
     S.checkIn  = d;
     S.checkOut = null;
-  } else {
+  } else if (rangeIsFree(checkIn, d)) {
     S.checkOut = d;
+  } else {
+    S.rangeError = true;
   }
   S.sent = false;
   renderCalendar();
@@ -2243,6 +2292,7 @@ buildGallery();
 buildReviews();
 initCalendar();
 applyTr();
+loadAvailability();
 </script>
 </body>
 </html>
