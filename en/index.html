@@ -1108,7 +1108,7 @@
     <div class="booking-bar">
       <div class="bar-seg">
         <span class="bar-seg-lbl" data-t="widget.from">from</span>
-        <span class="bar-price">€70 <span class="bar-price-sub" data-t="widget.night">/ night</span></span>
+        <span class="bar-price">€75 <span class="bar-price-sub" data-t="widget.night">/ night</span></span>
       </div>
       <a href="#book" class="bar-seg clickable">
         <span class="bar-seg-lbl" data-t="widget.dates">Dates</span>
@@ -1338,7 +1338,7 @@
       <div class="label" data-t="book.label">Reservations</div>
       <h2 data-t="book.title">Check availability</h2>
       <p style="font-size:16.5px;line-height:1.7;color:#5E5A50;margin:14px 0 0;max-width:480px"
-         data-t="book.sub">Pick your dates to see the total price. Final confirmation is handled through our secure booking system.</p>
+         data-t="book.sub">Pick your dates to see the total price. Bookings are completed with us via WhatsApp, Viber or phone, where we also confirm availability.</p>
     </div>
 
     <div class="booking-grid">
@@ -1357,7 +1357,7 @@
       <!-- Summary -->
       <div class="summary-card">
         <div class="summary-rate">
-          <span class="summary-price">€70</span>
+          <span class="summary-price">€75</span>
           <span class="summary-night" data-t="widget.night">/ night</span>
         </div>
 
@@ -1392,13 +1392,9 @@
               <span id="rateLine"></span>
               <span id="rateAmt"></span>
             </div>
-            <div class="price-row">
-              <span data-t="book.cleaning">Cleaning fee</span>
-              <span>€25</span>
-            </div>
-            <div class="price-row">
-              <span data-t="book.service">Service fee</span>
-              <span id="serviceAmt"></span>
+            <div class="price-row" id="envFeeRow" style="display:none">
+              <span data-t="book.envFee">Climate resilience fee</span>
+              <span id="envFeeAmt"></span>
             </div>
           </div>
           <div class="price-total">
@@ -1417,7 +1413,7 @@
             <rect x="4" y="10" width="16" height="11" rx="2"/>
             <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
           </svg>
-          <span data-t="book.secure">Secure booking powered by Smoobu</span>
+          <span data-t="book.secure">Availability is confirmed by us · +30 698 038 4084</span>
         </div>
       </div>
     </div>
@@ -1499,7 +1495,7 @@
   </div>
   <div class="footer-bottom">
     <span>© 2026 Petite Nest · <span data-t="footer.rights">All rights reserved.</span> · ΑΜΑ 00003723040</span>
-    <span data-t="footer.powered">Bookings powered by Smoobu</span>
+    <span data-t="footer.powered">Direct bookings · WhatsApp, Viber or phone</span>
   </div>
 </footer>
 
@@ -1666,15 +1662,17 @@ const TR = {
     book: {
       label:        'Κρατήσεις',
       title:        'Δείτε διαθεσιμότητα',
-      sub:          'Επιλέξτε ημερομηνίες για να δείτε τη συνολική τιμή. Η οριστικοποίηση γίνεται μέσω του ασφαλούς συστήματος κρατήσεων.',
+      sub:          'Επιλέξτε ημερομηνίες για να δείτε τη συνολική τιμή. Η κράτηση ολοκληρώνεται μαζί μας μέσω WhatsApp, Viber ή τηλεφωνικά, όπου επιβεβαιώνουμε και τη διαθεσιμότητα.',
       cleaning:     'Καθαριότητα',
       service:      'Υπηρεσίες',
       total:        'Σύνολο',
       selectDates:  'Επιλέξτε ημερομηνίες για να δείτε το κόστος',
-      secure:       'Ασφαλής κράτηση μέσω Smoobu',
+      secure:       'Η διαθεσιμότητα επιβεβαιώνεται από εμάς · +30 698 038 4084',
       minStay:      'Άφιξη μετά 15:00 · Αναχώρηση πριν 11:00 · έως 3 άτομα',
       requestEmpty: 'Επιλέξτε ημερομηνίες',
-      requestReady: 'Αίτημα κράτησης',
+      requestReady: 'Κράτηση μέσω WhatsApp',
+      envFee:       'Τέλος ανθεκτικότητας στην κλιματική κρίση',
+      waMsg:        'Γεια σας! Θα ήθελα να κλείσω το Petite Nest:\nΆφιξη: {in}\nΑναχώρηση: {out}\nΆτομα: {guests}\nΣύνολο στο site: €{total}\nΕίναι διαθέσιμο;',
       sent:         '✓ Το αίτημα εστάλη',
     },
     footer: {
@@ -1682,7 +1680,7 @@ const TR = {
       contact: 'Επικοινωνία',
       explore: 'Εξερευνήστε',
       rights:  'Με επιφύλαξη παντός δικαιώματος.',
-      powered: 'Κρατήσεις μέσω Smoobu',
+      powered: 'Απευθείας κρατήσεις · WhatsApp, Viber ή τηλέφωνο',
       terms:   'Όροι Κράτησης',
     },
     months:    ['Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νοέμβριος','Δεκέμβριος'],
@@ -1785,15 +1783,17 @@ const TR = {
     book: {
       label:        'Reservations',
       title:        'Check availability',
-      sub:          'Pick your dates to see the total price. Final confirmation is handled through our secure booking system.',
+      sub:          'Pick your dates to see the total price. Bookings are completed with us via WhatsApp, Viber or phone, where we also confirm availability.',
       cleaning:     'Cleaning fee',
       service:      'Service fee',
       total:        'Total',
       selectDates:  'Select dates to see the total',
-      secure:       'Secure booking powered by Smoobu',
+      secure:       'Availability is confirmed by us · +30 698 038 4084',
       minStay:      'Check-in after 3:00 PM · Checkout before 11:00 AM · up to 3 guests',
       requestEmpty: 'Select dates',
-      requestReady: 'Request to book',
+      requestReady: 'Book via WhatsApp',
+      envFee:       'Climate resilience fee',
+      waMsg:        'Hello! I would like to book Petite Nest:\nCheck-in: {in}\nCheck-out: {out}\nGuests: {guests}\nTotal on the website: €{total}\nIs it available?',
       sent:         '✓ Request sent',
     },
     footer: {
@@ -1801,7 +1801,7 @@ const TR = {
       contact: 'Contact',
       explore: 'Explore',
       rights:  'All rights reserved.',
-      powered: 'Bookings powered by Smoobu',
+      powered: 'Direct bookings · WhatsApp, Viber or phone',
       terms:   'Booking Terms',
     },
     months:    ['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -1835,9 +1835,15 @@ const TR = {
 };
 
 // ── PRICING ─────────────────────────────────────────────────
-const RATE  = 70;
-const CLEAN = 25;
-const SVC   = 0.05;
+const RATE  = 75;   // € per night (same as the booking Worker)
+const WA_PHONE = '306980384084';
+// Climate resilience fee per night: €8 April–October, €2 November–March
+const climateFee = d => (d.getMonth() >= 3 && d.getMonth() <= 9) ? 8 : 2;
+function feeTotal(checkIn, nights) {
+  let total = 0;
+  for (let i = 0; i < nights; i++) total += climateFee(new Date(checkIn.getFullYear(), checkIn.getMonth(), checkIn.getDate() + i));
+  return total;
+}
 
 // ── STATE ────────────────────────────────────────────────────
 const S = {
@@ -2088,12 +2094,12 @@ function updateGuestsDisplay() {
 // ── SUMMARY ──────────────────────────────────────────────────
 function updateSummary() {
   const tr = t();
-  const { checkIn, checkOut, sent } = S;
+  const { checkIn, checkOut } = S;
   const hasDates = !!(checkIn && checkOut);
   const nights   = hasDates ? diffDays(checkIn, checkOut) : 0;
   const subtotal = nights * RATE;
-  const service  = Math.round(subtotal * SVC);
-  const total    = hasDates ? subtotal + CLEAN + service : 0;
+  const envFee   = hasDates ? feeTotal(checkIn, nights) : 0;
+  const total    = hasDates ? subtotal + envFee : 0;
 
   document.getElementById('sumCheckIn').textContent  = fmtD(checkIn)  || '—';
   document.getElementById('sumCheckOut').textContent = fmtD(checkOut) || '—';
@@ -2107,10 +2113,11 @@ function updateSummary() {
     noDatesMsg.style.display = 'none';
     document.getElementById('rateLine').textContent  = `€${RATE} × ${nights} ${tr.nightWord(nights)}`;
     document.getElementById('rateAmt').textContent   = `€${subtotal}`;
-    document.getElementById('serviceAmt').textContent= `€${service}`;
+    document.getElementById('envFeeRow').style.display = 'flex';
+    document.getElementById('envFeeAmt').textContent = `€${envFee}`;
     document.getElementById('totalAmt').textContent  = `€${total}`;
-    bookBtn.textContent = sent ? tr.book.sent : tr.book.requestReady;
-    bookBtn.className   = sent ? 'book-btn sent' : 'book-btn ready';
+    bookBtn.textContent = tr.book.requestReady;
+    bookBtn.className   = 'book-btn ready';
   } else {
     priceBlock.style.display = 'none';
     noDatesMsg.style.display = 'block';
@@ -2132,10 +2139,16 @@ function updateBarDates() {
 // ── BOOK BUTTON ──────────────────────────────────────────────
 document.getElementById('bookBtn').addEventListener('click', () => {
   if (!(S.checkIn && S.checkOut)) return;
-  S.sent = true;
-  updateSummary();
-  clearTimeout(S.sentTimer);
-  S.sentTimer = setTimeout(() => { S.sent = false; updateSummary(); }, 2600);
+  const tr = t();
+  const nights = diffDays(S.checkIn, S.checkOut);
+  const total = nights * RATE + feeTotal(S.checkIn, nights);
+  const full = d => `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+  const text = tr.book.waMsg
+    .replace('{in}', full(S.checkIn))
+    .replace('{out}', full(S.checkOut))
+    .replace('{guests}', S.guests)
+    .replace('{total}', total);
+  window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
 });
 
 // ── REVIEWS CAROUSEL ─────────────────────────────────────────
