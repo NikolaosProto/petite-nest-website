@@ -1384,7 +1384,7 @@
               <span id="discountAmt"></span>
             </div>
             <div class="price-row" id="envFeeRow" style="display:none">
-              <span data-t="book.envFee">Climate resilience fee</span>
+              <span><span data-t="book.envFee">Climate resilience fee</span> <span id="envFeeRate"></span></span>
               <span id="envFeeAmt"></span>
             </div>
           </div>
@@ -1867,6 +1867,11 @@ function rateGroups(checkIn, nights) {
 }
 // Climate resilience fee per night: €8 April–October, €2 November–March
 const climateFee = d => (d.getMonth() >= 3 && d.getMonth() <= 9) ? 8 : 2;
+function feeRates(checkIn, nights) {
+  const set = [];
+  for (let i = 0; i < nights; i++) { const f = climateFee(new Date(checkIn.getFullYear(), checkIn.getMonth(), checkIn.getDate() + i)); if (!set.includes(f)) set.push(f); }
+  return set;
+}
 function feeTotal(checkIn, nights) {
   let total = 0;
   for (let i = 0; i < nights; i++) total += climateFee(new Date(checkIn.getFullYear(), checkIn.getMonth(), checkIn.getDate() + i));
@@ -2204,6 +2209,7 @@ function updateSummary() {
     document.getElementById('discountAmt').textContent = `−€${disc.amount}`;
     document.getElementById('envFeeRow').style.display = 'flex';
     document.getElementById('envFeeAmt').textContent = `€${envFee}`;
+    document.getElementById('envFeeRate').textContent = `(${feeRates(checkIn, nights).map(f => `€${f}`).join(' / ')}/${tr.nightWord(1)})`;
     document.getElementById('totalAmt').textContent  = `€${total}`;
     bookBtn.textContent = tr.book.requestReady;
     bookBtn.className   = 'book-btn ready';
