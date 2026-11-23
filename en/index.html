@@ -810,6 +810,8 @@
       gap: 12px;
       margin-bottom: 18px;
     }
+    .promo-badge { display: inline-block; margin: 0 0 16px; padding: 8px 16px; border-radius: 999px; background: #E9F1EE; color: #2E5A52; font-size: 14px; font-weight: 600; line-height: 1.45; }
+    .price-row.discount-row { color: #2E5A52; font-weight: 600; }
     .price-row {
       display: flex;
       justify-content: space-between;
@@ -1315,6 +1317,7 @@
     <div style="margin-bottom:36px">
       <div class="label" data-t="book.label">Reservations</div>
       <h2 data-t="book.title">Check availability</h2>
+      <p class="promo-badge" data-t="book.promo">🌿 Stay longer, pay less: −10% for 1 week · −15% for 1 month</p>
       <p style="font-size:16.5px;line-height:1.7;color:#5E5A50;margin:14px 0 0;max-width:480px"
          data-t="book.sub">Pick your dates to see the total price. Bookings are completed with us via WhatsApp, Viber or phone, where we also confirm availability.</p>
     </div>
@@ -1370,6 +1373,10 @@
             <div class="price-row">
               <span id="rateLine"></span>
               <span id="rateAmt"></span>
+            </div>
+            <div class="price-row discount-row" id="discountRow" style="display:none">
+              <span id="discountLine"></span>
+              <span id="discountAmt"></span>
             </div>
             <div class="price-row" id="envFeeRow" style="display:none">
               <span data-t="book.envFee">Climate resilience fee</span>
@@ -1654,6 +1661,9 @@ const TR = {
       requestEmpty: 'Επιλέξτε ημερομηνίες',
       requestReady: 'Κράτηση μέσω WhatsApp',
       envFee:       'Τέλος ανθεκτικότητας στην κλιματική κρίση',
+      discWeek:     'Έκπτωση εβδομάδας',
+      discMonth:    'Έκπτωση μήνα',
+      promo:        '🌿 Μείνετε περισσότερο, πληρώστε λιγότερο: −10% για 1 εβδομάδα · −15% για 1 μήνα',
       waMsg:        'Γεια σας! Θα ήθελα να κλείσω το Petite Nest:\nΆφιξη: {in}\nΑναχώρηση: {out}\nΆτομα: {guests}\nΣύνολο στο site: €{total}\nΕίναι διαθέσιμο;',
       sent:         '✓ Το αίτημα εστάλη',
     },
@@ -1777,6 +1787,9 @@ const TR = {
       requestEmpty: 'Select dates',
       requestReady: 'Book via WhatsApp',
       envFee:       'Climate resilience fee',
+      discWeek:     'Weekly discount',
+      discMonth:    'Monthly discount',
+      promo:        '🌿 Stay longer, pay less: −10% for 1 week · −15% for 1 month',
       waMsg:        'Hello! I would like to book Petite Nest:\nCheck-in: {in}\nCheck-out: {out}\nGuests: {guests}\nTotal on the website: €{total}\nIs it available?',
       sent:         '✓ Request sent',
     },
@@ -2009,6 +2022,7 @@ async function loadAvailability() {
     if (!res.ok) return;
     const data = await res.json();
     S.availability = data.days || {};
+    if (Array.isArray(data.discounts)) S.discounts = data.discounts;
     S.availLoaded  = true;
     // Drop a selection that turns out to include booked nights.
     if (S.checkIn && (nightBooked(S.checkIn) || (S.checkOut && !rangeIsFree(S.checkIn, S.checkOut)))) {
@@ -2141,6 +2155,15 @@ function updateGuestsDisplay() {
   document.getElementById('barGuests').textContent = label;
 }
 
+// Long-stay discounts on the accommodation (not on the climate fee).
+// Real values come from the booking Worker (LONG_STAY_DISCOUNTS); this is the fallback.
+const DEFAULT_DISCOUNTS = [{ min: 7, pct: 10 }, { min: 28, pct: 15 }];
+function stayDiscount(subtotal, nights) {
+  let pct = 0;
+  for (const d of (S.discounts || DEFAULT_DISCOUNTS)) if (nights >= d.min) pct = d.pct;
+  return { pct, amount: Math.round((subtotal * pct) / 100) };
+}
+
 // ── SUMMARY ──────────────────────────────────────────────────
 function updateSummary() {
   const tr = t();
@@ -2149,7 +2172,8 @@ function updateSummary() {
   const nights   = hasDates ? diffDays(checkIn, checkOut) : 0;
   const subtotal = hasDates ? nightlyTotal(checkIn, nights) : 0;
   const envFee   = hasDates ? feeTotal(checkIn, nights) : 0;
-  const total    = hasDates ? subtotal + envFee : 0;
+  const disc     = stayDiscount(subtotal, nights);
+  const total    = hasDates ? subtotal - disc.amount + envFee : 0;
 
   document.getElementById('sumCheckIn').textContent  = fmtD(checkIn)  || '—';
   document.getElementById('sumCheckOut').textContent = fmtD(checkOut) || '—';
@@ -2165,6 +2189,10 @@ function updateSummary() {
       .map(g => `€${g.price} × ${g.n} ${tr.nightWord(g.n)}`).join(' + ');
     document.getElementById('summaryPrice').textContent = `€${priceFor(checkIn)}`;
     document.getElementById('rateAmt').textContent   = `€${subtotal}`;
+    const discountRow = document.getElementById('discountRow');
+    discountRow.style.display = disc.amount > 0 ? 'flex' : 'none';
+    document.getElementById('discountLine').textContent = `${nights >= 28 ? tr.book.discMonth : tr.book.discWeek} (${disc.pct}%)`;
+    document.getElementById('discountAmt').textContent = `−€${disc.amount}`;
     document.getElementById('envFeeRow').style.display = 'flex';
     document.getElementById('envFeeAmt').textContent = `€${envFee}`;
     document.getElementById('totalAmt').textContent  = `€${total}`;
@@ -2194,7 +2222,8 @@ document.getElementById('bookBtn').addEventListener('click', () => {
   if (!(S.checkIn && S.checkOut)) return;
   const tr = t();
   const nights = diffDays(S.checkIn, S.checkOut);
-  const total = nightlyTotal(S.checkIn, nights) + feeTotal(S.checkIn, nights);
+  const sub = nightlyTotal(S.checkIn, nights);
+  const total = sub - stayDiscount(sub, nights).amount + feeTotal(S.checkIn, nights);
   const full = d => `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
   const text = tr.book.waMsg
     .replace('{in}', full(S.checkIn))
