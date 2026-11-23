@@ -720,8 +720,6 @@
     .cal-day.available { cursor: pointer; }
     .cal-day.available:hover .cal-day-inner { background: #F4EFE7; }
     .cal-day.past .cal-day-inner { color: #CFC8BA; }
-    .cal-day.unavailable .cal-day-inner { color: #CFC8BA; text-decoration: line-through; text-decoration-color: #DCD3C2; }
-    .cal-status-note { margin-top: 12px; font-size: 12.5px; color: #A34A3A; }
     .cal-day.in-range { background: #E7E0D2; }
     .cal-day.range-start { background: linear-gradient(to right, transparent 50%, #E7E0D2 50%); }
     .cal-day.range-end   { background: linear-gradient(to right, #E7E0D2 50%, transparent 50%); }
@@ -738,6 +736,17 @@
       font-size: 12.5px;
       color: #A39C8C;
     }
+    .cal-day.unavailable .cal-day-inner {
+      color: #CFC8BA;
+      text-decoration: line-through;
+      text-decoration-color: #DCD3C2;
+    }
+    .cal-status-note {
+      margin-top: 16px;
+      font-size: 12.5px;
+      color: #A39C8C;
+    }
+    .cal-status-note.error { color: #A34A3A; }
 
     /* Summary card */
     .summary-card {
@@ -749,15 +758,6 @@
       padding: clamp(22px, 3vw, 30px);
       box-shadow: 0 24px 60px -40px rgba(35, 32, 25, 0.45);
     }
-    .summary-rate {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 22px;
-    }
-    .summary-price { font-size: 26px; font-weight: 700; }
-    .summary-night { font-size: 14px; color: #8C8678; }
-
     .dates-box {
       border: 1px solid #E4DCCE;
       border-radius: 10px;
@@ -849,7 +849,8 @@
     .book-btn.ready    { background: #2E5A52; color: #fff; }
     .book-btn.ready:hover { background: #244A43; }
     .book-btn.empty    { background: #E1D9CA; color: #A39C8C; cursor: default; }
-    .book-btn.sent     { background: #244A43; color: #fff; }
+    .book-btn.sending  { background: #8C8678; color: #fff; cursor: default; }
+    .book-btn.sent     { background: #244A43; color: #fff; cursor: default; }
     .secure-note {
       display: flex;
       align-items: center;
@@ -859,7 +860,85 @@
       font-size: 12.5px;
       color: #A39C8C;
     }
-    .soon-note { margin: 12px 0 0; text-align: center; font-size: 12.5px; line-height: 1.5; color: #2E5A52; background: #F3F7F5; border-radius: 10px; padding: 8px 12px; }
+
+    /* Guest details form */
+    .guest-row { display: flex; gap: 12px; }
+    .field { margin-bottom: 12px; flex: 1; }
+    .field-lbl {
+      display: block;
+      font-size: 10.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #A39C8C;
+      margin-bottom: 5px;
+    }
+    .field-input {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1px solid #E4DCCE;
+      border-radius: 8px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 14.5px;
+      color: #3C382F;
+      background: #fff;
+      transition: border-color 0.15s;
+    }
+    .field-input:focus { outline: none; border-color: #2E5A52; }
+    .booking-msg {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .booking-msg.error   { background: #FBF0EC; color: #A34A3A; border: 1px solid #EAD3C9; }
+    .booking-msg.success { background: #EEF4F1; color: #2E5A52; border: 1px solid #D3E2DB; }
+    .booking-msg .bank-box {
+      margin: 12px auto 4px;
+      text-align: left;
+      background: #fff;
+      border: 1px solid #D3E2DB;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #3C382F;
+      word-break: break-word;
+    }
+    .booking-msg .bank-box div { padding: 2px 0; }
+    .pay-methods { display: flex; flex-direction: column; gap: 8px; }
+    .pay-opt {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #DCD3C2;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: 14px;
+      color: #3C382F;
+      background: #fff;
+      cursor: pointer;
+    }
+    .pay-opt:has(input:checked) { border-color: #2E5A52; background: #F3F7F5; }
+    .pay-opt input { accent-color: #2E5A52; margin: 0; }
+    .policy-note { font-size: 12.5px; color: #8C8678; line-height: 1.55; margin: 4px 0 14px; }
+    .terms-check { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; line-height: 1.5; color: #4A453B; margin: 0 0 14px; cursor: pointer; }
+    .terms-check input { accent-color: #2E5A52; margin: 3px 0 0; width: 16px; height: 16px; flex-shrink: 0; }
+    .terms-check a { color: #2E5A52; text-decoration: underline; }
+    .terms-check.attn { color: #A34A3A; }
+    .new-booking-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: none;
+      border: none;
+      border-bottom: 1px solid #2E5A52;
+      color: #2E5A52;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
+    }
 
     /* ─── Footer ────────────────────────────────────────────── */
     footer {
@@ -996,6 +1075,23 @@
     }
     .slide { cursor: zoom-in; }
 
+    /* ─── Under-construction banner ─────────────────────────── */
+    .construction-banner {
+      background: #2E5A52;
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    .construction-note {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 3px;
+      font-weight: 400;
+    }
+
     /* ─── FAQ ───────────────────────────────────────────────── */
     .faq-list { max-width: 820px; margin-top: 32px; border-top: 1px solid #E4DCCE; }
     .faq-item { border-bottom: 1px solid #E4DCCE; }
@@ -1086,7 +1182,7 @@
     <div class="booking-bar">
       <div class="bar-seg">
         <span class="bar-seg-lbl" data-t="widget.from">from</span>
-        <span class="bar-price">€75 <span class="bar-price-sub" data-t="widget.night">/ night</span></span>
+        <span class="bar-price"><span id="barFromPrice">€75</span> <span class="bar-price-sub" data-t="widget.night">/ night</span></span>
       </div>
       <a href="#book" class="bar-seg clickable">
         <span class="bar-seg-lbl" data-t="widget.dates">Dates</span>
@@ -1316,7 +1412,7 @@
       <div class="label" data-t="book.label">Reservations</div>
       <h2 data-t="book.title">Check availability</h2>
       <p style="font-size:16.5px;line-height:1.7;color:#5E5A50;margin:14px 0 0;max-width:480px"
-         data-t="book.sub">Pick your dates to see the total price. Bookings are completed with us via WhatsApp, Viber or phone, where we also confirm availability.</p>
+         data-t="book.sub">Book direct with us, no middlemen. Pick your dates to see the total price and pay securely by card.</p>
     </div>
 
     <div class="booking-grid">
@@ -1329,17 +1425,12 @@
         </div>
         <div class="cal-weekdays" id="calWeekdays"></div>
         <div class="cal-days"     id="calDays"></div>
-        <p class="min-stay-note"  data-t="book.minStay">Check-in after 3:00 PM · Checkout before 11:00 AM · up to 3 guests</p>
         <p class="cal-status-note" id="calStatusNote" style="display:none"></p>
+        <p class="min-stay-note"  data-t="book.minStay">Check-in after 3:00 PM · Checkout before 11:00 AM · up to 3 guests</p>
       </div>
 
       <!-- Summary -->
       <div class="summary-card">
-        <div class="summary-rate">
-          <span class="summary-price">€75</span>
-          <span class="summary-night" data-t="widget.night">/ night</span>
-        </div>
-
         <div class="dates-box">
           <div class="dates-row">
             <div class="date-cell">
@@ -1371,8 +1462,12 @@
               <span id="rateLine"></span>
               <span id="rateAmt"></span>
             </div>
+            <div class="price-row" id="cleanRow" style="display:none">
+              <span data-t="book.cleaning">Cleaning</span>
+              <span id="cleanAmt"></span>
+            </div>
             <div class="price-row" id="envFeeRow" style="display:none">
-              <span data-t="book.envFee">Climate resilience fee</span>
+              <span id="envFeeLine"></span>
               <span id="envFeeAmt"></span>
             </div>
           </div>
@@ -1385,16 +1480,56 @@
         <!-- No-dates placeholder -->
         <div class="no-dates-msg" id="noDatesMsg" data-t="book.selectDates">Select dates to see the total</div>
 
+        <!-- Guest details -->
+        <div id="guestForm" style="display:none">
+          <div class="guest-row">
+            <div class="field">
+              <label class="field-lbl" for="gFirstName" data-t="book.firstName">First name</label>
+              <input type="text" id="gFirstName" class="field-input" autocomplete="given-name">
+            </div>
+            <div class="field">
+              <label class="field-lbl" for="gLastName" data-t="book.lastName">Last name</label>
+              <input type="text" id="gLastName" class="field-input" autocomplete="family-name">
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-lbl" for="gEmail" data-t="book.email">Email</label>
+            <input type="email" id="gEmail" class="field-input" autocomplete="email">
+          </div>
+          <div class="field">
+            <label class="field-lbl" for="gPhone" data-t="book.phone">Phone (optional)</label>
+            <input type="tel" id="gPhone" class="field-input" autocomplete="tel">
+          </div>
+          <div class="field" id="payMethodField">
+            <div class="field-lbl" data-t="book.payLabel">Payment method</div>
+            <div class="pay-methods">
+              <label class="pay-opt">
+                <input type="radio" name="payMethod" value="card" checked>
+                <span data-t="book.payCard">💳 Card — instant confirmation</span>
+              </label>
+              <label class="pay-opt" id="payTransferOpt">
+                <input type="radio" name="payMethod" value="transfer">
+                <span data-t="book.payTransfer">🏦 Bank transfer</span>
+              </label>
+            </div>
+          </div>
+          <label class="terms-check" id="termsLabel">
+            <input type="checkbox" id="gTerms">
+            <span><span data-t="book.termsPre">I have read and accept the</span> <a href="terms/" target="_blank" rel="noopener" data-t="book.termsLink">Booking Terms</a></span>
+          </label>
+        </div>
+
         <button class="book-btn empty" id="bookBtn" data-t="book.requestEmpty">Select dates</button>
+
+        <div class="booking-msg" id="bookingMsg" style="display:none"></div>
 
         <div class="secure-note">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A39C8C" stroke-width="1.6">
             <rect x="4" y="10" width="16" height="11" rx="2"/>
             <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
           </svg>
-          <span data-t="book.secure">Availability is confirmed by us · +30 698 038 4084</span>
+          <span data-t="book.secure">Secure payment powered by Stripe</span>
         </div>
-        <p class="soon-note" data-t="book.soon">💳 Online card payment via Stripe coming soon</p>
       </div>
     </div>
   </div>
@@ -1475,7 +1610,7 @@
   </div>
   <div class="footer-bottom">
     <span>© 2026 Petite Nest · <span data-t="footer.rights">All rights reserved.</span> · ΑΜΑ 00003723040</span>
-    <span data-t="footer.powered">Direct bookings · WhatsApp, Viber or phone</span>
+    <span data-t="footer.powered">Direct bookings · Secure payments by Stripe</span>
   </div>
 </footer>
 
@@ -1507,7 +1642,7 @@ const PHOTOS = [
   //Bathroom
   '/Photos/photos_for_site_slider/IMG-0d5539a284dee874eca0737033a08651-V.jpg',
   '/Photos/photos_for_site_slider/IMG-20260222-WA0065.jpg',
-  '/Photos/photos_for_site_slider/bathroom_2.jpeg',
+  '/Photos/photos_for_site_slider/IMG-3c51873fc1e0155eadc8e04445098935-V.jpg',
 
   //Kitchen
   '/Photos/photos_for_site_slider/IMG-1a262a2d13adf6fb4753d80ba1732788-V.jpg',
@@ -1642,27 +1777,51 @@ const TR = {
     book: {
       label:        'Κρατήσεις',
       title:        'Δείτε διαθεσιμότητα',
-      sub:          'Επιλέξτε ημερομηνίες για να δείτε τη συνολική τιμή. Η κράτηση ολοκληρώνεται μαζί μας μέσω WhatsApp, Viber ή τηλεφωνικά, όπου επιβεβαιώνουμε και τη διαθεσιμότητα.',
+      sub:          'Κλείστε απευθείας με εμάς, χωρίς μεσάζοντες. Επιλέξτε ημερομηνίες για να δείτε τη συνολική τιμή και πληρώστε με ασφάλεια με κάρτα.',
+      envFee:       'Τέλος ανθεκτικότητας στην κλιματική κρίση',
       cleaning:     'Καθαριότητα',
-      service:      'Υπηρεσίες',
       total:        'Σύνολο',
       selectDates:  'Επιλέξτε ημερομηνίες για να δείτε το κόστος',
-      secure:       'Η διαθεσιμότητα επιβεβαιώνεται από εμάς · +30 698 038 4084',
-      soon:         '💳 Σύντομα και online πληρωμή με κάρτα μέσω Stripe',
+      secure:       'Ασφαλής πληρωμή μέσω Stripe',
       minStay:      'Άφιξη μετά 15:00 · Αναχώρηση πριν 11:00 · έως 3 άτομα',
-      rangeError:   'Κάποιες από τις επιλεγμένες βραδιές είναι ήδη κλεισμένες. Επιλέξτε άλλες ημερομηνίες.',
       requestEmpty: 'Επιλέξτε ημερομηνίες',
-      requestReady: 'Κράτηση μέσω WhatsApp',
-      envFee:       'Τέλος ανθεκτικότητας στην κλιματική κρίση',
-      waMsg:        'Γεια σας! Θα ήθελα να κλείσω το Petite Nest:\nΆφιξη: {in}\nΑναχώρηση: {out}\nΆτομα: {guests}\nΣύνολο στο site: €{total}\nΕίναι διαθέσιμο;',
-      sent:         '✓ Το αίτημα εστάλη',
+      requestReady: 'Κράτηση & πληρωμή',
+      requestTransfer: 'Κράτηση με έμβασμα',
+      sending:      'Παρακαλώ περιμένετε…',
+      sent:         '✓ Η κράτηση επιβεβαιώθηκε',
+      firstName:    'Όνομα',
+      lastName:     'Επώνυμο',
+      email:        'Email',
+      phone:        'Τηλέφωνο (προαιρετικό)',
+      payLabel:     'Τρόπος πληρωμής',
+      payCard:      '💳 Κάρτα — άμεση επιβεβαίωση',
+      payTransfer:  '🏦 Τραπεζικό έμβασμα',
+      termsPre:     'Διάβασα και αποδέχομαι τους',
+      termsLink:    'Όρους Κράτησης',
+      errTerms:     'Για να συνεχίσετε, αποδεχτείτε τους Όρους Κράτησης.',
+      errNames:     'Συμπληρώστε όνομα και επώνυμο.',
+      errEmail:     'Συμπληρώστε ένα έγκυρο email.',
+      errConflict:  'Δυστυχώς αυτές οι ημερομηνίες μόλις κρατήθηκαν από κάποιον άλλον. Δοκιμάστε άλλες ημερομηνίες.',
+      errGeneric:   'Κάτι πήγε στραβά με την κράτηση. Δοκιμάστε ξανά ή επικοινωνήστε μαζί μας στο +30 698 038 4084.',
+      successMsg:   'Η κράτησή σας επιβεβαιώθηκε! Θα λάβετε email επιβεβαίωσης σύντομα.',
+      processingMsg:'Η πληρωμή σας ολοκληρώθηκε και η κράτηση επιβεβαιώνεται. Θα λάβετε email επιβεβαίωσης σε λίγα λεπτά.',
+      cancelledMsg: 'Η πληρωμή ακυρώθηκε και δεν έγινε καμία χρέωση. Μπορείτε να δοκιμάσετε ξανά.',
+      transferMsg:  'Κρατάμε τις ημερομηνίες σας έως {deadline}. Ολοκληρώστε το έμβασμα με τα παρακάτω στοιχεία — τα στείλαμε και στο email σας.',
+      bookingCode:  'Κωδικός κράτησης',
+      bankName:     'Δικαιούχος',
+      bankAmount:   'Ποσό',
+      bankRef:      'Αιτιολογία',
+      newBooking:   'Κάντε νέα κράτηση',
+      rangeError:   'Κάποιες από τις επιλεγμένες βραδιές δεν είναι διαθέσιμες ή δεν καλύπτουν την ελάχιστη διαμονή. Επιλέξτε ξανά.',
+      loadingAvail: 'Φόρτωση διαθεσιμότητας…',
+      errLoadAvail: 'Δεν ήταν δυνατή η φόρτωση της διαθεσιμότητας. Δοκιμάστε ξανά αργότερα ή επικοινωνήστε μαζί μας.',
     },
     footer: {
       tagline: 'Στυλ & ηρεμία δίπλα στη θάλασσα, στο Μικρολίμανο του Πειραιά.',
       contact: 'Επικοινωνία',
       explore: 'Εξερευνήστε',
       rights:  'Με επιφύλαξη παντός δικαιώματος.',
-      powered: 'Απευθείας κρατήσεις · WhatsApp, Viber ή τηλέφωνο',
+      powered: 'Απευθείας κρατήσεις · Ασφαλείς πληρωμές μέσω Stripe',
       terms:   'Όροι Κράτησης',
     },
     months:    ['Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νοέμβριος','Δεκέμβριος'],
@@ -1765,27 +1924,51 @@ const TR = {
     book: {
       label:        'Reservations',
       title:        'Check availability',
-      sub:          'Pick your dates to see the total price. Bookings are completed with us via WhatsApp, Viber or phone, where we also confirm availability.',
-      cleaning:     'Cleaning fee',
-      service:      'Service fee',
+      sub:          'Book direct with us, no middlemen. Pick your dates to see the total price and pay securely by card.',
+      envFee:       'Climate resilience fee',
+      cleaning:     'Cleaning',
       total:        'Total',
       selectDates:  'Select dates to see the total',
-      secure:       'Availability is confirmed by us · +30 698 038 4084',
-      soon:         '💳 Online card payment via Stripe coming soon',
+      secure:       'Secure payment powered by Stripe',
       minStay:      'Check-in after 3:00 PM · Checkout before 11:00 AM · up to 3 guests',
-      rangeError:   'Some of the selected nights are already booked. Please pick other dates.',
       requestEmpty: 'Select dates',
-      requestReady: 'Book via WhatsApp',
-      envFee:       'Climate resilience fee',
-      waMsg:        'Hello! I would like to book Petite Nest:\nCheck-in: {in}\nCheck-out: {out}\nGuests: {guests}\nTotal on the website: €{total}\nIs it available?',
-      sent:         '✓ Request sent',
+      requestReady: 'Book & pay',
+      requestTransfer: 'Book with bank transfer',
+      sending:      'Please wait…',
+      sent:         '✓ Booking confirmed',
+      firstName:    'First name',
+      lastName:     'Last name',
+      email:        'Email',
+      phone:        'Phone (optional)',
+      payLabel:     'Payment method',
+      payCard:      '💳 Card — instant confirmation',
+      payTransfer:  '🏦 Bank transfer',
+      termsPre:     'I have read and accept the',
+      termsLink:    'Booking Terms',
+      errTerms:     'Please accept the Booking Terms to continue.',
+      errNames:     'Please enter your first and last name.',
+      errEmail:     'Please enter a valid email address.',
+      errConflict:  'Sorry, those dates were just booked by someone else. Please try different dates.',
+      errGeneric:   'Something went wrong with the booking. Please try again or call us on +30 698 038 4084.',
+      successMsg:   'Your booking is confirmed! You’ll receive a confirmation email shortly.',
+      processingMsg:'Your payment went through and your booking is being confirmed. You’ll receive a confirmation email within a few minutes.',
+      cancelledMsg: 'The payment was cancelled and you have not been charged. You can try again.',
+      transferMsg:  'We are holding your dates until {deadline}. Please complete the bank transfer using the details below — we have also emailed them to you.',
+      bookingCode:  'Booking code',
+      bankName:     'Beneficiary',
+      bankAmount:   'Amount',
+      bankRef:      'Reference',
+      newBooking:   'Make another booking',
+      rangeError:   'Some of the selected nights aren’t available or don’t meet the minimum stay. Please pick again.',
+      loadingAvail: 'Loading availability…',
+      errLoadAvail: 'Could not load live availability. Please try again later or contact us directly.',
     },
     footer: {
       tagline: 'A little nest by the sea, in Mikrolimano, Piraeus.',
       contact: 'Contact',
       explore: 'Explore',
       rights:  'All rights reserved.',
-      powered: 'Direct bookings · WhatsApp, Viber or phone',
+      powered: 'Direct bookings · Secure payments by Stripe',
       terms:   'Booking Terms',
     },
     months:    ['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -1819,15 +2002,11 @@ const TR = {
 };
 
 // ── PRICING ─────────────────────────────────────────────────
-const RATE  = 75;   // € per night (same as the booking Worker)
-const WA_PHONE = '306980384084';
-// Climate resilience fee per night: €8 April–October, €2 November–March
-const climateFee = d => (d.getMonth() >= 3 && d.getMonth() <= 9) ? 8 : 2;
-function feeTotal(checkIn, nights) {
-  let total = 0;
-  for (let i = 0; i < nights; i++) total += climateFee(new Date(checkIn.getFullYear(), checkIn.getMonth(), checkIn.getDate() + i));
-  return total;
-}
+const RATE = 75; // fallback only — real prices come from the booking worker
+
+// ── BOOKING WORKER ────────────────────────────────────────────
+const WORKER_URL = 'https://petite-nest-booking.nikolaos-protopsaltis.workers.dev';
+const AVAILABILITY_WINDOW_DAYS = 365;
 
 // ── STATE ────────────────────────────────────────────────────
 const S = {
@@ -1837,11 +2016,12 @@ const S = {
   checkIn:    null,
   checkOut:   null,
   monthStart: null,
-  availability: {},   // from the booking Worker (read-only): { 'yyyy-mm-dd': { available } }
-  availLoaded:  false,
-  rangeError:   false,
-  sent:       false,
-  sentTimer:  null,
+  availability:      {},     // isoDate -> { available, minStay, price, fee }
+  availabilityState: 'loading', // 'loading' | 'ready' | 'error'
+  cleaningFee: 0,            // one-off cleaning fee from the worker
+  transferEnabled: false,    // bank transfer offered (worker has an IBAN configured)
+  rangeError: false,
+  booking:    { status: 'idle' }, // 'idle' | 'submitting' | 'success' | 'error'
 };
 
 // ── UTILS ────────────────────────────────────────────────────
@@ -1851,6 +2031,14 @@ const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate()+n); ret
 const sameDay = (a, b) => !!(a && b && a.toDateString() === b.toDateString());
 const diffDays= (a, b) => Math.round((mid(b) - mid(a)) / 864e5);
 const fmtD    = d => d ? `${d.getDate()} ${t().monShort[d.getMonth()]}` : null;
+// Local calendar date, not UTC — toISOString() would shift the date near
+// midnight in the Europe/Athens timezone (UTC+2/+3).
+const isoDate = d => {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+};
 
 // ── TRANSLATIONS APPLY ───────────────────────────────────────
 function applyTr() {
@@ -1968,39 +2156,41 @@ vp.addEventListener('touchend',   e => {
   tx0 = null;
 });
 
-// ── AVAILABILITY (read-only, from the booking Worker ← Airbnb calendar) ──
-// If the Worker can't be reached, every future day stays selectable (as before).
-const WORKER_URL = 'https://petite-nest-booking.nikolaos-protopsaltis.workers.dev';
-const isoDate = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-const nightBooked = d => S.availLoaded && S.availability[isoDate(d)]?.available === false;
-function rangeIsFree(checkIn, checkOut) {
-  for (let d = mid(checkIn); d < mid(checkOut); d = addDays(d, 1)) {
-    if (nightBooked(d)) return false;
-  }
-  return true;
-}
-async function loadAvailability() {
-  try {
-    const start = isoDate(new Date());
-    const end   = isoDate(addDays(new Date(), 365));
-    const res = await fetch(`${WORKER_URL}/availability?start=${start}&end=${end}`);
-    if (!res.ok) return;
-    const data = await res.json();
-    S.availability = data.days || {};
-    S.availLoaded  = true;
-    // Drop a selection that turns out to include booked nights.
-    if (S.checkIn && (nightBooked(S.checkIn) || (S.checkOut && !rangeIsFree(S.checkIn, S.checkOut)))) {
-      S.checkIn = null; S.checkOut = null;
-      updateSummary(); updateBarDates();
-    }
-    renderCalendar();
-  } catch (e) { /* stay fail-open */ }
-}
-
 // ── CALENDAR ─────────────────────────────────────────────────
 function initCalendar() {
   const now = new Date();
   S.monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  loadAvailability();
+}
+
+async function loadAvailability() {
+  S.availabilityState = 'loading';
+  renderCalendar();
+  try {
+    const start = isoDate(new Date());
+    const end   = isoDate(addDays(new Date(), AVAILABILITY_WINDOW_DAYS));
+    const res = await fetch(`${WORKER_URL}/availability?start=${start}&end=${end}`);
+    if (!res.ok) throw new Error('availability request failed');
+    const data = await res.json();
+    S.availability = data.days || {};
+    S.cleaningFee = typeof data.cleaningFee === 'number' ? data.cleaningFee : 0;
+    S.transferEnabled = !!data.transferEnabled;
+    S.availabilityState = 'ready';
+    updateFromPrice();
+  } catch (e) {
+    S.availabilityState = 'error';
+  }
+  renderCalendar();
+  updateSummary();
+}
+
+function updateFromPrice() {
+  const prices = Object.values(S.availability)
+    .filter(d => d.available && typeof d.price === 'number')
+    .map(d => d.price);
+  if (prices.length) {
+    document.getElementById('barFromPrice').textContent = `€${Math.min(...prices)}`;
+  }
 }
 
 function renderCalendar() {
@@ -2018,19 +2208,22 @@ function renderCalendar() {
   const { checkIn, checkOut } = S;
   const startOffset = (ms.getDay() + 6) % 7; // Mon = 0
   const gridStart   = addDays(ms, -startOffset);
+  const loaded      = S.availabilityState === 'ready';
 
   const frag = document.createDocumentFragment();
   for (let i = 0; i < 42; i++) {
     const date    = addDays(gridStart, i);
     const inMonth = date.getMonth() === ms.getMonth();
     const isPast  = mid(date) < today;
+    const dayInfo = loaded ? S.availability[isoDate(date)] : null;
+    // A booked day can still be picked as the check-out day (the guest leaves
+    // that morning) as long as every night before it is free.
     const isCI    = checkIn  && sameDay(date, checkIn);
     const isCO    = checkOut && sameDay(date, checkOut);
+    const isOpen  = loaded && ((dayInfo && dayInfo.available === true) || isCO
+      || (checkIn && !checkOut && mid(date) > mid(checkIn) && rangeIsValid(checkIn, date)));
     const inRange = checkIn && checkOut
       && mid(date) > mid(checkIn) && mid(date) < mid(checkOut);
-    // A booked night can still be the check-out day, if every night before it is free.
-    const isOpen  = !nightBooked(date) || isCO
-      || (checkIn && !checkOut && mid(date) > mid(checkIn) && rangeIsFree(checkIn, date));
 
     const cell = document.createElement('div');
     cell.className = 'cal-day';
@@ -2039,6 +2232,9 @@ function renderCalendar() {
       if (isPast) {
         cell.classList.add('past');
       } else if (isOpen) {
+        // Only clickable once live calendar data confirms the day is open —
+        // while loading or on fetch error, every future day stays inert
+        // rather than letting guests pick unconfirmed dates.
         cell.classList.add('available');
         if (isCI && checkOut) cell.classList.add('range-start');
         if (isCO)             cell.classList.add('range-end');
@@ -2063,27 +2259,54 @@ function renderCalendar() {
   grid.innerHTML = '';
   grid.appendChild(frag);
 
-  const note = document.getElementById('calStatusNote');
-  note.textContent = S.rangeError ? tr.book.rangeError : '';
-  note.style.display = S.rangeError ? 'block' : 'none';
+  const statusNote = document.getElementById('calStatusNote');
+  if (S.availabilityState === 'loading') {
+    statusNote.textContent = tr.book.loadingAvail;
+    statusNote.className = 'cal-status-note';
+    statusNote.style.display = 'block';
+  } else if (S.availabilityState === 'error') {
+    statusNote.textContent = tr.book.errLoadAvail;
+    statusNote.className = 'cal-status-note error';
+    statusNote.style.display = 'block';
+  } else if (S.rangeError) {
+    statusNote.textContent = tr.book.rangeError;
+    statusNote.className = 'cal-status-note error';
+    statusNote.style.display = 'block';
+  } else {
+    statusNote.style.display = 'none';
+  }
+}
+
+// Every night in [checkIn, checkOut) must be open, and the stay must meet
+// the arrival day's minimum-stay requirement.
+function rangeIsValid(checkIn, checkOut) {
+  const nights = diffDays(checkIn, checkOut);
+  const minStay = S.availability[isoDate(checkIn)]?.minStay || 1;
+  if (nights < minStay) return false;
+  for (let d = mid(checkIn); d < mid(checkOut); d = addDays(d, 1)) {
+    const info = S.availability[isoDate(d)];
+    if (!info || info.available !== true) return false;
+  }
+  return true;
 }
 
 function pickDay(date) {
   const d = mid(date);
   const { checkIn, checkOut } = S;
   S.rangeError = false;
+  S.booking = { status: 'idle' };
+  document.getElementById('bookingMsg').style.display = 'none';
   if (!checkIn || (checkIn && checkOut)) {
     S.checkIn  = d;
     S.checkOut = null;
   } else if (d <= mid(checkIn)) {
     S.checkIn  = d;
     S.checkOut = null;
-  } else if (rangeIsFree(checkIn, d)) {
+  } else if (rangeIsValid(checkIn, d)) {
     S.checkOut = d;
   } else {
     S.rangeError = true;
   }
-  S.sent = false;
   renderCalendar();
   updateSummary();
   updateBarDates();
@@ -2119,36 +2342,105 @@ function updateGuestsDisplay() {
   document.getElementById('barGuests').textContent = label;
 }
 
+// Sum of per-night prices for [checkIn, checkOut); falls back to the flat
+// RATE for any night missing from the fetched availability window.
+// Groups consecutive nights with the same price, e.g. [{price: 85, n: 2}, {price: 80, n: 1}]
+function rateGroups(checkIn, checkOut) {
+  const groups = [];
+  for (let d = mid(checkIn); d < mid(checkOut); d = addDays(d, 1)) {
+    const info = S.availability[isoDate(d)];
+    const p = (info && typeof info.price === 'number') ? info.price : RATE;
+    const last = groups[groups.length - 1];
+    if (last && last.price === p) last.n++; else groups.push({ price: p, n: 1 });
+  }
+  return groups;
+}
+
+function nightlyTotal(checkIn, checkOut) {
+  let total = 0;
+  for (let d = mid(checkIn); d < mid(checkOut); d = addDays(d, 1)) {
+    const info = S.availability[isoDate(d)];
+    total += (info && typeof info.price === 'number') ? info.price : RATE;
+  }
+  return total;
+}
+
+// Climate resilience fee (per night, varies by season) for [checkIn, checkOut).
+function feeTotal(checkIn, checkOut) {
+  let total = 0;
+  for (let d = mid(checkIn); d < mid(checkOut); d = addDays(d, 1)) {
+    const info = S.availability[isoDate(d)];
+    total += (info && typeof info.fee === 'number') ? info.fee : 0;
+  }
+  return total;
+}
+
+const payMethod = () =>
+  (S.transferEnabled && document.querySelector('input[name="payMethod"]:checked')?.value) || 'card';
+
 // ── SUMMARY ──────────────────────────────────────────────────
 function updateSummary() {
   const tr = t();
   const { checkIn, checkOut } = S;
   const hasDates = !!(checkIn && checkOut);
   const nights   = hasDates ? diffDays(checkIn, checkOut) : 0;
-  const subtotal = nights * RATE;
-  const envFee   = hasDates ? feeTotal(checkIn, nights) : 0;
-  const total    = hasDates ? subtotal + envFee : 0;
+  const subtotal = hasDates ? nightlyTotal(checkIn, checkOut) : 0;
+  const avgRate  = nights ? Math.round(subtotal / nights) : RATE;
+  const envFee   = hasDates ? feeTotal(checkIn, checkOut) : 0;
+  const clean    = hasDates ? S.cleaningFee : 0;
+  const total    = hasDates ? subtotal + clean + envFee : 0;
 
   document.getElementById('sumCheckIn').textContent  = fmtD(checkIn)  || '—';
   document.getElementById('sumCheckOut').textContent = fmtD(checkOut) || '—';
 
   const priceBlock = document.getElementById('priceBlock');
   const noDatesMsg = document.getElementById('noDatesMsg');
+  const guestForm  = document.getElementById('guestForm');
   const bookBtn    = document.getElementById('bookBtn');
+  const { status } = S.booking;
 
   if (hasDates) {
     priceBlock.style.display = 'block';
     noDatesMsg.style.display = 'none';
-    document.getElementById('rateLine').textContent  = `€${RATE} × ${nights} ${tr.nightWord(nights)}`;
+    document.getElementById('rateLine').textContent  = rateGroups(checkIn, checkOut)
+      .map(g => `€${g.price} × ${g.n} ${tr.nightWord(g.n)}`).join(' + ');
     document.getElementById('rateAmt').textContent   = `€${subtotal}`;
-    document.getElementById('envFeeRow').style.display = 'flex';
-    document.getElementById('envFeeAmt').textContent = `€${envFee}`;
+    const cleanRow = document.getElementById('cleanRow');
+    cleanRow.style.display = clean > 0 ? 'flex' : 'none';
+    document.getElementById('cleanAmt').textContent = `€${clean}`;
+    const envFeeRow = document.getElementById('envFeeRow');
+    if (envFee > 0) {
+      envFeeRow.style.display = 'flex';
+      document.getElementById('envFeeLine').textContent = tr.book.envFee;
+      document.getElementById('envFeeAmt').textContent = `€${envFee}`;
+    } else {
+      envFeeRow.style.display = 'none';
+    }
     document.getElementById('totalAmt').textContent  = `€${total}`;
-    bookBtn.textContent = tr.book.requestReady;
-    bookBtn.className   = 'book-btn ready';
+
+    guestForm.style.display = status === 'success' ? 'none' : 'block';
+    document.getElementById('payMethodField').style.display = S.transferEnabled ? '' : 'none';
+    const disableInputs = status === 'submitting' || status === 'success';
+    ['gFirstName', 'gLastName', 'gEmail', 'gPhone', 'gTerms'].forEach(id => {
+      document.getElementById(id).disabled = disableInputs;
+    });
+    document.querySelectorAll('input[name="payMethod"]').forEach(r => { r.disabled = disableInputs; });
+
+    if (status === 'submitting') {
+      bookBtn.textContent = tr.book.sending;
+      bookBtn.className   = 'book-btn sending';
+    } else if (status === 'success') {
+      bookBtn.style.display = 'none';
+    } else {
+      bookBtn.style.display = '';
+      bookBtn.textContent = payMethod() === 'transfer' ? tr.book.requestTransfer : tr.book.requestReady;
+      bookBtn.className   = 'book-btn ready';
+    }
   } else {
     priceBlock.style.display = 'none';
     noDatesMsg.style.display = 'block';
+    guestForm.style.display = 'none';
+    bookBtn.style.display = '';
     bookBtn.textContent = tr.book.requestEmpty;
     bookBtn.className   = 'book-btn empty';
   }
@@ -2165,19 +2457,208 @@ function updateBarDates() {
 }
 
 // ── BOOK BUTTON ──────────────────────────────────────────────
-document.getElementById('bookBtn').addEventListener('click', () => {
-  if (!(S.checkIn && S.checkOut)) return;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function showBookingMsg(text, kind) {
+  const el = document.getElementById('bookingMsg');
+  el.textContent = text;
+  el.className = `booking-msg ${kind}`;
+  el.style.display = 'block';
+}
+
+function showBookingSuccess(text, extraNode) {
   const tr = t();
-  const nights = diffDays(S.checkIn, S.checkOut);
-  const total = nights * RATE + feeTotal(S.checkIn, nights);
-  const full = d => `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
-  const text = tr.book.waMsg
-    .replace('{in}', full(S.checkIn))
-    .replace('{out}', full(S.checkOut))
-    .replace('{guests}', S.guests)
-    .replace('{total}', total);
-  window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+  const el = document.getElementById('bookingMsg');
+  el.className = 'booking-msg success';
+  el.innerHTML = '';
+  const msg = document.createElement('div');
+  msg.textContent = text || tr.book.successMsg;
+  el.appendChild(msg);
+  if (extraNode) el.appendChild(extraNode);
+  const again = document.createElement('button');
+  again.type = 'button';
+  again.className = 'new-booking-btn';
+  again.textContent = tr.book.newBooking;
+  again.addEventListener('click', resetBookingFlow);
+  el.appendChild(again);
+  el.style.display = 'block';
+}
+
+function bankBox(tf) {
+  const tr = t();
+  const box = document.createElement('div');
+  box.className = 'bank-box';
+  [
+    [tr.book.bankName, tf.accountName],
+    ['IBAN', tf.iban],
+    [tr.book.bankAmount, `€${tf.amount}`],
+    [tr.book.bankRef, tf.reference],
+  ].forEach(([k, v]) => {
+    const row = document.createElement('div');
+    const b = document.createElement('strong');
+    b.textContent = v;
+    row.append(`${k}: `, b);
+    box.appendChild(row);
+  });
+  return box;
+}
+
+function resetBookingFlow() {
+  S.checkIn = null;
+  S.checkOut = null;
+  S.booking = { status: 'idle' };
+  S.rangeError = false;
+  ['gFirstName', 'gLastName', 'gEmail', 'gPhone'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('bookingMsg').style.display = 'none';
+  loadAvailability();
+  renderCalendar();
+  updateSummary();
+  updateBarDates();
+}
+
+document.querySelectorAll('input[name="payMethod"]').forEach(r =>
+  r.addEventListener('change', updateSummary));
+document.getElementById('gTerms').addEventListener('change', e => {
+  document.getElementById('termsLabel').classList.toggle('attn', !e.target.checked);
+  if (e.target.checked) document.getElementById('bookingMsg').style.display = 'none';
 });
+
+document.getElementById('bookBtn').addEventListener('click', async () => {
+  if (!(S.checkIn && S.checkOut)) return;
+  if (S.booking.status === 'submitting' || S.booking.status === 'success') return;
+
+  const tr = t();
+  const firstName = document.getElementById('gFirstName').value.trim();
+  const lastName  = document.getElementById('gLastName').value.trim();
+  const email     = document.getElementById('gEmail').value.trim();
+  const phone     = document.getElementById('gPhone').value.trim();
+  const method    = payMethod();
+
+  if (!firstName || !lastName) {
+    showBookingMsg(tr.book.errNames, 'error');
+    return;
+  }
+  if (!EMAIL_RE.test(email)) {
+    showBookingMsg(tr.book.errEmail, 'error');
+    return;
+  }
+  if (!document.getElementById('gTerms').checked) {
+    document.getElementById('termsLabel').classList.add('attn');
+    showBookingMsg(tr.book.errTerms, 'error');
+    return;
+  }
+
+  S.booking = { status: 'submitting' };
+  document.getElementById('bookingMsg').style.display = 'none';
+  updateSummary();
+
+  try {
+    const res = await fetch(`${WORKER_URL}/checkout`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        method,
+        arrivalDate:   isoDate(S.checkIn),
+        departureDate: isoDate(S.checkOut),
+        firstName, lastName, email,
+        phone: phone || undefined,
+        adults: S.guests,
+        lang: S.lang,
+        termsAccepted: true,
+        returnUrl: location.origin + location.pathname,
+      }),
+    });
+
+    if (!res.ok) {
+      S.booking = { status: 'error' };
+      if (res.status === 409) {
+        showBookingMsg(tr.book.errConflict, 'error');
+        loadAvailability();
+      } else {
+        showBookingMsg(tr.book.errGeneric, 'error');
+      }
+      updateSummary();
+      return;
+    }
+
+    const data = await res.json();
+    if (method === 'card' && data.url) {
+      // Hand over to Stripe's secure payment page; we come back via ?booking=…
+      location.href = data.url;
+      return;
+    }
+    if (method === 'transfer' && data.transfer) {
+      S.booking = { status: 'success' };
+      showBookingSuccess(tr.book.transferMsg.replace('{deadline}', data.transfer.deadline), bankBox(data.transfer));
+      updateSummary();
+      return;
+    }
+    throw new Error('unexpected response');
+  } catch (e) {
+    S.booking = { status: 'error' };
+    showBookingMsg(tr.book.errGeneric, 'error');
+    updateSummary();
+  }
+});
+
+// After a card payment: show what was booked (dates, guests, total, code).
+// The Stripe webhook may land a moment after the guest returns, so retry briefly.
+async function showPaidSummary(id, attempt = 0) {
+  if (!id) return;
+  try {
+    const res = await fetch(`${WORKER_URL}/status?id=${encodeURIComponent(id)}`);
+    const d = await res.json();
+    if (!d.arrival) return;
+    if (d.status !== 'confirmed' && attempt < 5) {
+      setTimeout(() => showPaidSummary(id, attempt + 1), 2000);
+    }
+    const tr = t();
+    const toDate = iso => { const [y, m, dd] = iso.split('-').map(Number); return new Date(y, m - 1, dd); };
+    const box = document.createElement('div');
+    box.className = 'bank-box';
+    [
+      [tr.book.bookingCode, d.id],
+      [`${tr.widget.checkin} – ${tr.widget.checkout}`,
+        `${fmtD(toDate(d.arrival))} – ${fmtD(toDate(d.departure))} (${d.nights} ${tr.nightWord(d.nights)})`],
+      [tr.widget.guests, `${d.adults} ${tr.guestWord(d.adults)}`],
+      [tr.book.total, `€${d.total}`],
+    ].forEach(([k, v]) => {
+      const row = document.createElement('div');
+      const b = document.createElement('strong');
+      b.textContent = v;
+      row.append(`${k}: `, b);
+      box.appendChild(row);
+    });
+    showBookingSuccess(d.status === 'confirmed' ? tr.book.successMsg : tr.book.processingMsg, box);
+  } catch (e) { /* keep the generic message */ }
+}
+
+// Returning from Stripe: ?booking=success|cancelled&id=…
+function handlePaymentReturn() {
+  const params = new URLSearchParams(location.search);
+  const result = params.get('booking');
+  if (!result) return;
+  const id = params.get('id');
+  const tr = t();
+  history.replaceState(null, '', location.pathname + '#book');
+  if (result === 'success') {
+    S.booking = { status: 'success' };
+    showBookingSuccess(tr.book.processingMsg);
+    showPaidSummary(id);
+  } else if (result === 'cancelled') {
+    // Free the dates we were holding for this payment straight away.
+    fetch(`${WORKER_URL}/release`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, rt: params.get('rt') }),
+    }).catch(() => {}).finally(loadAvailability);
+    showBookingMsg(tr.book.cancelledMsg, 'error');
+  }
+  setTimeout(() => document.getElementById('book').scrollIntoView({ behavior: 'smooth' }), 300);
+}
+handlePaymentReturn();
 
 // ── REVIEWS CAROUSEL ─────────────────────────────────────────
 const RV = {
@@ -2292,7 +2773,6 @@ buildGallery();
 buildReviews();
 initCalendar();
 applyTr();
-loadAvailability();
 </script>
 </body>
 </html>
